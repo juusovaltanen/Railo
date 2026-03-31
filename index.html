@@ -15,8 +15,8 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#137fec',
-                        secondary: '#0f66bd',
+                        primary: '#D4AF37',
+                        secondary: '#AA8B2E',
                         'background-dark': '#00001C',
                         'surface-dark': '#0A0A2E',
                         'surface-darker': '#050514',
@@ -44,10 +44,25 @@
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #137fec;
+            background: #D4AF37;
         }
         .text-glow {
-            text-shadow: 0 0 20px rgba(19, 127, 236, 0.3);
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        @keyframes gold-glow {
+            0% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.6); }
+            100% { box-shadow: 0 0 5px rgba(212, 175, 55, 0.2); }
+        }
+        .glow-gold {
+            animation: gold-glow 3s infinite;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 <script type="importmap">

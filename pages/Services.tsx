@@ -5,45 +5,73 @@ import SEO from '../components/SEO';
 const Services: React.FC = () => {
   const services = [
     {
-      title: "RAILO BASIC – Kustannustehokas ja siisti",
-      subtitle: "Sileä epoksimaalaus",
-      description: "Paras valinta tavalliseen autotalliin tai varastoon, kun haluat eroon betonipölystä ja lian imeytymisestä nopeasti ja edullisesti. Railo Basic on ohutkalvopinnoite, joka muuttaa raa'an, huokoisen betonin sileäksi ja helposti siivottavaksi pinnaksi. Se asennetaan kahdella kerroksella korkealaatuista epoksimaalia, ja se kestää hienosti normaalia henkilöautoliikennettä sekä talven mukana tulevia sulamisvesiä.",
-      usage: "Kotitalouksien autotallit, varastot, tekniset tilat ja taloyhtiöiden pyörävarastot.",
-      icon: "check_circle",
+      title: "Temafloor – Pölynsidonta",
+      subtitle: "Kustannustehokas suojaus",
+      description: "Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Me telataan lattiaan laadukas Temafloor-pinnoite, joka imeytyy betonin huokosiin ja sitoo pinnan tiiviiksi. Lopputuloksena on siisti ja helposti lakaistava tila, jossa pöly ei enää nouse kenkien mukana sisälle taloon. Sopii täydellisesti pannuhuoneisiin ja varastoihin.",
+      usage: "Pannuhuoneet, varastot, kellarit ja tekniset tilat.",
+      icon: "cleaning_services",
       badge: "Kustannustehokas",
       image: "https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png",
       features: [
-        { icon: "palette", text: "Yksivärinen & Sileä" },
-        { icon: "shield", text: "Öljyn & Kemikaalien kesto" },
-        { icon: "cleaning_services", text: "Helppo ylläpito" }
+        { icon: "smoke_free", text: "Pölytön pinta" },
+        { icon: "savings", text: "Edullinen hinta" },
+        { icon: "speed", text: "Nopea asennus" }
       ]
     },
     {
-      title: "RAILO PREMIUM – Näyttävä ja kestävä",
-      subtitle: "Mosaiikkihiutalelattia",
-      description: "Myyntimenestyksemme! Täydellinen valinta, kun autotalli toimii myös harrastetilana tai kun haluat kotiisi markkinoiden tyylikkäimmän ja helppohoitoisimman lattian. Railo Premium on hiutalelattia, jossa sileän värimassan päälle sirotellaan mosaiikkihiutaleita. Lopuksi pinta kapseloidaan kirkkaalla, erittäin kestävällä pintalakalla. Lopputulos on upea, kivimäinen ja hieman teksturoitu. Kirjava pinta antaa loistavasti anteeksi likaa ja pölyä – talli näyttää aina siistiltä.",
-      usage: "Vaativat autotallit, 'Man Cavet', harraste- ja verstastilat sekä näyttelytilat.",
-      icon: "stars",
-      badge: "Myyntimenestys",
-      image: "https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png",
-      features: [
-        { icon: "layers", text: "3-kerroksinen rakenne" },
-        { icon: "texture", text: "Kitkaa ilman liukkautta" },
-        { icon: "diamond", text: "Naarmuuntumisen kesto" }
-      ]
-    },
-    {
-      title: "RAILO HEAVY DUTY – Raskaan sarjan kesto",
-      subtitle: "Paksu epoksipinnoite",
-      description: "Kun lattialta vaaditaan maksimaalista iskunkestoa ja mekaanista rasitusta. Tämä on oikea valinta korjaamoihin tai tiloihin, joissa käytetään nastarenkaita tai liikutellaan raskaita taakkoja. Railo Heavy Duty tehdään paksulla epoksipinnoitteella. Toisin kuin pelkkä maalattu lattia, tämä on paksu, 'lasimainen' kerros, joka kestää todella kovaa kulutusta. Pinta on oletuksena täysin sileä, mutta siihen voidaan lisätä karhennus (esim. kvartsihiekka).",
-      usage: "Autokorjaamot ja fiksaamot, teollisuushallit, konevarastot ja vaativat korjaamotilat.",
-      icon: "construction",
-      badge: "Äärimmäinen kesto",
+      title: "Temafloor – 0,5 mm",
+      subtitle: "Ohutkalvopinnoite",
+      description: "Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Me aloitetaan vetämällä pohjalle kunnon primer-tartunta, ja sen päälle levitetään 0,5 mm kerros kestävää epoksimassaa. Tämä yhdistelmä antaa lattialle suojan öljyä ja kemikaaleja vastaan ja tekee siitä todella helposti puhdistettavan.",
+      usage: "Autotallit, varastot ja kevyen teollisuuden tilat.",
+      icon: "layers",
+      badge: "Suosittu valinta",
       image: "https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png",
       features: [
-        { icon: "bolt", text: "Iskunkestävä kalvo (>0,5mm)" },
-        { icon: "science", text: "Liuottimien & Öljyn sieto" },
-        { icon: "group_work", text: "Valinnainen liukueste" }
+        { icon: "palette", text: "Värillinen pinta" },
+        { icon: "shield", text: "Kemikaalien kesto" },
+        { icon: "cleaning_services", text: "Helppo puhdistus" }
+      ]
+    },
+    {
+      title: "Temafloor – 1 mm",
+      subtitle: "Vahvistettu pinnoite",
+      description: "Tämä on meidän suosituin tuote autotalleihin. Tehdään samalla periaatteella kuin puolimillinen, mutta sekoitetaan massan sekaan hiekkaa. Se hiekka ei ole siellä turhaan: se tekee pinnoitteesta huomattavasti kovemman ja antaa sille mekaanista kestoa, jota tarvitaan, kun autolla ajetaan nastoilla ja hiekkaa kantautuu sisään. Tämä kestää isältä pojalle.",
+      usage: "Vaativat autotallit, joissa käytetään nastarenkaita.",
+      icon: "verified",
+      badge: "Paras hinta-laatu",
+      image: "https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png",
+      features: [
+        { icon: "diamond", text: "Mekaaninen kesto" },
+        { icon: "tire_repair", text: "Nastarenkaiden kesto" },
+        { icon: "history", text: "Pitkä elinikä" }
+      ]
+    },
+    {
+      title: "Temafloor – 2 mm",
+      subtitle: "Kovaan käyttöön soveltuva massalattia",
+      description: "Tämä on se järein ratkaisu, jos tallissa harrastetaan raskaammin tai liikutellaan painavia työkoneita. Tehdään samalla reseptillä kuin 1 mm pinnoite, mutta ainetta laitetaan tuplasti enemmän. Tuloksena on paksu ja iskunkestävä massalattia, joka ei hätkähdä kovaakaan kulutusta tai pistekuormia. Tehty kestämään kaikkea, mitä tallissa voi tapahtua.",
+      usage: "Korjaamot, teollisuushallit ja raskaat harrastetilat.",
+      icon: "construction",
+      badge: "Äärimmäinen kesto",
+      image: "https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg",
+      features: [
+        { icon: "bolt", text: "Iskunkestävä" },
+        { icon: "precision_manufacturing", text: "Raskas käyttö" },
+        { icon: "fitness_center", text: "Pistekuormien kesto" }
+      ]
+    },
+    {
+      title: "Custom-lattia",
+      subtitle: "Yksilöllinen toteutus",
+      description: "Kun haluat jotain täysin uniikkia. Custom-lattia suunnitellaan ja toteutetaan täysin sinun toiveidesi mukaan. Voimme käyttää erikoisvärejä, metallinhohtoa tai monimutkaisia hiutaleyhdistelmiä luodaksemme näyttävän pinnan kotiin tai edustustiloihin.",
+      usage: "Edustustilat, liiketilat, modernit kodit ja showroomit.",
+      icon: "auto_awesome",
+      badge: "Uniikki ja näyttävä",
+      image: "https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png",
+      features: [
+        { icon: "brush", text: "Vapaa värivalinta" },
+        { icon: "auto_fix_high", text: "Erikoistehosteet" },
+        { icon: "shield", text: "Kestävä" }
       ]
     }
   ];

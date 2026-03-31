@@ -4,14 +4,15 @@ import React, { useState, useRef, useEffect } from 'react';
 interface Props {
   before: string;
   after: string;
+  isStatic?: boolean;
 }
 
-const BeforeAfterSlider: React.FC<Props> = ({ before, after }) => {
+const BeforeAfterSlider: React.FC<Props> = ({ before, after, isStatic = false }) => {
   const [position, setPosition] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMove = (e: React.MouseEvent | React.TouchEvent) => {
-    if (!containerRef.current) return;
+    if (isStatic || !containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
     const relativeX = x - rect.left;
@@ -22,28 +23,30 @@ const BeforeAfterSlider: React.FC<Props> = ({ before, after }) => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-video rounded-xl overflow-hidden cursor-ew-resize select-none"
+      className={`relative w-full aspect-video rounded-xl overflow-hidden select-none ${isStatic ? '' : 'cursor-ew-resize'}`}
       onMouseMove={handleMove}
       onTouchMove={handleMove}
     >
       <div className="absolute inset-0">
-        <img src={after} alt="After" className="w-full h-full object-cover" />
+        <img src={after} alt="After" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </div>
       <div
         className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <img src={before} alt="Before" className="w-full h-full object-cover" />
+        <img src={before} alt="Before" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </div>
 
       {/* Slider Line & Handle */}
       <div
-        className="absolute top-0 bottom-0 w-1 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center pointer-events-none"
+        className={`absolute top-0 bottom-0 w-1 ${isStatic ? 'bg-blue-900' : 'bg-white'} shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center pointer-events-none`}
         style={{ left: `${position}%` }}
       >
-        <div className="w-10 h-10 bg-primary rounded-full border-4 border-white flex items-center justify-center shadow-xl">
-          <span className="material-icons-outlined text-white text-lg">unfold_more</span>
-        </div>
+        {!isStatic && (
+          <div className="w-10 h-10 bg-primary rounded-full border-4 border-white flex items-center justify-center shadow-xl">
+            <span className="material-icons-outlined text-white text-lg">unfold_more</span>
+          </div>
+        )}
       </div>
 
       {/* Labels */}

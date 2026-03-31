@@ -14,9 +14,9 @@ const Gallery: React.FC = () => {
       title: 'Autotalli Liminka',
       category: 'Autotallit',
       location: 'Liminka',
-      description: 'Toteutimme 25m² suuruisen autotallin lattiapinnoituksen Limingassa. Urakka sisälsi huolellisen pohjahionnan ja halkeamien injektoinnin, jonka jälkeen pintaan asennettiin kestävä epoksi yhdessä hiekkakarhennuksen kanssa. Lopputuloksena on erittäin kestävä ja turvallinen lattia.',
-      tags: ['Epoksi + hiekka', '25m²', 'Liminka'],
-      imageBefore: 'https://picsum.photos/seed/b1/800/450?grayscale',
+      description: 'Toteutimme Limingassa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Temafloor – 1 mm epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.',
+      tags: [],
+      imageBefore: 'https://i.postimg.cc/CxdVR54R/IMG_3742.avif',
       imageAfter: 'https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png',
     },
     {
@@ -24,10 +24,10 @@ const Gallery: React.FC = () => {
       title: 'Varastohalli Liminka',
       category: 'Teollisuus',
       location: 'Liminka',
-      description: 'Varastohallin saneeraus aloitettiin perusteellisilla betonitöillä ja pinnan tasoituksella. Tämän jälkeen lattiaan asennettiin äärimmäistä mekaanista kulutusta kestävä teollisuusepoksi. Erityistä huomiota kiinnitettiin oviaukkoihin, jotka tehtiin liukuestekäsittelyllä varmistamaan turvallinen kulku kaikissa olosuhteissa.',
-      tags: ['Betonityöt', 'Teollisuusepoksi', 'Liukueste'],
-      imageBefore: 'https://picsum.photos/seed/b2/800/450?grayscale',
-      imageAfter: 'https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png',
+      description: 'Limingassa sijaitsevan varastohallin lattia sai uuden elämän järeällä Temafloor – 2 mm massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.',
+      tags: [],
+      imageBefore: 'https://i.postimg.cc/tR50DWS1/Gemini-Generated-Image-av6b1zav6b1zav6b.png',
+      imageAfter: 'https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg',
     }
   ];
 
@@ -62,7 +62,7 @@ const Gallery: React.FC = () => {
         <div className="grid md:grid-cols-2 gap-12">
           {filteredProjects.map(project => (
             <div key={project.id} className="bg-surface-dark rounded-[3rem] overflow-hidden border border-slate-800 shadow-2xl flex flex-col group">
-              <BeforeAfterSlider before={project.imageBefore} after={project.imageAfter} />
+              <BeforeAfterSlider before={project.imageBefore} after={project.imageAfter} isStatic={true} />
               <div className="p-10 flex-grow">
                 <div className="flex justify-between items-start mb-6">
                   <div>
@@ -95,7 +95,7 @@ const Gallery: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
             <div>
-              <p className="text-6xl font-black text-white mb-3 italic tracking-tighter">10v</p>
+              <p className="text-6xl font-black text-white mb-3 italic tracking-tighter">2v</p>
               <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-500 italic text-glow">Takuu</p>
             </div>
             <div>

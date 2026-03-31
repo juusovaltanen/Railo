@@ -5,9 +5,9 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
 import Gallery from './pages/Gallery';
-import About from './pages/About';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
+import Blog from './pages/Blog';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import CalculatorPage from './pages/CalculatorPage';
@@ -32,9 +32,9 @@ const App: React.FC = () => {
             <Route path="/palvelut" element={<Services />} />
             <Route path="/laskuri" element={<CalculatorPage />} />
             <Route path="/galleria" element={<Gallery />} />
-            <Route path="/meista" element={<About />} />
             <Route path="/ukk" element={<FAQ />} />
             <Route path="/yhteystiedot" element={<Contact />} />
+            <Route path="/blogi" element={<Blog />} />
             <Route path="/tietosuoja" element={<PrivacyPolicy />} />
             <Route path="/kayttoehdot" element={<TermsOfUse />} />
           </Routes>

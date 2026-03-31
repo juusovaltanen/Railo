@@ -16,8 +16,11 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Etusivu', path: '/' },
+    { name: 'Laske hinta-arvio', path: '/laskuri' },
     { name: 'Palvelut', path: '/palvelut' },
-    { name: 'Meistä', path: '/meista' },
+    { name: 'Galleria', path: '/galleria' },
+    { name: 'Blogi', path: '/blogi' },
+    { name: 'UKK', path: '/ukk' },
     { name: 'Ota yhteyttä', path: '/yhteystiedot' },
   ];
 
@@ -35,59 +38,45 @@ const Navbar: React.FC = () => {
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center space-x-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`px-3 py-2 text-sm font-bold uppercase tracking-widest transition-all rounded-lg ${isActive(link.path) ? 'text-primary' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
-              >
-                {link.name}
-              </Link>
-            ))}
+          {/* Nav Actions */}
+          <div className="flex items-center gap-4 relative">
             <Link
               to="/laskuri"
-              className="bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all italic"
+              className="bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 px-5 py-2.5 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest transition-all italic"
             >
               Laske hinta-arvio
             </Link>
-          </nav>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-slate-400 hover:text-white"
-          >
-            <span className="material-icons-outlined text-3xl">{isMobileMenuOpen ? 'close' : 'menu'}</span>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-background-dark border-b border-white/5 animate-in slide-in-from-top duration-300">
-          <div className="px-4 pt-2 pb-8 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className={`block px-3 py-5 rounded-md text-xl font-bold uppercase tracking-widest ${isActive(link.path) ? 'bg-primary/10 text-primary' : 'text-slate-300'}`}
+            {/* Menu Button & Dropdown Container */}
+            <div className="relative">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-2 text-slate-400 hover:text-white transition-colors"
               >
-                {link.name}
-              </Link>
-            ))}
-            <Link
-              to="/laskuri"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="block px-3 py-5 rounded-md text-xl font-bold uppercase tracking-widest text-primary bg-primary/5"
-            >
-              Laske hinta-arvio
-            </Link>
+                <span className="material-icons-outlined text-3xl">{isMobileMenuOpen ? 'close' : 'menu'}</span>
+              </button>
+
+              {/* Small Dropdown Menu */}
+              {isMobileMenuOpen && (
+                <div className="absolute top-full right-0 mt-4 w-56 bg-surface-dark/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+                  <div className="p-2 space-y-1">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.path}
+                        to={link.path}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`block px-5 py-4 rounded-xl text-xs font-bold uppercase tracking-widest transition-all ${isActive(link.path) ? 'bg-primary/10 text-primary' : 'text-slate-300 hover:bg-white/5 hover:text-white'}`}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </header>
   );
 };
