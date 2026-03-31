@@ -24,7 +24,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black text-white mb-10 tracking-tight leading-none text-glow uppercase italic">
+          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-10 tracking-tight leading-none text-glow uppercase italic break-words">
             RAILO <span className="block md:inline text-primary">EPOKSILATTIAT</span>
           </h1>
           <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16">
@@ -55,7 +55,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
             <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Vertailu</span>
-            <h2 className="text-5xl font-black text-white uppercase italic tracking-tight">Miksi valita epoksi?</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase italic tracking-tight break-words">Miksi valita epoksi?</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 items-stretch">
@@ -122,7 +122,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div>
               <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Palvelut</span>
-              <h2 className="text-6xl font-black text-white tracking-tight uppercase italic">MEIDÄN PALVELUMME – NÄIN ME SEN TEEMME</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight uppercase italic break-words">MEIDÄN PALVELUMME</h2>
             </div>
             <div className="flex items-center gap-4">
               <Link to="/palvelut" className="text-primary hover:text-white transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-sm group italic">
@@ -177,7 +177,7 @@ const Home: React.FC = () => {
 
             {/* Temafloor – 1 mm */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Temafloor – 1 mm" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/BbR1jgY2/IMG-6704.jpg" alt="Temafloor – 1 mm" className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -248,7 +248,7 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Hinnasto</span>
-            <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter italic mb-6">Laske hinta-arvio</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter italic mb-6 break-words">Laske hinta-arvio</h2>
           </div>
           <PriceCalculator />
         </div>
@@ -257,7 +257,7 @@ const Home: React.FC = () => {
       {/* Final CTA Section */}
       <section className="py-40 bg-surface-dark overflow-hidden relative border-y border-white/5 text-center">
         <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <h2 className="text-6xl md:text-7xl font-black text-white mb-10 tracking-tight uppercase italic">Valmis muuttamaan lattiasi?</h2>
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-10 tracking-tight uppercase italic break-words">Valmis muuttamaan lattiasi?</h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/yhteystiedot" className="inline-block bg-primary hover:bg-secondary text-white px-20 py-7 rounded-2xl text-xl font-bold uppercase tracking-widest transition-all shadow-2xl shadow-primary/30 active:scale-95 italic glow-gold">
               Lähetä tarjouspyyntö

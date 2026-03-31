@@ -38,7 +38,7 @@ const UnifiedProcessTimeline: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-24">
           <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Prosessimme</span>
-          <h2 className="text-4xl md:text-6xl font-black text-white uppercase italic tracking-tight leading-none">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase italic tracking-tight leading-none break-words">
             NÄIN HELPOSTI LATTIASI UUDISTUU
           </h2>
         </div>

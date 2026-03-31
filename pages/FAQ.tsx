@@ -52,7 +52,7 @@ const FAQ: React.FC = () => {
       <section className="py-32 max-w-3xl mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic text-glow">Tietopankki</span>
-          <h1 className="text-6xl font-black text-white mb-6 uppercase tracking-tighter italic">UKK</h1>
+          <h1 className="text-5xl sm:text-6xl font-black text-white mb-6 uppercase tracking-tighter italic break-words">UKK</h1>
           <p className="text-slate-400 text-lg font-bold italic tracking-normal">
             Vastauksia yleisimpiin kysymyksiin epoksilattioista.
           </p>

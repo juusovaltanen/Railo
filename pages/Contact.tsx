@@ -56,14 +56,14 @@ const Contact: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-24">
           <div className="space-y-20">
             <div>
-              <h1 className="text-7xl md:text-8xl font-black text-white mb-10 leading-none tracking-tighter uppercase italic">Ota yhteyttä</h1>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-10 leading-none tracking-tighter uppercase italic break-words">Ota yhteyttä</h1>
               <p className="text-2xl text-slate-400 leading-relaxed max-w-md font-bold italic tracking-normal">
                 Pyydä tarjous tai kysy lisää. Olemme paikallinen kumppanisi Pohjois-Suomessa.
               </p>
             </div>
 
             <div className="space-y-10">
-              <a href="mailto:railopinnoitus@gmail.com" className="flex items-center gap-10 p-10 rounded-[2.5rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-all group shadow-2xl">
+              <a href="mailto:railopinnoitus@gmail.com" className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 p-8 sm:p-10 rounded-[2.5rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-all group shadow-2xl">
                 <div className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                   <span className="material-icons-outlined text-5xl">mail</span>
                 </div>
@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
                   <p className="text-xl md:text-2xl font-black text-white break-all italic tracking-tight">railopinnoitus@gmail.com</p>
                 </div>
               </a>
-              <a href="tel:+358440348088" className="flex items-center gap-10 p-10 rounded-[2.5rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-all group shadow-2xl">
+              <a href="tel:+358440348088" className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 p-8 sm:p-10 rounded-[2.5rem] bg-surface-dark border border-white/5 hover:border-primary/50 transition-all group shadow-2xl">
                 <div className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
                   <span className="material-icons-outlined text-5xl">phone</span>
                 </div>
@@ -81,7 +81,7 @@ const Contact: React.FC = () => {
                   <p className="text-4xl font-black text-white italic tracking-tighter">044 034 8088</p>
                 </div>
               </a>
-              <div className="flex items-center gap-10 p-10 rounded-[2.5rem] bg-surface-dark border border-white/5 shadow-2xl">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10 p-8 sm:p-10 rounded-[2.5rem] bg-surface-dark border border-white/5 shadow-2xl">
                 <div className="w-20 h-20 rounded-3xl bg-primary/10 flex items-center justify-center text-primary flex-shrink-0">
                   <span className="material-icons-outlined text-5xl">place</span>
                 </div>
@@ -95,7 +95,7 @@ const Contact: React.FC = () => {
 
           <div className="relative">
             <div className="relative bg-surface-dark border border-white/5 rounded-[3.5rem] p-12 md:p-16 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-              <h2 className="text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Pyydä tarjous</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic break-words">Pyydä tarjous</h2>
               <p className="text-slate-400 mb-12 font-bold uppercase tracking-widest text-xs italic">Vastaamme tiedusteluihin arkisin 24h kuluessa.</p>
 
               {isSuccess ? (

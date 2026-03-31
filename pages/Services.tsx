@@ -39,7 +39,7 @@ const Services: React.FC = () => {
       usage: "Vaativat autotallit, joissa käytetään nastarenkaita.",
       icon: "verified",
       badge: "Paras hinta-laatu",
-      image: "https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png",
+      image: "https://i.postimg.cc/BbR1jgY2/IMG-6704.jpg",
       features: [
         { icon: "diamond", text: "Mekaaninen kesto" },
         { icon: "tire_repair", text: "Nastarenkaiden kesto" },
@@ -88,7 +88,7 @@ const Services: React.FC = () => {
           <span className="inline-block py-2 px-5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest mb-8">
             RAILO Ratkaisut
           </span>
-          <h1 className="text-6xl md:text-8xl font-black text-white tracking-tight mb-10 uppercase italic leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white tracking-tight mb-10 uppercase italic leading-tight break-words">
             KESTÄVÄT <span className="text-primary italic">LATTIARATKAISUT</span>
           </h1>
           <p className="max-w-3xl mx-auto text-xl text-slate-400 leading-relaxed font-bold italic tracking-normal mb-10">

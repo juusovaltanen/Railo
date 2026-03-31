@@ -16,8 +16,8 @@ const Gallery: React.FC = () => {
       location: 'Liminka',
       description: 'Toteutimme Limingassa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Temafloor – 1 mm epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.',
       tags: [],
-      imageBefore: 'https://i.postimg.cc/CxdVR54R/IMG_3742.avif',
-      imageAfter: 'https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png',
+      imageBefore: 'https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png',
+      imageAfter: 'https://i.postimg.cc/BbR1jgY2/IMG-6704.jpg',
     },
     {
       id: '2',
@@ -39,7 +39,7 @@ const Gallery: React.FC = () => {
     <div className="pt-20">
       <section className="py-24 max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Työmme jälki puhuu <span className="text-primary">puolestaan</span></h1>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic break-words">Työmme jälki puhuu <span className="text-primary">puolestaan</span></h1>
           <p className="max-w-3xl mx-auto text-slate-400 text-lg font-bold italic tracking-normal">
             Tutustu toteuttamiimme kohteisiin. Teemme lattiapinnoitukset tinkimättömällä ammattitaidolla autotalleista teollisuushalleihin Pohjois-Suomessa.
           </p>

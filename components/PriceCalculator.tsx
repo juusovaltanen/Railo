@@ -141,7 +141,7 @@ const PriceCalculator: React.FC = () => {
           {step === 'flakes' && (
             <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
               <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">3. Lisätäänkö hiutaleet?</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   { id: true, label: 'Kyllä', desc: 'Värihiutaleilla' },
                   { id: false, label: 'Ei', desc: 'Tasainen väri' }
