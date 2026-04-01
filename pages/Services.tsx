@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 const Services: React.FC = () => {
   const services = [
     {
-      title: "Temafloor – Pölynsidonta",
+      title: "Railo Pölynsidonta",
       subtitle: "Kustannustehokas suojaus",
       description: "Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Me telataan lattiaan laadukas Temafloor-pinnoite, joka imeytyy betonin huokosiin ja sitoo pinnan tiiviiksi. Lopputuloksena on siisti ja helposti lakaistava tila, jossa pöly ei enää nouse kenkien mukana sisälle taloon. Sopii täydellisesti pannuhuoneisiin ja varastoihin.",
       usage: "Pannuhuoneet, varastot, kellarit ja tekniset tilat.",
@@ -19,7 +19,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Temafloor – 0,5 mm",
+      title: "Railo 0,5 mm",
       subtitle: "Ohutkalvopinnoite",
       description: "Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Me aloitetaan vetämällä pohjalle kunnon primer-tartunta, ja sen päälle levitetään 0,5 mm kerros kestävää epoksimassaa. Tämä yhdistelmä antaa lattialle suojan öljyä ja kemikaaleja vastaan ja tekee siitä todella helposti puhdistettavan.",
       usage: "Autotallit, varastot ja kevyen teollisuuden tilat.",
@@ -33,7 +33,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Temafloor – 1 mm",
+      title: "Railo 1 mm",
       subtitle: "Vahvistettu pinnoite",
       description: "Tämä on meidän suosituin tuote autotalleihin. Tehdään samalla periaatteella kuin puolimillinen, mutta sekoitetaan massan sekaan hiekkaa. Se hiekka ei ole siellä turhaan: se tekee pinnoitteesta huomattavasti kovemman ja antaa sille mekaanista kestoa, jota tarvitaan, kun autolla ajetaan nastoilla ja hiekkaa kantautuu sisään. Tämä kestää isältä pojalle.",
       usage: "Vaativat autotallit, joissa käytetään nastarenkaita.",
@@ -47,7 +47,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Temafloor – 2 mm",
+      title: "Railo 2 mm",
       subtitle: "Kovaan käyttöön soveltuva massalattia",
       description: "Tämä on se järein ratkaisu, jos tallissa harrastetaan raskaammin tai liikutellaan painavia työkoneita. Tehdään samalla reseptillä kuin 1 mm pinnoite, mutta ainetta laitetaan tuplasti enemmän. Tuloksena on paksu ja iskunkestävä massalattia, joka ei hätkähdä kovaakaan kulutusta tai pistekuormia. Tehty kestämään kaikkea, mitä tallissa voi tapahtua.",
       usage: "Korjaamot, teollisuushallit ja raskaat harrastetilat.",
@@ -61,9 +61,9 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Custom-lattia",
+      title: "Railo Custom",
       subtitle: "Yksilöllinen toteutus",
-      description: "Kun haluat jotain täysin uniikkia. Custom-lattia suunnitellaan ja toteutetaan täysin sinun toiveidesi mukaan. Voimme käyttää erikoisvärejä, metallinhohtoa tai monimutkaisia hiutaleyhdistelmiä luodaksemme näyttävän pinnan kotiin tai edustustiloihin.",
+      description: "Kun haluat jotain täysin uniikkia. Railo Custom suunnitellaan ja toteutetaan täysin sinun toiveidesi mukaan. Voimme käyttää erikoisvärejä, metallinhohtoa tai monimutkaisia hiutaleyhdistelmiä luodaksemme näyttävän pinnan kotiin tai edustustiloihin.",
       usage: "Edustustilat, liiketilat, modernit kodit ja showroomit.",
       icon: "auto_awesome",
       badge: "Uniikki ja näyttävä",

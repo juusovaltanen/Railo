@@ -24,11 +24,13 @@ const Home: React.FC = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black text-white mb-6 tracking-tight leading-none text-glow uppercase italic break-words">
-            RAILO <span className="block md:inline text-primary">EPOKSILATTIAT</span>
+          <h1 className="font-black text-white mb-6 tracking-tight leading-none text-glow uppercase italic">
+            <span className="block text-[7vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] mb-2">KESTÄVÄT</span>
+            <span className="block text-primary text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] mb-2">EPOKSILATTIAT JA</span>
+            <span className="block text-primary text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] whitespace-nowrap">LATTIAPINNOITUKSET</span>
           </h1>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-300 mb-10 tracking-tight uppercase italic break-words max-w-4xl mx-auto">
-            Lattiapinnoitukset ammattitaidolla Oulusta koko Suomeen
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-300 mb-10 tracking-tight uppercase italic break-words max-w-4xl mx-auto">
+            Ammattitaitoista jälkeä Oulusta koko Suomeen
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16">
             <Link
@@ -136,9 +138,9 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex overflow-x-auto gap-6 pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-            {/* Temafloor – Pölynsidonta */}
+            {/* Railo Pölynsidonta */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Temafloor Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -146,7 +148,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Kustannustehokas</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Temafloor Pölynsidonta</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo Pölynsidonta</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -157,9 +159,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Temafloor – 0,5 mm */}
+            {/* Railo 0,5 mm */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Temafloor 0,5 mm - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo 0,5 mm - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -167,7 +169,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Ohutkalvopinnoite</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Temafloor 0,5 mm</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo 0,5 mm</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -178,9 +180,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Temafloor – 1 mm */}
+            {/* Railo 1 mm */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/BbR1jgY2/IMG-6704.jpg" alt="Temafloor 1 mm - Epoksilattian asennus Oulu" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/BbR1jgY2/IMG-6704.jpg" alt="Railo 1 mm - Epoksilattian asennus Oulu" className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -188,7 +190,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Suosituin</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Temafloor 1 mm</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo 1 mm</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -199,9 +201,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Temafloor – 2 mm */}
+            {/* Railo 2 mm */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg" alt="Temafloor 2 mm - Teollisuuden lattiapinnoitus" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg" alt="Railo 2 mm - Teollisuuden lattiapinnoitus" className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -209,7 +211,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Kovaan käyttöön</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Temafloor 2 mm</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo 2 mm</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -220,9 +222,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Custom-lattia */}
+            {/* Railo Custom */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Custom-lattia (Design) - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo Custom - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -230,7 +232,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Näyttävä</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Custom Lattia</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo Custom</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -263,9 +265,9 @@ const Home: React.FC = () => {
           <img
             src="https://i.postimg.cc/SKP2dk7n/IMG-6700.jpg"
             alt="Valmis muuttamaan lattiasi"
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/90 via-surface-dark/60 to-surface-dark/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/90 via-surface-dark/40 to-surface-dark/90"></div>
         </div>
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-10 tracking-tight uppercase italic break-words">Valmis muuttamaan lattiasi?</h2>

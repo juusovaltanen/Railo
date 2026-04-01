@@ -56,11 +56,11 @@ const PriceCalculator: React.FC = () => {
 
   const getServiceName = () => {
     switch (data.service) {
-      case 'polynsidonta': return 'Temafloor – Pölynsidonta';
-      case '0.5mm': return 'Temafloor – 0,5mm';
-      case '1mm': return 'Temafloor – 1mm';
-      case '2mm': return 'Temafloor – 2mm';
-      case 'custom': return 'Custom-lattia (Design)';
+      case 'polynsidonta': return 'Railo Pölynsidonta';
+      case '0.5mm': return 'Railo 0,5mm';
+      case '1mm': return 'Railo 1mm';
+      case '2mm': return 'Railo 2mm';
+      case 'custom': return 'Railo Custom';
     }
   };
 
@@ -116,11 +116,11 @@ const PriceCalculator: React.FC = () => {
               <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">2. Valitse palvelu</h3>
               <div className="grid gap-4">
                 {[
-                  { id: 'polynsidonta', label: 'Temafloor – Pölynsidonta', desc: 'Edullinen suojaus' },
-                  { id: '0.5mm', label: 'Temafloor – 0,5mm', desc: 'Siisti peruspinnoite' },
-                  { id: '1mm', label: 'Temafloor – 1mm', desc: 'Suosituin valinta' },
-                  { id: '2mm', label: 'Temafloor – 2mm', desc: 'Raskaaseen käyttöön' },
-                  { id: 'custom', label: 'Custom-lattia (Design)', desc: 'Uniikki toteutus' }
+                  { id: 'polynsidonta', label: 'Railo Pölynsidonta', desc: 'Edullinen suojaus' },
+                  { id: '0.5mm', label: 'Railo 0,5mm', desc: 'Siisti peruspinnoite' },
+                  { id: '1mm', label: 'Railo 1mm', desc: 'Suosituin valinta' },
+                  { id: '2mm', label: 'Railo 2mm', desc: 'Raskaaseen käyttöön' },
+                  { id: 'custom', label: 'Railo Custom', desc: 'Uniikki toteutus' }
                 ].map((item) => (
                   <button
                     key={item.id}

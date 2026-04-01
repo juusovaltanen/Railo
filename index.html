@@ -29,6 +29,10 @@
         }
     </script>
     <style>
+        :root {
+            --main-word-spacing: 0.12rem;
+            --main-letter-spacing: 0.02em;
+        }
         * {
             box-sizing: border-box;
         }
@@ -39,6 +43,33 @@
         body {
             background-color: #00001C;
             color: #f1f5f9;
+            word-spacing: var(--main-word-spacing);
+        }
+        
+        /* Apply word-spacing consistently to all text elements */
+        h1, h2, h3, h4, h5, h6, p, a, button, li, label, span {
+            word-spacing: var(--main-word-spacing);
+        }
+
+        /* Exclude icons from word-spacing */
+        .material-icons, .material-icons-outlined {
+            word-spacing: normal !important;
+            letter-spacing: normal !important;
+        }
+
+        /* Override negative letter-spacing from Tailwind */
+        .tracking-tight, .tracking-tighter {
+            letter-spacing: var(--main-letter-spacing) !important;
+        }
+
+        /* Mobile adjustments to prevent overflow */
+        @media (max-width: 640px) {
+            :root {
+                --main-word-spacing: 0.08rem;
+            }
+            h1, h2, h3, h4, h5, h6 {
+                hyphens: auto;
+            }
         }
         ::-webkit-scrollbar {
             width: 8px;
