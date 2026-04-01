@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 
 const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -52,6 +53,10 @@ const Contact: React.FC = () => {
 
   return (
     <div className="pt-20">
+      <SEO 
+        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
+        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
+      />
       <section className="py-32 max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-24">
           <div className="space-y-20">

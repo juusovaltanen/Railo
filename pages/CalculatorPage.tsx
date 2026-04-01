@@ -6,8 +6,8 @@ const CalculatorPage: React.FC = () => {
   return (
     <div className="pt-20 min-h-screen">
       <SEO 
-        title="Epoksilattia Hinta – Laske Tarjous Heti | Railo Oy"
-        description="Mitä epoksilattia maksaa? Laske hinta-arvio kohteellesi hetkessä laskurillamme. Palvelemme Oulun seudulla ja lähikunnissa."
+        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
+        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
       />
       <section className="py-24 max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">

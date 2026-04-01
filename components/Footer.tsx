@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             <Link to="/" className="flex items-center gap-2">
               <img 
                 src="https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg" 
-                alt="RAILO Logo" 
+                alt="Railo Pinnoitus - Kestävät lattiapinnoitukset Logo" 
                 className="h-14 md:h-16 w-auto object-contain rounded-sm"
               />
             </Link>

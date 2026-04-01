@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className="flex items-center group">
             <img 
               src="https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg" 
-              alt="RAILO Logo" 
+              alt="Railo Pinnoitus - Epoksilattiat Oulu Logo" 
               className="h-16 md:h-20 w-auto object-contain rounded-sm"
             />
           </Link>

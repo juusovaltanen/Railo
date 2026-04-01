@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import SEO from '../components/SEO';
 import { ServiceCard } from '../types';
 
 const Gallery: React.FC = () => {
@@ -37,6 +38,10 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="pt-20">
+      <SEO 
+        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
+        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
+      />
       <section className="py-24 max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic break-words">Työmme jälki puhuu <span className="text-primary">puolestaan</span></h1>

@@ -65,7 +65,7 @@ const Blog: React.FC = () => {
           <a href="/laskuri" class="inline-block bg-primary/10 hover:bg-primary/20 text-primary hover:text-white border border-primary/30 px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all italic text-sm text-center backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.1)]">Siirry hintalaskuriin</a>
         </div>
       `,
-      image: 'https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png'
+      image: 'https://i.postimg.cc/SKP2dk7n/IMG-6700.jpg'
     }
   ];
 
@@ -74,8 +74,8 @@ const Blog: React.FC = () => {
   return (
     <div className="pt-20">
       <SEO 
-        title={selectedPost ? `${selectedPost.title} - Railo Oy` : "Blogi - Railo Oy"} 
-        description={selectedPost ? selectedPost.excerpt : "Lue vinkkejä ja uutisia lattiapinnoituksesta. Railo Oy:n blogi tarjoaa tietoa epoksilattioista ja niiden hoidosta."} 
+        title={selectedPost ? `${selectedPost.title} | Epoksilattiat Oulu` : "Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."} 
+        description={selectedPost ? selectedPost.excerpt : "Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"} 
       />
       
       <section className="py-24 max-w-7xl mx-auto px-4">
@@ -126,7 +126,7 @@ const Blog: React.FC = () => {
                   <div className="aspect-video overflow-hidden">
                     <img 
                       src={post.image} 
-                      alt={post.title} 
+                      alt={`${post.title} - Epoksilattiat`} 
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                       referrerPolicy="no-referrer"
                     />

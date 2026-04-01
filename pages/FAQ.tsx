@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const FAQ: React.FC = () => {
   const faqs = [
@@ -49,6 +50,10 @@ const FAQ: React.FC = () => {
 
   return (
     <div className="pt-20">
+      <SEO 
+        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
+        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
+      />
       <section className="py-32 max-w-3xl mx-auto px-4">
         <div className="text-center mb-16">
           <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic text-glow">Tietopankki</span>

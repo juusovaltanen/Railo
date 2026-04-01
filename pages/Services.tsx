@@ -79,8 +79,8 @@ const Services: React.FC = () => {
   return (
     <div className="pt-20">
       <SEO 
-        title="Autotallin Pinnoitus ja Teollisuuslattiat | Railo Oy"
-        description="Laadukkaat pinnoitustyöt autotalleihin, kotiin ja teollisuuteen. Palvelemme Oulun seudulla ja Pohjois-Suomessa. Pyydä tarjous!"
+        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
+        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
       />
       {/* Header Section */}
       <section className="relative py-40 overflow-hidden text-glow">
@@ -110,7 +110,7 @@ const Services: React.FC = () => {
               <div className={`relative aspect-video rounded-[3.5rem] overflow-hidden shadow-2xl border border-white/5 ${idx % 2 !== 0 ? 'lg:order-2' : ''}`}>
                 <img
                   src={service.image}
-                  alt={service.title}
+                  alt={`${service.title} - Autotallin lattiapinnoitus`}
                   className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark/70 to-transparent"></div>

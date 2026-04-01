@@ -28,13 +28,13 @@ const BeforeAfterSlider: React.FC<Props> = ({ before, after, isStatic = false })
       onTouchMove={handleMove}
     >
       <div className="absolute inset-0">
-        <img src={after} alt="After" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        <img src={after} alt="Epoksilattia asennuksen jälkeen" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </div>
       <div
         className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
-        <img src={before} alt="Before" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        <img src={before} alt="Betonilattia ennen timanttihiontaa ja pinnoitusta" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </div>
 
       {/* Slider Line & Handle */}
