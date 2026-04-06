@@ -39,7 +39,7 @@ const Blog: React.FC = () => {
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Pitkäikäinen investointi</h3>
         <p>Vaikka laadukas epoksipinnoitus vaatii alkupanostuksen, se maksaa itsensä takaisin elinkaarensa aikana. Se suojaa kiinteistösi perusrakenteita, säästää siivouskuluissa ja nostaa rakennuksen jälleenmyyntiarvoa. Lisäksi oikein tehty pinnoitus säästää sinut kalliilta betoniremonteilta tulevaisuudessa. Onko sinun lattiasi valmis päivitykseen?</p>
       `,
-      image: 'https://i.postimg.cc/VLgsGKyX/Image-15-2-2026-at-10-40.png'
+      image: 'https://i.postimg.cc/wvmnYbd1/IMG_6609.jpg'
     },
     {
       id: 2,
