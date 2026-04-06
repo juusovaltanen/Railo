@@ -44,7 +44,7 @@ const Gallery: React.FC = () => {
       />
       <section className="py-24 max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic break-words">Työmme jälki puhuu <span className="text-primary">puolestaan</span></h1>
+          <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Työmme jälki puhuu <span className="text-primary">puolestaan</span></h1>
           <p className="max-w-3xl mx-auto text-slate-400 text-lg font-bold italic tracking-normal">
             Tutustu toteuttamiimme kohteisiin. Teemme lattiapinnoitukset tinkimättömällä ammattitaidolla autotalleista teollisuushalleihin Pohjois-Suomessa.
           </p>

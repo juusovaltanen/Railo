@@ -29,7 +29,7 @@ const Home: React.FC = () => {
             <span className="block text-primary text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] mb-2">EPOKSILATTIAT JA</span>
             <span className="block text-primary text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] whitespace-nowrap">LATTIAPINNOITUKSET</span>
           </h1>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-300 mb-10 tracking-tight uppercase italic break-words max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-300 mb-10 tracking-tight uppercase italic max-w-4xl mx-auto">
             Ammattitaitoista jälkeä Oulusta koko Suomeen
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16">
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
             <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Vertailu</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase italic tracking-tight break-words">Miksi valita epoksi?</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase italic tracking-tight">Miksi valita epoksi?</h2>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 items-stretch">
@@ -127,7 +127,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div>
               <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Palvelut</span>
-              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight uppercase italic break-words">MEIDÄN PALVELUMME</h2>
+              <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight uppercase italic">MEIDÄN PALVELUMME</h2>
             </div>
             <div className="flex items-center gap-4">
               <Link to="/palvelut" className="text-primary hover:text-white transition-colors flex items-center gap-3 font-bold uppercase tracking-widest text-sm group italic">
@@ -253,7 +253,7 @@ const Home: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Hinnasto</span>
-            <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter italic mb-6 break-words">Laske hinta-arvio</h2>
+            <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter italic mb-6">Laske hinta-arvio</h2>
           </div>
           <PriceCalculator />
         </div>
@@ -270,7 +270,7 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/90 via-surface-dark/40 to-surface-dark/90"></div>
         </div>
         <div className="max-w-5xl mx-auto px-4 relative z-10">
-          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-10 tracking-tight uppercase italic break-words">Valmis muuttamaan lattiasi?</h2>
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-10 tracking-tight uppercase italic">Valmis muuttamaan lattiasi?</h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link to="/yhteystiedot" className="inline-block bg-primary hover:bg-secondary text-white px-20 py-7 rounded-2xl text-xl font-bold uppercase tracking-widest transition-all shadow-2xl shadow-primary/30 active:scale-95 italic glow-gold">
               Lähetä tarjouspyyntö

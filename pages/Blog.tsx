@@ -91,7 +91,7 @@ const Blog: React.FC = () => {
             
             <div className="mb-12">
               <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4 italic">{selectedPost.date}</p>
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic leading-tight mb-8 break-words">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic leading-tight mb-8">
                 {selectedPost.title}
               </h1>
               <div 
@@ -114,7 +114,7 @@ const Blog: React.FC = () => {
         ) : (
           <>
             <div className="text-center mb-16">
-              <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic break-words">Blogi</h1>
+              <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Blogi</h1>
               <p className="max-w-2xl mx-auto text-slate-400 text-lg font-bold italic">
                 Ajatuksia, vinkkejä ja uutisia lattiapinnoituksen maailmasta.
               </p>
