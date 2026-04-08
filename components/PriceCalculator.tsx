@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 
-type Step = 'area' | 'service' | 'flakes' | 'condition' | 'result';
+type Step = 'area' | 'service' | 'thickness' | 'flakes' | 'condition' | 'result';
 
 interface CalculatorData {
   area: number;
-  service: 'polynsidonta' | '0.5mm' | '1mm' | '2mm' | 'custom';
+  service: 'polynsidonta' | '0.5mm' | 'kova_kulutus' | 'custom';
+  thickness: '1mm' | '2-3mm';
   flakes: boolean;
   condition: 'good' | 'medium' | 'poor';
 }
@@ -13,7 +14,8 @@ const PriceCalculator: React.FC = () => {
   const [step, setStep] = useState<Step>('area');
   const [data, setData] = useState<CalculatorData>({
     area: 25,
-    service: '1mm',
+    service: 'kova_kulutus',
+    thickness: '1mm',
     flakes: false,
     condition: 'good'
   });
@@ -22,8 +24,7 @@ const PriceCalculator: React.FC = () => {
     switch (data.service) {
       case 'polynsidonta': return 28.94;
       case '0.5mm': return 36.49;
-      case '1mm': return 44.65;
-      case '2mm': return 66.32;
+      case 'kova_kulutus': return data.thickness === '1mm' ? 44.65 : 66.32;
       case 'custom': return 71.32;
     }
   };
@@ -57,26 +58,31 @@ const PriceCalculator: React.FC = () => {
   const getServiceName = () => {
     switch (data.service) {
       case 'polynsidonta': return 'Railo Pölynsidonta';
-      case '0.5mm': return 'Railo 0,5mm';
-      case '1mm': return 'Railo 1mm';
-      case '2mm': return 'Railo 2mm';
-      case 'custom': return 'Railo Custom';
+      case '0.5mm': return 'Railo Keskikova Kulutus';
+      case 'kova_kulutus': return 'Railo Kova Kulutus';
+      case 'custom': return 'Railo Custom-Lattiat';
     }
   };
 
   const getServiceDescription = () => {
     switch (data.service) {
-      case 'polynsidonta': return 'Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Sopii täydellisesti pannuhuoneisiin ja varastoihin.';
-      case '0.5mm': return 'Siisti, värillinen ja kestävä pinta. Antaa lattialle suojan öljyä ja kemikaaleja vastaan ja tekee siitä todella helposti puhdistettavan.';
-      case '1mm': return 'Vahvistettu pinnoite hiekalla. Tekee pinnoitteesta huomattavasti kovemman ja antaa sille mekaanista kestoa, jota tarvitaan nastarenkailla.';
-      case '2mm': return 'Järein ratkaisu raskaaseen käyttöön. Paksu ja iskunkestävä massalattia, joka ei hätkähdä kovaakaan kulutusta tai pistekuormia.';
-      case 'custom': return 'Yksilöllinen toteutus toiveidesi mukaan. Uniikki design-pinta kotiin tai edustustiloihin.';
+      case 'polynsidonta': return 'Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Pölynsidontamaalaus sopii parhaiten pienen kulutuksen kohteisiin.';
+      case '0.5mm': return 'Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Railo Keskikulutus sopii parhaiten normaalin arjen ja harrastamisen rasittamiin kohteisiin.';
+      case 'kova_kulutus': return 'Kun lattiasta ei voi tehdä kompromisseja, tämä on meidän kestävin ratkaisu. Railo Kovakulutus -massapinnoite sopii parhaiten raskaan kaluston talleihin, pesuhalleihin ja teollisuustiloihin.';
+      case 'custom': return 'Kun haluat lattiastasi todellisen katseenvangitsijan, me toteutamme sen toiveidesi mukaan. Custom-lattiat sopivat parhaiten edustustiloihin, myymälöihin, miesluoliin (man cave) ja premium-tason autotalleihin.';
     }
   };
 
   const nextStep = (currentStep: Step) => {
     if (currentStep === 'area') setStep('service');
-    if (currentStep === 'service') setStep('flakes');
+    if (currentStep === 'service') {
+      if (data.service === 'kova_kulutus') {
+        setStep('thickness');
+      } else {
+        setStep('flakes');
+      }
+    }
+    if (currentStep === 'thickness') setStep('flakes');
     if (currentStep === 'flakes') setStep('condition');
     if (currentStep === 'condition') setStep('result');
   };
@@ -117,10 +123,9 @@ const PriceCalculator: React.FC = () => {
               <div className="grid gap-4">
                 {[
                   { id: 'polynsidonta', label: 'Railo Pölynsidonta', desc: 'Edullinen suojaus' },
-                  { id: '0.5mm', label: 'Railo 0,5mm', desc: 'Siisti peruspinnoite' },
-                  { id: '1mm', label: 'Railo 1mm', desc: 'Suosituin valinta' },
-                  { id: '2mm', label: 'Railo 2mm', desc: 'Raskaaseen käyttöön' },
-                  { id: 'custom', label: 'Railo Custom', desc: 'Uniikki toteutus' }
+                  { id: '0.5mm', label: 'Railo Keskikova Kulutus', desc: 'Siisti peruspinnoite' },
+                  { id: 'kova_kulutus', label: 'Railo Kova Kulutus', desc: 'Kestävämpi vaihtoehto' },
+                  { id: 'custom', label: 'Railo Custom-Lattiat', desc: 'Uniikki toteutus' }
                 ].map((item) => (
                   <button
                     key={item.id}
@@ -129,6 +134,30 @@ const PriceCalculator: React.FC = () => {
                       nextStep('service');
                     }}
                     className={`p-8 rounded-3xl border text-left transition-all group/btn ${data.service === item.id ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(212,175,55,0.1)]' : 'border-white/5 bg-white/5 hover:border-white/20'}`}
+                  >
+                    <p className="text-xl font-black text-white uppercase italic mb-1 transition-colors group-hover/btn:text-primary">{item.label}</p>
+                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest italic">{item.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {step === 'thickness' && (
+            <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
+              <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">Valitse paksuus</h3>
+              <div className="grid gap-4">
+                {[
+                  { id: '1mm', label: '1 mm', desc: 'esim. autotallit' },
+                  { id: '2-3mm', label: '2-3 mm', desc: 'esim. teollisuushallit' }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      setData({ ...data, thickness: item.id as any });
+                      nextStep('thickness');
+                    }}
+                    className={`p-8 rounded-3xl border text-left transition-all group/btn ${data.thickness === item.id ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(212,175,55,0.1)]' : 'border-white/5 bg-white/5 hover:border-white/20'}`}
                   >
                     <p className="text-xl font-black text-white uppercase italic mb-1 transition-colors group-hover/btn:text-primary">{item.label}</p>
                     <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest italic">{item.desc}</p>

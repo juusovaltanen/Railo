@@ -7,11 +7,11 @@ const Services: React.FC = () => {
     {
       title: "Railo Pölynsidonta",
       subtitle: "Kustannustehokas suojaus",
-      description: "Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Me telataan lattiaan laadukas Temafloor-pinnoite, joka imeytyy betonin huokosiin ja sitoo pinnan tiiviiksi. Lopputuloksena on siisti ja helposti lakaistava tila, jossa pöly ei enää nouse kenkien mukana sisälle taloon. Sopii täydellisesti pannuhuoneisiin ja varastoihin.",
-      usage: "Pannuhuoneet, varastot, kellarit ja tekniset tilat.",
+      description: "Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Pölynsidontamaalaus sopii parhaiten pienen kulutuksen kohteisiin. Me pinnoitamme lattiasi laadukkailla Tikkurilan tuotteilla. Pölynsidonta voidaan toteuttaa kirkkaalla tai sävytetyllä pinnoitteella. Värisävyjä on tarjolla yli 200 kpl.",
+      usage: "Varastot, Kellarit",
       icon: "cleaning_services",
       badge: "Kustannustehokas",
-      image: "https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png",
+      image: "https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png",
       features: [
         { icon: "auto_awesome", text: "Pölytön pinta" },
         { icon: "savings", text: "Edullinen hinta" },
@@ -19,13 +19,13 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Railo 0,5 mm",
-      subtitle: "Ohutkalvopinnoite",
-      description: "Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Me aloitetaan vetämällä pohjalle kunnon primer-tartunta, ja sen päälle levitetään 0,5 mm kerros kestävää epoksimassaa. Tämä yhdistelmä antaa lattialle suojan öljyä ja kemikaaleja vastaan ja tekee siitä todella helposti puhdistettavan.",
-      usage: "Autotallit, varastot ja kevyen teollisuuden tilat.",
+      title: "Railo Keskikova Kulutus",
+      subtitle: "Viimeistelty ja kestävä pinta",
+      description: "Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Railo Keskikulutus sopii parhaiten normaalin arjen ja harrastamisen rasittamiin kohteisiin. Me pinnoitamme lattiasi laadukkailla Tikkurilan epoksi- tai polyuretaanituotteilla. Pinnoite antaa loistavan suojan likaa ja öljyjä vastaan, ja värisävyjä on tarjolla yli 200 kpl.",
+      usage: "Varastot, Verstaat, Autotallit, Tuotantotilat, Kellarit, Pyörävarastot",
       icon: "layers",
       badge: "Suosittu valinta",
-      image: "https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png",
+      image: "https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png",
       features: [
         { icon: "palette", text: "Värillinen pinta" },
         { icon: "shield", text: "Kemikaalien kesto" },
@@ -33,13 +33,13 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Railo 1 mm",
-      subtitle: "Vahvistettu pinnoite",
-      description: "Tämä on meidän suosituin tuote autotalleihin. Tehdään samalla periaatteella kuin puolimillinen, mutta sekoitetaan massan sekaan hiekkaa. Se hiekka ei ole siellä turhaan: se tekee pinnoitteesta huomattavasti kovemman ja antaa sille mekaanista kestoa, jota tarvitaan, kun autolla ajetaan nastoilla ja hiekkaa kantautuu sisään. Tämä kestää isältä pojalle.",
-      usage: "Vaativat autotallit, joissa käytetään nastarenkaita.",
+      title: "Railo Kova Kulutus",
+      subtitle: "Äärimmäistä kestävyyttä",
+      description: "Kun lattiasta ei voi tehdä kompromisseja, tämä on meidän kestävin ratkaisu. Railo Kovakulutus -massapinnoite sopii parhaiten raskaan kaluston talleihin, pesuhalleihin ja teollisuustiloihin. Me asennamme lattiaasi laadukkaan, erikoishiekalla vahvistetun Tikkurilan epoksimassan-tai polyuretaanituotteilla. Ne kestävät erinomaisesti nastarenkaita, iskuja ja kemikaaleja. Pinta voidaan tarvittaessa karhentaa turvalliseksi.",
+      usage: "Tuotantotila, Autotallit, Korjaamot, Teollisuustilat",
       icon: "verified",
       badge: "Paras hinta-laatu",
-      image: "https://i.postimg.cc/BbR1jgY2/IMG-6704.jpg",
+      image: "https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg",
       features: [
         { icon: "diamond", text: "Mekaaninen kesto" },
         { icon: "tire_repair", text: "Nastarenkaiden kesto" },
@@ -47,24 +47,10 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Railo 2 mm",
-      subtitle: "Kovaan käyttöön soveltuva massalattia",
-      description: "Tämä on se järein ratkaisu, jos tallissa harrastetaan raskaammin tai liikutellaan painavia työkoneita. Tehdään samalla reseptillä kuin 1 mm pinnoite, mutta ainetta laitetaan tuplasti enemmän. Tuloksena on paksu ja iskunkestävä massalattia, joka ei hätkähdä kovaakaan kulutusta tai pistekuormia. Tehty kestämään kaikkea, mitä tallissa voi tapahtua.",
-      usage: "Korjaamot, teollisuushallit ja raskaat harrastetilat.",
-      icon: "construction",
-      badge: "Äärimmäinen kesto",
-      image: "https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg",
-      features: [
-        { icon: "bolt", text: "Iskunkestävä" },
-        { icon: "precision_manufacturing", text: "Raskas käyttö" },
-        { icon: "fitness_center", text: "Pistekuormien kesto" }
-      ]
-    },
-    {
-      title: "Railo Custom",
-      subtitle: "Yksilöllinen toteutus",
-      description: "Kun haluat jotain täysin uniikkia. Railo Custom suunnitellaan ja toteutetaan täysin sinun toiveidesi mukaan. Voimme käyttää erikoisvärejä, metallinhohtoa tai monimutkaisia hiutaleyhdistelmiä luodaksemme näyttävän pinnan kotiin tai edustustiloihin.",
-      usage: "Edustustilat, liiketilat, modernit kodit ja showroomit.",
+      title: "Railo Custom-Lattiat",
+      subtitle: "Yksilöllinen ja näyttävä design",
+      description: "Kun haluat lattiastasi todellisen katseenvangitsijan, me toteutamme sen toiveidesi mukaan. Custom-lattiat sopivat parhaiten edustustiloihin, myymälöihin, miesluoliin (man cave) ja premium-tason autotalleihin. Me luomme täysin uniikin ilmeen laadukkailla Tikkurilan tuotteilla hyödyntäen esimerkiksi tyylikkäitä Mosaic-hiutaleita tai useampia värisävyjä käyttäen. Lopputulos on täysin saumaton, kestävä ja juuri sinun näköisesi tila.",
+      usage: "Showroom, Autotallit, Sisätilat, Varastot",
       icon: "auto_awesome",
       badge: "Uniikki ja näyttävä",
       image: "https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png",
