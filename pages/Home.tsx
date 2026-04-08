@@ -18,7 +18,7 @@ const Home: React.FC = () => {
           <img
             src="https://i.postimg.cc/wvmnYbd1/IMG-6609.jpg"
             alt="Epoksilattian timanttihionta autotallissa"
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-80 img-brighten"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background-dark/90 via-background-dark/40 to-background-dark"></div>
         </div>
@@ -140,7 +140,7 @@ const Home: React.FC = () => {
           <div className="flex overflow-x-auto gap-6 pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
             {/* Railo Pölynsidonta */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -161,7 +161,7 @@ const Home: React.FC = () => {
 
             {/* Railo Keskikova Kulutus */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo Keskikova Kulutus - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo Keskikova Kulutus - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -182,7 +182,7 @@ const Home: React.FC = () => {
 
             {/* Railo Kova Kulutus */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" alt="Railo Kova Kulutus - Epoksilattian asennus Oulu" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" alt="Railo Kova Kulutus - Epoksilattian asennus Oulu" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -203,7 +203,7 @@ const Home: React.FC = () => {
 
             {/* Railo Custom-Lattiat */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo Custom-Lattiat - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60" />
+              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo Custom-Lattiat - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -244,7 +244,7 @@ const Home: React.FC = () => {
           <img
             src="https://i.postimg.cc/SKP2dk7n/IMG-6700.jpg"
             alt="Valmis muuttamaan lattiasi"
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover opacity-80 img-brighten"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/90 via-surface-dark/40 to-surface-dark/90"></div>
         </div>

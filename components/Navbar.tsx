@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
     { name: 'Etusivu', path: '/' },
     { name: 'Laske hinta-arvio', path: '/laskuri' },
     { name: 'Palvelut', path: '/palvelut' },
-    { name: 'Galleria', path: '/galleria' },
+    { name: 'Referenssit', path: '/referenssit' },
     { name: 'Blogi', path: '/blogi' },
     { name: 'UKK', path: '/ukk' },
     { name: 'Ota yhteyttä', path: '/yhteystiedot' },
@@ -42,7 +42,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-4 relative">
             <Link
               to="/laskuri"
-              className="bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary/30 px-5 py-2.5 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest transition-all italic"
+              className="bg-primary/10 hover:bg-primary text-primary hover:text-white border border-primary px-5 py-2.5 rounded-xl text-[10px] md:text-xs font-black uppercase tracking-widest transition-all italic shadow-[0_0_15px_rgba(212,175,55,0.4)] hover:shadow-[0_0_25px_rgba(212,175,55,0.6)]"
             >
               Laske hinta-arvio
             </Link>

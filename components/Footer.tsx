@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               </a>
               {/* Instagram */}
               <a 
-                href="https://www.instagram.com/railo.fi/" 
+                href="https://www.instagram.com/railopinnoitus/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all group" 
@@ -46,7 +46,7 @@ const Footer: React.FC = () => {
               </a>
               {/* TikTok */}
               <a 
-                href="https://www.tiktok.com/@railo.fi" 
+                href="https://www.tiktok.com/@railopinnoitus?lang=en" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all group" 
@@ -77,7 +77,7 @@ const Footer: React.FC = () => {
               <li><Link to="/" className="hover:text-primary transition-colors">Etusivu</Link></li>
               <li><Link to="/laskuri" className="text-primary font-black hover:text-white transition-colors">Laske hinta-arvio</Link></li>
               <li><Link to="/palvelut" className="hover:text-primary transition-colors">Palvelut</Link></li>
-              <li><Link to="/galleria" className="hover:text-primary transition-colors">Galleria</Link></li>
+              <li><Link to="/referenssit" className="hover:text-primary transition-colors">Referenssit</Link></li>
               <li><Link to="/blogi" className="hover:text-primary transition-colors">Blogi</Link></li>
               <li><Link to="/ukk" className="hover:text-primary transition-colors">UKK</Link></li>
               <li><Link to="/yhteystiedot" className="hover:text-primary transition-colors">Ota yhteyttä</Link></li>

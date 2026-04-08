@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
-import Gallery from './pages/Gallery';
+import References from './pages/References';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
@@ -31,7 +31,7 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/palvelut" element={<Services />} />
             <Route path="/laskuri" element={<CalculatorPage />} />
-            <Route path="/galleria" element={<Gallery />} />
+            <Route path="/referenssit" element={<References />} />
             <Route path="/ukk" element={<FAQ />} />
             <Route path="/yhteystiedot" element={<Contact />} />
             <Route path="/blogi" element={<Blog />} />

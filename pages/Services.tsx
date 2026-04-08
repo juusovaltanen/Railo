@@ -78,7 +78,7 @@ const Services: React.FC = () => {
             KESTÄVÄT <span className="text-primary italic">LATTIARATKAISUT</span>
           </h1>
           <p className="max-w-3xl mx-auto text-xl text-slate-400 leading-relaxed font-bold italic tracking-normal mb-10">
-            Valitse tilaasi sopiva pinnoite. Kaikki ratkaisumme ovat saumattomia, pölyämättömiä ja helppoja pitää puhtaana. Asennamme lattiat laadukkailla ja testatuilla <span className="text-white">Tikkurilan Temafloor</span>-tuotteilla, jotta voimme taata kestävän lopputuloksen.
+            Valitse tilaasi sopiva pinnoite. Kaikki ratkaisumme ovat saumattomia, pölyämättömiä ja helppoja pitää puhtaana. Asennamme lattiat laadukkailla ja testatuilla <span className="text-white">Tikkurilan tuotteilla</span>, jotta voimme taata kestävän lopputuloksen.
           </p>
           <div className="max-w-xl mx-auto p-6 rounded-[2rem] bg-primary/5 border border-primary/10 backdrop-blur-sm">
             <p className="text-primary font-black uppercase tracking-widest text-xs italic">
@@ -97,7 +97,7 @@ const Services: React.FC = () => {
                 <img
                   src={service.image}
                   alt={`${service.title} - Autotallin lattiapinnoitus`}
-                  className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                  className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 img-brighten"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark/70 to-transparent"></div>
               </div>
