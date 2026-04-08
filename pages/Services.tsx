@@ -13,7 +13,7 @@ const Services: React.FC = () => {
       badge: "Kustannustehokas",
       image: "https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png",
       features: [
-        { icon: "smoke_free", text: "Pölytön pinta" },
+        { icon: "auto_awesome", text: "Pölytön pinta" },
         { icon: "savings", text: "Edullinen hinta" },
         { icon: "speed", text: "Nopea asennus" }
       ]
