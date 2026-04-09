@@ -78,6 +78,7 @@ const Footer: React.FC = () => {
               <li><Link to="/laskuri" className="text-primary font-black hover:text-white transition-colors">Laske hinta-arvio</Link></li>
               <li><Link to="/palvelut" className="hover:text-primary transition-colors">Palvelut</Link></li>
               <li><Link to="/referenssit" className="hover:text-primary transition-colors">Referenssit</Link></li>
+              <li><Link to="/meista" className="hover:text-primary transition-colors">Meistä</Link></li>
               <li><Link to="/blogi" className="hover:text-primary transition-colors">Blogi</Link></li>
               <li><Link to="/ukk" className="hover:text-primary transition-colors">UKK</Link></li>
               <li><Link to="/yhteystiedot" className="hover:text-primary transition-colors">Ota yhteyttä</Link></li>

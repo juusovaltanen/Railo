@@ -36,7 +36,7 @@ const Services: React.FC = () => {
       title: "Railo Kova Kulutus",
       subtitle: "Äärimmäistä kestävyyttä",
       description: "Kun lattiasta ei voi tehdä kompromisseja, tämä on meidän kestävin ratkaisu. Railo Kovakulutus -massapinnoite sopii parhaiten raskaan kaluston talleihin, pesuhalleihin ja teollisuustiloihin. Me asennamme lattiaasi laadukkaan, erikoishiekalla vahvistetun Tikkurilan epoksimassan-tai polyuretaanituotteilla. Ne kestävät erinomaisesti nastarenkaita, iskuja ja kemikaaleja. Pinta voidaan tarvittaessa karhentaa turvalliseksi.",
-      usage: "Tuotantotila, Autotallit, Korjaamot, Teollisuustilat",
+      usage: "Autotallit, Korjaamot, Teollisuustilat, Tuotantotilat.",
       icon: "verified",
       badge: "Paras hinta-laatu",
       image: "https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg",
@@ -50,7 +50,7 @@ const Services: React.FC = () => {
       title: "Railo Custom-Lattiat",
       subtitle: "Yksilöllinen ja näyttävä design",
       description: "Kun haluat lattiastasi todellisen katseenvangitsijan, me toteutamme sen toiveidesi mukaan. Custom-lattiat sopivat parhaiten edustustiloihin, myymälöihin, miesluoliin (man cave) ja premium-tason autotalleihin. Me luomme täysin uniikin ilmeen laadukkailla Tikkurilan tuotteilla hyödyntäen esimerkiksi tyylikkäitä Mosaic-hiutaleita tai useampia värisävyjä käyttäen. Lopputulos on täysin saumaton, kestävä ja juuri sinun näköisesi tila.",
-      usage: "Showroom, Autotallit, Sisätilat, Varastot",
+      usage: "Autotallit, Sisätilat, Varastot, Showroomit, Miesluolat.",
       icon: "auto_awesome",
       badge: "Uniikki ja näyttävä",
       image: "https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png",
@@ -71,9 +71,6 @@ const Services: React.FC = () => {
       {/* Header Section */}
       <section className="relative py-40 overflow-hidden text-glow">
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <span className="inline-block py-2 px-5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest mb-8">
-            RAILO Ratkaisut
-          </span>
           <h1 className="text-4xl sm:text-5xl md:text-8xl font-black text-white tracking-tight mb-10 uppercase italic leading-tight">
             KESTÄVÄT <span className="text-primary italic">LATTIARATKAISUT</span>
           </h1>

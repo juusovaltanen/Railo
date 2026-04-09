@@ -59,7 +59,6 @@ const Home: React.FC = () => {
       <section className="py-32 bg-surface-dark/50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-20">
-            <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Vertailu</span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white uppercase italic tracking-tight">Miksi valita epoksi?</h2>
           </div>
 
@@ -126,7 +125,6 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
             <div>
-              <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Palvelut</span>
               <h2 className="text-3xl sm:text-4xl md:text-6xl font-black text-white tracking-tight uppercase italic">MEIDÄN PALVELUMME</h2>
             </div>
             <div className="flex items-center gap-4">
@@ -231,7 +229,6 @@ const Home: React.FC = () => {
       <section className="py-24 px-4 relative overflow-hidden bg-background-dark">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Hinnasto</span>
             <h2 className="text-3xl sm:text-4xl md:text-7xl font-black text-white uppercase tracking-tighter italic mb-6">Laske hinta-arvio</h2>
           </div>
           <PriceCalculator />

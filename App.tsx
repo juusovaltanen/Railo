@@ -8,6 +8,7 @@ import References from './pages/References';
 import FAQ from './pages/FAQ';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
+import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import CalculatorPage from './pages/CalculatorPage';
@@ -35,6 +36,7 @@ const App: React.FC = () => {
             <Route path="/ukk" element={<FAQ />} />
             <Route path="/yhteystiedot" element={<Contact />} />
             <Route path="/blogi" element={<Blog />} />
+            <Route path="/meista" element={<About />} />
             <Route path="/tietosuoja" element={<PrivacyPolicy />} />
             <Route path="/kayttoehdot" element={<TermsOfUse />} />
           </Routes>

@@ -19,6 +19,7 @@ const Navbar: React.FC = () => {
     { name: 'Laske hinta-arvio', path: '/laskuri' },
     { name: 'Palvelut', path: '/palvelut' },
     { name: 'Referenssit', path: '/referenssit' },
+    { name: 'Meistä', path: '/meista' },
     { name: 'Blogi', path: '/blogi' },
     { name: 'UKK', path: '/ukk' },
     { name: 'Ota yhteyttä', path: '/yhteystiedot' },

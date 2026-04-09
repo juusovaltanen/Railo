@@ -33,7 +33,6 @@ const ProcessTimeline: React.FC = () => {
     <section className="py-32 bg-background-dark overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-24">
-          <span className="text-primary font-bold uppercase tracking-widest text-[10px] mb-4 block italic">Prosessimme</span>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white uppercase italic tracking-tight leading-none">
             Näin helposti lattiasi uudistuu
           </h2>

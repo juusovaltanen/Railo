@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset.</title>
     <meta name="description" content="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!">
+    <link rel="icon" href="https://i.postimg.cc/CLwqfnDP/Gemini-Generated-Image-pe50yxpe50yxpe50.jpg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/CLwqfnDP/Gemini-Generated-Image-pe50yxpe50yxpe50.jpg">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -30,7 +32,7 @@
     </script>
     <style>
         :root {
-            --main-word-spacing: 0.15rem;
+            --main-word-spacing: normal;
             --main-letter-spacing: normal;
         }
         * {
@@ -43,12 +45,21 @@
         body {
             background-color: #00001C;
             color: #f1f5f9;
-            word-spacing: var(--main-word-spacing);
+            word-spacing: normal !important;
         }
         
         /* Apply word-spacing consistently to all text elements */
         h1, h2, h3, h4, h5, h6, p, a, button, li, label, span {
-            word-spacing: var(--main-word-spacing);
+            word-spacing: normal !important;
+        }
+
+        /* Typography fixes */
+        h1, h2, h3 {
+            letter-spacing: -0.01em !important;
+        }
+
+        p, li {
+            letter-spacing: normal !important;
         }
 
         /* Exclude icons from word-spacing */
@@ -57,15 +68,10 @@
             letter-spacing: normal !important;
         }
 
-        /* Override negative letter-spacing from Tailwind */
-        .tracking-tight, .tracking-tighter {
-            letter-spacing: var(--main-letter-spacing) !important;
-        }
-
         /* Mobile adjustments to prevent overflow */
         @media (max-width: 640px) {
             :root {
-                --main-word-spacing: 0.08rem;
+                --main-word-spacing: normal;
             }
         }
         ::-webkit-scrollbar {

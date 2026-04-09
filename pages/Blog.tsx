@@ -1,71 +1,128 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const Blog: React.FC = () => {
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
+  const location = useLocation();
+
+  // Reset selected post when navigating to the blog root
+  useEffect(() => {
+    if (location.pathname === '/blogi' && !location.search && !location.hash) {
+      // If we are on the blog page but not viewing a specific post (via state)
+      // Actually, since we use local state, it resets on mount.
+      // But if the user clicks "Blogi" in the menu while already on a post, 
+      // we want to go back to the list.
+      setSelectedPostId(null);
+    }
+  }, [location]);
 
   const posts = [
     {
-      id: 3,
-      title: 'Keitä olemme',
-      date: '31.3.2026',
-      excerpt: 'Railo Pinnoitus on kolmen kaverin firma, jonka takana seisovat Sakari Lumme, Juuso Valtanen ja Luukas Leppäluoto.',
-      content: `
-        <p>Railo Pinnoitus on kolmen kaverin firma, jonka takana seisovat Sakari Lumme, Juuso Valtanen ja Luukas Leppäluoto. Me emme ole täällä pitämässä pitkiä myyntipuheita, vaan tekemässä työtä, joka puhuu puolestaan. Yritys sai alkunsa halusta laittaa piste mureneville autotallin lattioille ja hätiköidyille pinnoituksille, jotka irtoavat heti ensimmäisen talven jälkeen. Tiedämme tasan tarkkaan, mitä nastarenkaat, tiesuola ja lämpötilavaihtelut vaativat kunnon lattiapinnoitteelta.</p>
-        <p>Toimimme joustavasti koko Suomen alueella ja tuomme mukanamme rehellisen työmoraalin: hommat hoidetaan tasan niin kuin ne on sovittu. Erikoisosaamistamme ovat autotallit ja teollisuushallit, joissa vaaditaan äärimmäistä kestävyyttä ja pölyttömyyttä. Meidän juttu on se, ettei oikaista mutkissa. Jokainen keikka alkaa kunnon koneellisella timanttihionnalla, koska ilman sitä pinnoite on vain kerros väriä huonon pohjan päällä. Käytämme ainoastaan parhaita materiaaleja ja ammattitason vehkeitä, jotta lopputulos on kova ja kestää isältä pojalle.</p>
-        <p>Meillä ei ole turhaa byrokratiaa, vaan kolme miestä, jotka kantavat vastuun omasta jäljestään. Kun tilaat lattiapinnoituksen meiltä, tiedät tasan tarkkaan ketkä tulevat paikalle ja mitä saat: rehdin hinnan, pitävän aikataulun ja lattian, joka sietää elämää. Jos haluat kestävän pinnan ilman turhaa hienostelua, ota yhteyttä – me laitamme betonisi kuntoon.</p>
-      `,
-      image: 'https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg'
-    },
-    {
       id: 1,
-      title: 'Miksi epoksi on paras valinta? Betonilattia vs. ammattimainen pinnoitus',
-      date: '25.3.2026',
-      excerpt: 'Betonilattia on monen autotallin ja hallin perusta, mutta harva tulee ajatelleeksi, että paljas betoni on vasta puolivalmis pinta.',
+      title: 'Miten valita sopiva lattiapinnoite omaan tilaan? Vältä yli- ja alilyönnit',
+      date: '8.4.2026',
+      excerpt: 'Betonilattian pinnoitus on fiksu investointi, mutta oikean tuotteen valinta voi tuntua maallikosta viidakolta. Tarvitsetko paksun epoksimassan vai riittääkö pelkkä pölynsidonta?',
       content: `
-        <p>Betonilattia on monen autotallin ja hallin perusta, mutta harva tulee ajatelleeksi, että paljas betoni on vasta puolivalmis pinta. Vaikka betoni itsessään on vahvaa, se on materiaalina huokoinen ja imee itseensä lähes kaiken, minkä kanssa se joutuu kosketuksiin.</p>
-        <p>Jos mietit, kannattaako lattian pinnoittamiseen panostaa, tässä on muutama rehellinen syy, miksi pelkkä betoni on usein huono valinta ja miksi epoksi on sille ylivertainen vastustaja.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Betonilattian haasteet: Pölyä, tahroja ja murenevaa pintaa</h3>
-        <p>Paljas betonilattia on jatkuva huolenaihe tilan puhtauden kannalta. Suurin ongelma on betonin pinnalla oleva sementtiliima, joka murenee käytössä hienojakoiseksi, harmaaksi pölyksi. Tämä pöly ei pysy tallissa, vaan kulkeutuu kenkien mukana eteiseen, varastoituihin tavaroihin ja jopa autosi moottoritilaan.</p>
-        <p>Toinen merkittävä haitta on betonin imukyky. Kun autosta valuu öljyä, tiesuolaa tai nestettä huokoiselle betonille, se imeytyy syvälle rakenteeseen. Nämä tahrat ovat lähes mahdottomia poistaa ja ne alkavat ajan myötä murentaa betonia sisältäpäin. Lisäksi paljas betoni näyttää usein kolkolta, keskeneräiseltä ja imee valoa itseensä, tehden tilasta hämärän.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Epoksin edut: Kestävyyttä ja helppoutta</h3>
-        <p>Epoksipinnoitus muuttaa tilan luonteen täysin. Se ei ole vain maali, vaan kemiallisesti sitoutuva suojakerros, joka sulkee betonin huokoset lopullisesti. Tässä ovat epoksin suurimmat plussat:</p>
-        <ul>
-          <li><strong>Täydellinen pölyttömyys:</strong> Epoksi muodostaa saumattoman ja tiiviin pinnan, josta ei irtoa pölyä. Tila pysyy puhtaana ja siivoaminen hoituu kevyesti pyyhkäisemällä.</li>
-          <li><strong>Ylivertainen kestävyys:</strong> Ammattitason epoksi kestää iskuja, mekaanista hankausta ja raskaita kuormia. Se suojaa alla olevaa betonia nastarenkaiden raastavalta vaikutukselta ja estää pintaa halkeilemasta.</li>
-          <li><strong>Kemikaalien kesto:</strong> Öljyt, polttoaineet ja tiesuolat jäävät epoksin pinnalle, josta ne on helppo pyyhkiä pois ilman pysyviä jälkiä. Lattia on täysin nesteenpitävä.</li>
-          <li><strong>Valoisuus ja ulkonäkö:</strong> Pinnoitettu lattia heijastaa valoa, mikä tekee tallista tai hallista huomattavasti kirkkaamman ja viihtyisämmän työskennellä. Saatavilla olevat sävyt ja hiutaleviimeistelyt tekevät lattiasta myös edustavan näköisen.</li>
-        </ul>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Pitkäikäinen investointi</h3>
-        <p>Vaikka laadukas epoksipinnoitus vaatii alkupanostuksen, se maksaa itsensä takaisin elinkaarensa aikana. Se suojaa kiinteistösi perusrakenteita, säästää siivouskuluissa ja nostaa rakennuksen jälleenmyyntiarvoa. Lisäksi oikein tehty pinnoitus säästää sinut kalliilta betoniremonteilta tulevaisuudessa. Onko sinun lattiasi valmis päivitykseen?</p>
+        <p>Betonilattian pinnoitus on fiksu investointi, mutta oikean tuotteen valinta voi tuntua maallikosta viidakolta. Tarvitsetko paksun epoksimassan vai riittääkö pelkkä pölynsidonta?</p>
+        <p>Väärä valinta voi tulla kalliiksi. Yleisin virhe on "alilyönti": autotalliin valitaan halvin mahdollinen maali, joka repeää irti ensimmäisen talven aikana, kun sisään ajetaan painavalla autolla nastarenkaat rohisten. Toisaalta myös "ylilyönti" syö lompakkoa: järeästä ja kalliista teollisuusmassasta on aivan turha maksaa, jos tilassa säilytetään vain talvivaatteita ja polkupyöriä.</p>
+        <p>Me Railo Pinnoituksella olemme jakaneet lattiat neljään selkeään kategoriaan. Näin tunnistat, mikä ratkaisu sopii sinun tilaasi:</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">"Haluan vain eroon pölystä" – Varastot ja tekniset tilat</h3>
+        <p>Jos kyseessä on pannuhuone, häkkivarasto tai kodin kellaritila, lattialta ei yleensä vaadita äärimmäistä mekaanista kestoa. Suurin ongelma näissä tiloissa on paljaan betonin ikuinen pöliseminen, joka likaa tavarat ja kulkeutuu sisäilmaan.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo Pölynsidonta.</strong> Tämä on nopein ja lompakkoystävällisin tapa lukita betonin pinta. Käsittely ei peitä betonin omia valujälkiä tai sävyeroja, mutta se tekee pinnasta kerralla täysin pölyttömän ja helposti lakaistavan.</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Arjen käyttöä ja harrastamista – Perus autotallit ja verstaat</h3>
+        <p>Kun tilassa puuhastellaan, säilytetään autoa (ilman jatkuvaa nastarengasrallia) tai huolletaan ruohonleikkuria, lattian täytyy kestää öljyä, likaa ja pesua. Silloin tarvitaan sileä ja tiivis suojakalvo.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo Keskikova Kulutus.</strong> Ohutkalvopinnoite (epoksi tai joustavampi polyuretaani) muodostaa lujan, yksivärisen ja saumattoman pinnan. Se on loistava ja helppohoitoinen valinta normaaliin käyttöön. Plussana: saatavilla on satoja eri värejä, ja taloyhtiöiden kellareihin voimme valita täysin hajuttoman, M1-luokitellun tuotteen.</p>
+
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Kovaa ajoa ja nastarenkaita – Raskaat tallit ja pesuhallit</h3>
+        <p>Kun lattia joutuu todelliselle koetukselle, perusmaali ei riitä. Jos lattialla käännellään autoa nastarenkailla, käytetään raskaita hallitunkkeja, pudotellaan työkaluja tai pestään kalustoa vahvoilla kemikaaleilla, tarvitaan järeämpiä otteita.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo Kova Kulutus.</strong> Asennamme lattiaan paksun, erikoishiekalla vahvistetun massapinnoitteen. Se on markkinoiden kestävin ratkaisu, joka ottaa iskut vastaan murtumatta. Pintaan voidaan (ja usein kannattaakin) lisätä karhennus, jotta lattia ei ole märkänä hengenvaarallisen liukas.</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Edustustilat ja katseenvangitsijat – Man cavet ja myymälät</h3>
+        <p>Joskus lattian pitää olla paitsi kestävä, myös tajuttoman upea. Kun teet itsellesi unelmien "miesluolaa", edustavaa myymälää tai premium-tason autotallia, yksivärinen harmaa lattia voi tuntua tylsältä.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo Custom-Lattiat.</strong> Esimerkiksi tyylikkäillä Mosaic-värihiutaleilla viimeistelty pinnoite näyttää arvokkaalta kivilattialta. Eläväisen ulkonäön lisäksi hiutalepinta on nerokas arjessa: sen kuviointi antaa anteeksi pientä likaa ja pölyä huomattavasti yksiväristä pintaa paremmin.</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Älä arvaa, kysy ammattilaiselta!</h3>
+        <p>Karkeana muistisääntönä: pölynsidonta riittää varastoon, keskikulutus perusarkeen, kova kulutus autotalleihin ja raskaaseen rassaamiseen ja custom edustustiloihin.</p>
+        <p>Jos olet epävarma lattiasi kunnosta tai oikean pinnoitteen valinnasta, älä jää yksin miettimään. Ota yhteyttä Railo Pinnoitukseen! Tulemme mielellämme katsomaan kohdetta ja autamme valitsemaan juuri sinun tarpeisiisi ja budjettiisi täydellisesti sopivan ratkaisun.</p>
       `,
       image: 'https://i.postimg.cc/wvmnYbd1/IMG_6609.jpg'
     },
     {
       id: 2,
-      title: 'Miten valita lattiapinnoite?',
-      date: '25.3.2026',
-      excerpt: 'Kun suunnittelet autotallin tai hallin lattiapinnoitusta, ensimmäinen ja tärkein askel on pysähtyä miettimään tilan todellista käyttötarkoitusta.',
+      title: 'Miksi betonilattian pinnoitus kannattaa? 5 syytä, jotka maksavat itsensä takaisin',
+      date: '8.4.2026',
+      excerpt: 'Paljas betonilattia näyttää ja tuntuu kestävältä, joten moni jättää sen autotallissa tai varastossa alkuperäiseen, raakaan tilaansa. Karu totuus kuitenkin paljastuu usein jo ensimmäisen talven jälkeen.',
       content: `
-        <p>Kun suunnittelet autotallin tai hallin lattiapinnoitusta, ensimmäinen ja tärkein askel on pysähtyä miettimään tilan todellista käyttötarkoitusta. Onko kyseessä pelkkä varasto, jossa halutaan päästä eroon betonipölystä, vai harrastetila, jossa autoja huolletaan ja nastarenkailla ajetaan päivittäin? Tarvitsetko lattialta ennen kaikkea helppohoitoisuutta, vai pitääkö sen kestää iskuja ja kemikaaleja vuodesta toiseen?</p>
-        <p>Me Railo Pinnoituksella käytämme aina korkealaatuisia tuotteita, jotka valitaan tarkasti kohteen vaatimusten mukaan. Oikea pinnoite löytyy vasta, kun ymmärretään, mitä lattian päällä tapahtuu.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Railo Pölynsidonta on järkevä valinta teknisiin tiloihin</h3>
-        <p>Jos tavoitteenasi on puhtaasti pitää tila siistinä ja estää hienojakoisen betonipölyn kantautuminen muihin tiloihin, Railo Pölynsidonta on kustannustehokkain ratkaisu. Se imeytyy syvälle betoniin ja kovettaa sen pinnan, mikä tekee lattiasta helpon puhdistaa. Vaikka Railo Pölynsidonta on suunniteltu kevyempään käyttöön, se toimii hyvin myös autotalleissa, kunhan muistat laittaa auton renkaiden alle kumimatot. Matot suojaavat pintaa nastojen mekaaniselta kulutukselta ja pidentävät käsittelyn kestoa merkittävästi.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Tyyliä ja puhtautta Railo Keskikova Kulutus -ohutkalvopinnoituksella</h3>
-        <p>Kun haluat autotalliisi tyylikkään väripinnan ja täydellisen tiiviyden, Railo Keskikova Kulutus -ohutkalvopinnoitus on erinomainen valinta. Se antaa betonille ammattimaisen ilmeen ja on erittäin helppo pitää puhtaana. Tässäkin vaihtoehdossa suosittelemme kumimattojen käyttöä renkaiden alla, jotta pinnoite säilyy uudenveroisena. Kumimatot ottavat vastaan nastojen raapimisen ja kuumien renkaiden aiheuttaman rasituksen, jolloin itse pinnoite pysyy ehjänä ja näyttävänä.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Hiekka tekee kestävyyden – Railo Kova Kulutus</h3>
-        <p>Kaikkein vaativimpiin kohteisiin, joissa lattialta vaaditaan maksimaalista kestävyyttä ilman kompromisseja, asennamme Railo Kova Kulutus -pinnoitteita. Näiden massapinnoitteiden ylivertainen lujuus perustuu niissä täyteaineena käytettävään erikoishiekkaan. Hiekka muodostaa pinnoitteen rungon, joka tekee siitä erittäin iskunkestävän ja mekaanisesti vahvan.</p>
-        <p>Tällainen hiekkavahvisteinen lattia kestää nastarenkaat ja kovan kulutuksen sellaisenaan, ja se onkin paras valinta teollisuustiloihin tai harrastetalleihin, joissa työkaluja putoilee ja autoja liikutellaan jatkuvasti.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Räätälöidyt ratkaisut ja hiutaleviimeistely</h3>
-        <p>Me emme rajoitu vain perusvaihtoehtoihin, vaan toteutamme ratkaisut aina asiakkaan tarpeen mukaan. Voimme asentaa vieläkin paksumpia kerroksia tai tehdä erikoisversioita hyvinkin vaativiin olosuhteisiin. Jos kaipaat lattialle lisää eläväisyyttä ja hieman karheampaa pintaa, voimme lisätä pinnoitukseen värihiutaleita. Hiutaleet viimeistelevät ilmeen ja ne ovat saatavilla kaikkiin palveluihimme lisähinnasta.</p>
-        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Onnistuminen varmistetaan timanttihionnalla</h3>
-        <p>Riippumatta valitusta pinnoitteesta, lopputuloksen kestävyys ratkaistaan jo ennen ensimmäistäkään pinnoitekerrosta. Me emme koskaan asenna tuotteita betonin sementtiliiman päälle, vaan jokainen kohde aloitetaan huolellisella timanttihionnalla. Hionta avaa betonin huokoset ja poistaa epäpuhtaudet, jolloin pinnoite pääsee pureutumaan betoniin kiinni. Käytämme tehokasta pölynpoistoa, joten hionta on siistiä ja vaivatonta asiakkaalle.</p>
-        <p class="text-white font-bold mt-12 mb-6">Haluatko tallillesi lattian, joka kestää ja näyttää hyvältä? Kokeile meidän hintalaskuria ja pyydä tarjous!</p>
-        <div class="flex flex-col sm:flex-row gap-4 not-prose">
-          <a href="/laskuri" class="inline-block bg-primary/10 hover:bg-primary/20 text-primary hover:text-white border border-primary/30 px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all italic text-sm text-center backdrop-blur-md shadow-[0_0_20px_rgba(212,175,55,0.1)]">Siirry hintalaskuriin</a>
-        </div>
+        <p>Paljas betonilattia näyttää ja tuntuu kestävältä, joten moni jättää sen autotallissa tai varastossa alkuperäiseen, raakaan tilaansa. Karu totuus kuitenkin paljastuu usein jo ensimmäisen talven jälkeen: betoni alkaa pölistä, siihen imeytyy öljyä, ja nastarenkaat rouhivat pintaa rikki.</p>
+        <p>Lattian pinnoittaminen epoksilla tai polyuretaanilla ei ole pelkkää hifistelyä tai ulkonäön kiillottamista. Se on ennen kaikkea fiksu investointi, joka suojaa rakenteita ja tekee arjesta huomattavasti mukavampaa.</p>
+        <p>Tässä on viisi kovinta syytä, miksi betonilattian pinnoitus todella kannattaa:</p>
+        
+        <h3 class="text-primary font-black uppercase italic mt-8 mb-4">1. Pölyäminen loppuu seinään</h3>
+        <p>Tiesitkö, että suurin osa autotallin tai kellarin pölystä ei tule ulkoa, vaan se irtoaa lattiasta? Käsittelemätön betoni kuluu jatkuvasti ja tuottaa ilmaan hienojakoista sementtipölyä. Tämä pöly laskeutuu autojen, tavaroiden ja vaatteiden päälle, ja kulkeutuu kenkien mukana sisälle taloon. Pinnoitus "lukitsee" betonin huokoset ja tekee lattiasta kertaheitolla 100-prosenttisen pölyttömän.</p>
+        
+        <h3 class="text-primary font-black uppercase italic mt-8 mb-4">2. Puhtaanapito muuttuu raskaasta naurettavan helpoksi</h3>
+        <p>Paljaan betonin siivoaminen on yhtä tuskaa: lika ja nesteet imeytyvät syvälle sen huokosiin, eikä öljytahroja saa irti millään. Kun lattia on pinnoitettu saumattomalla ja tiiviillä epoksilla tai polyuretaanilla, se ei ime itseensä mitään. Kuravedet, moottoriöljyt ja sahanpurut on uskomattoman nopeaa lakaista, pyyhkiä tai pestä pois. Lattia pysyy edustavana todella pienellä vaivalla.</p>
+        
+        <h3 class="text-primary font-black uppercase italic mt-8 mb-4">3. Suojaa betonia ja estää kalliit remontit</h3>
+        <p>Autotallin lattia joutuu Suomen oloissa koville. Auton mukana sisään tulee vettä ja tiesuolaa, jotka yhdessä pakkasen kanssa rapauttavat betonia. Kun tähän lisätään nastarenkaiden jatkuva raapiminen, paljas betoni alkaa nopeasti murentua. Laadukas massapinnoite muodostaa betonin päälle panssarimaisen suojakalvon, joka ottaa iskut, kemikaalit ja kulutuksen vastaan, pidentäen lattian elinkaarta kymmenillä vuosilla.</p>
+        
+        <h3 class="text-primary font-black uppercase italic mt-8 mb-4">4. Tila muuttuu pimeästä luolasta valoisaksi ja viihtyisäksi</h3>
+        <p>Harmaa, pölyinen betoni imee kaiken valon itseensä ja saa tilan tuntumaan ankealta. Kun lattia pinnoitetaan esimerkiksi tyylikkäällä vaaleanharmaalla ja hieman kiiltävällä epoksilla, se alkaa heijastaa valaisimien valoa. Tila muuttuu välittömästi avaramman ja valoisamman tuntuiseksi. Yhtäkkiä vanha autotalli tai kellari näyttääkin paikalta, jossa tekee mieli viettää aikaa ja harrastaa!</p>
+        
+        <h3 class="text-primary font-black uppercase italic mt-8 mb-4">5. Nostaa asunnon tai kiinteistön arvoa</h3>
+        <p>Kun olet myymässä taloa, ensivaikutelma ratkaisee. Pölyinen ja öljytahrainen autotalli antaa kiinteistöstä helposti nuhjuisen kuvan. Viimeistelty, ammattitaidolla pinnoitettu ja siisti tallin lattia on sen sijaan valtava valttikortti asuntomarkkinoilla. Se viestii ostajalle, että kiinteistöstä on pidetty hyvää huolta.</p>
+        
+        <h3 class="text-primary font-black uppercase italic mt-8 mb-4">Älä jää odottamaan betonin murentumista</h3>
+        <p>Mitä nopeammin uusi betonilattia pinnoitetaan, sitä edullisempaa se on, sillä betoni ei ole ehtinyt vielä imeä itseensä likaa tai halkeilla. Myös vanhan ja kuluneen lattian pelastaminen onnistuu meiltä ammattilaisten timanttihionnalla ja oikeilla pohjatöillä.</p>
+        <p>Jos haluat nostaa autotallisi, varastosi tai hallisi täysin uudelle tasolle, me Railo Pinnoituksella hoidamme homman alusta loppuun. Kysy rohkeasti ilmainen arvio – katsotaan yhdessä, miten saamme tilastasi pölyttömän, kestävän ja tyylikkään!</p>
       `,
       image: 'https://i.postimg.cc/SKP2dk7n/IMG-6700.jpg'
+    },
+    {
+      id: 3,
+      title: 'Epoksi vai polyuretaani? Näin valitset oikean pinnoitteen lattiaasi',
+      date: '8.4.2026',
+      excerpt: 'Kun asiakkaamme miettivät autotallin, varaston tai harrastetilan pinnoitusta, yksi kysymys nousee esiin yhä uudelleen: "Kumpaa minun pitäisi laittaa, epoksia vai polyuretaania?"',
+      content: `
+        <p>Kun asiakkaamme miettivät autotallin, varaston tai harrastetilan pinnoitusta, yksi kysymys nousee esiin yhä uudelleen: "Kumpaa minun pitäisi laittaa, epoksia vai polyuretaania?"</p>
+        <p>Molemmat ovat huippuluokan lattiapinnoitteita, jotka tekevät betonista pölyttömän, saumattoman ja uskomattoman kestävän. Silti ne ovat kemiallisesti ja ominaisuuksiltaan kaksi täysin eri petoa. Kumpikaan ei ole automaattisesti toistaan "parempi", vaan kyse on siitä, kumpi sopii juuri sinun tilaasi.</p>
+        <p>Tässä on Railo Pinnoituksen selkeä opas näiden kahden materiaalin eroihin.</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Epoksi – Lattiapinnoitteiden kova ja taipumaton mestari</h3>
+        <p>Epoksi on teollisuuslattioiden klassikko, ja siihen on hyvä syy. Kun epoksihartsi ja kovete sekoitetaan, tapahtuu kemiallinen reaktio, joka muuttaa aineen kuivuessaan erittäin kovaksi ja lasimaiseksi.</p>
+        <p><strong>Epoksin vahvuudet:</strong></p>
+        <ul>
+          <li><strong class="text-primary">Äärimmäinen kovuus:</strong> Epoksi kestää valtavaa staattista painoa ja kovaa mekaanista kulutusta. Siksi se on ykkösvalinta raskaaseen teollisuuteen ja talleihin, joissa käytetään hallitunkkeja tai säilytetään painavaa kalustoa.</li>
+          <li><strong class="text-primary">Kemikaalinkesto:</strong> Epoksi nauraa moottoriöljylle, bensiinille, tiesuolalle ja vahvoille pesuaineille. Se on täydellinen valinta korjaamoihin ja pesuhalleihin.</li>
+          <li><strong class="text-primary">Kiinnittyminen:</strong> Epoksi tarraa kiinni betoniin ilmiömäisellä voimalla (kunhan pohjatyöt ja timanttihionta on tehty oikein!).</li>
+        </ul>
+        <p><strong>Epoksin heikkous:</strong></p>
+        <p>Kovuudella on kääntöpuolensa. Epoksi ei jousta. Jos alustana oleva betonilaatta elää, painuu tai halkeaa, kova epoksi halkeaa sen mukana. Kirkas tai vaalea epoksi voi myös ajan myötä hieman kellastua voimakkaassa auringonvalossa (UV-säteily).</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Polyuretaani – Joustava ja sitkeä iskunvaimentaja</h3>
+        <p>Polyuretaani (PU) on luonnostaan elastisempi ja sitkeämpi materiaali kuin epoksi. Se muodostaa lattiaan paksun, hieman kumimaisen (mutta silti täysin sileän ja kovan tuntuisen) suojakalvon.</p>
+        <p><strong>Polyuretaanin vahvuudet:</strong></p>
+        <ul>
+          <li><strong class="text-primary">Joustavuus ja halkeamien silloitus:</strong> Tämä on PU:n supervoima. Koska se on elastista, se antaa betonin pienelle elämiselle periksi repeämättä. Se voi jopa "sillata" betonin pieniä hiushalkeamia (ns. crack-bridging).</li>
+          <li><strong class="text-primary">Iskunkestävyys:</strong> Joustavuutensa ansiosta polyuretaani kestää teräviä iskuja (kuten lattialle putoavia työkaluja tai levypainoja) paremmin lohkeilematta kuin kova epoksi.</li>
+          <li><strong class="text-primary">UV-kestävyys:</strong> Polyuretaani kestää auringonvaloa huomattavasti epoksia paremmin kellastumatta, joten se on turvallisempi valinta tiloihin, joissa on suuret ikkunat.</li>
+          <li><strong class="text-primary">Akustiikka:</strong> PU vaimentaa askelääniä ja tilan kaikua tehokkaammin, tehden siitä loistavan valinnan kotikuntosaleille ja julkisiin tiloihin.</li>
+        </ul>
+        <p><strong>Polyuretaanin heikkous:</strong></p>
+        <p>Koska se on pehmeämpi, se voi naarmuuntua hieman herkemmin karkeasta hiekasta kuin lasimainen epoksi. Se on myös materiaalina usein hieman arvokkaampaa ja vaatii asennuksessa äärimmäistä tarkkuutta kosteuden suhteen.</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Yhteenveto: Kumpi siis valitaan?</h3>
+        <p>Valinta tehdään aina tilan vaatimusten perusteella:</p>
+        <p><strong class="text-primary">Valitse EPOKSI</strong> (esim. Railo Keskikova Kulutus tai Kova Kulutus), kun: Tilaan kohdistuu kovaa mekaanista rasitusta, siellä käsitellään paljon kemikaaleja tai öljyjä, ja alustan betoni on tukeva ja liikkumaton. Ehdoton valinta ammattikorjaamoihin, raskaaseen autotallikäyttöön ja konehalleihin.</p>
+        <p><strong class="text-primary">Valitse POLYURETAANI</strong>, kun: Alustan betoni on vanhaa ja altis halkeilemaan, tilassa on suuri riski raskaiden terävien esineiden putoamiselle (kotikuntosalit, verstaat), tai tilassa oleskellaan paljon ja kaivataan parempaa akustiikkaa.</p>
+        
+        <h3 class="text-white font-black uppercase italic mt-8 mb-4">Etkö ole vieläkään varma? Ei hätää!</h3>
+        <p>Sinun ei tarvitsekaan olla lattiakemian asiantuntija. Kun pyydät meiltä Railo Pinnoitukselta ilmaisen arviokäynnin, tutkimme betonisi kunnon, kuuntelemme tilan käyttötarkoituksen ja valitsemme yhdessä juuri sen oikean materiaalin, joka kestää katsetta ja kulutusta vuosikymmeniä eteenpäin.</p>
+      `,
+      image: 'https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg'
     }
   ];
 

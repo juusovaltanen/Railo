@@ -24,7 +24,7 @@ const references: Reference[] = [
       'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg'
     ],
     size: '40 m²',
-    location: 'Oulu',
+    location: 'Liminka',
     service: 'Railo Kova Kulutus (1 mm)',
     material: 'Epoksi',
     description: 'Toteutimme Oulussa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Railo Kova Kulutus -epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.'
@@ -38,7 +38,7 @@ const references: Reference[] = [
       'https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg'
     ],
     size: '400 m²',
-    location: 'Oulu',
+    location: 'Liminka',
     service: 'Railo Kova Kulutus',
     material: 'Epoksi',
     description: 'Oulussa sijaitsevan varastohallin lattia sai uuden elämän järeällä Railo Kova Kulutus -massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.'
