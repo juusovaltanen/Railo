@@ -57,10 +57,10 @@ const PriceCalculator: React.FC = () => {
 
   const getServiceName = () => {
     switch (data.service) {
-      case 'polynsidonta': return 'Railo Pölynsidonta';
-      case '0.5mm': return 'Railo Keskikova Kulutus';
-      case 'kova_kulutus': return 'Railo Kova Kulutus';
-      case 'custom': return 'Railo Custom-Lattiat';
+      case 'polynsidonta': return 'Railo - Pölynsidonta';
+      case '0.5mm': return 'Railo - Keskikova Kulutus';
+      case 'kova_kulutus': return 'Railo - Kova Kulutus';
+      case 'custom': return 'Railo - Custom-Lattiat';
     }
   };
 
@@ -122,10 +122,10 @@ const PriceCalculator: React.FC = () => {
               <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">2. Valitse palvelu</h3>
               <div className="grid gap-4">
                 {[
-                  { id: 'polynsidonta', label: 'Railo Pölynsidonta', desc: 'Edullinen suojaus' },
-                  { id: '0.5mm', label: 'Railo Keskikova Kulutus', desc: 'Siisti peruspinnoite' },
-                  { id: 'kova_kulutus', label: 'Railo Kova Kulutus', desc: 'Kestävämpi vaihtoehto' },
-                  { id: 'custom', label: 'Railo Custom-Lattiat', desc: 'Uniikki toteutus' }
+                  { id: 'polynsidonta', label: 'Railo - Pölynsidonta', desc: 'Edullinen suojaus' },
+                  { id: '0.5mm', label: 'Railo - Keskikova Kulutus', desc: 'Siisti peruspinnoite' },
+                  { id: 'kova_kulutus', label: 'Railo - Kova Kulutus', desc: 'Kestävämpi vaihtoehto' },
+                  { id: 'custom', label: 'Railo - Custom-Lattiat', desc: 'Uniikki toteutus' }
                 ].map((item) => (
                   <button
                     key={item.id}

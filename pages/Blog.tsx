@@ -30,19 +30,19 @@ const Blog: React.FC = () => {
         
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">"Haluan vain eroon pölystä" – Varastot ja tekniset tilat</h3>
         <p>Jos kyseessä on pannuhuone, häkkivarasto tai kodin kellaritila, lattialta ei yleensä vaadita äärimmäistä mekaanista kestoa. Suurin ongelma näissä tiloissa on paljaan betonin ikuinen pöliseminen, joka likaa tavarat ja kulkeutuu sisäilmaan.</p>
-        <p><strong class="text-primary">Oikea valinta: Railo Pölynsidonta.</strong> Tämä on nopein ja lompakkoystävällisin tapa lukita betonin pinta. Käsittely ei peitä betonin omia valujälkiä tai sävyeroja, mutta se tekee pinnasta kerralla täysin pölyttömän ja helposti lakaistavan.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo - Pölynsidonta.</strong> Tämä on nopein ja lompakkoystävällisin tapa lukita betonin pinta. Käsittely ei peitä betonin omia valujälkiä tai sävyeroja, mutta se tekee pinnasta kerralla täysin pölyttömän ja helposti lakaistavan.</p>
         
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Arjen käyttöä ja harrastamista – Perus autotallit ja verstaat</h3>
         <p>Kun tilassa puuhastellaan, säilytetään autoa (ilman jatkuvaa nastarengasrallia) tai huolletaan ruohonleikkuria, lattian täytyy kestää öljyä, likaa ja pesua. Silloin tarvitaan sileä ja tiivis suojakalvo.</p>
-        <p><strong class="text-primary">Oikea valinta: Railo Keskikova Kulutus.</strong> Ohutkalvopinnoite (epoksi tai joustavampi polyuretaani) muodostaa lujan, yksivärisen ja saumattoman pinnan. Se on loistava ja helppohoitoinen valinta normaaliin käyttöön. Plussana: saatavilla on satoja eri värejä, ja taloyhtiöiden kellareihin voimme valita täysin hajuttoman, M1-luokitellun tuotteen.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo - Keskikova Kulutus.</strong> Ohutkalvopinnoite (epoksi tai joustavampi polyuretaani) muodostaa lujan, yksivärisen ja saumattoman pinnan. Se on loistava ja helppohoitoinen valinta normaaliin käyttöön. Plussana: saatavilla on satoja eri värejä, ja taloyhtiöiden kellareihin voimme valita täysin hajuttoman, M1-luokitellun tuotteen.</p>
 
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Kovaa ajoa ja nastarenkaita – Raskaat tallit ja pesuhallit</h3>
         <p>Kun lattia joutuu todelliselle koetukselle, perusmaali ei riitä. Jos lattialla käännellään autoa nastarenkailla, käytetään raskaita hallitunkkeja, pudotellaan työkaluja tai pestään kalustoa vahvoilla kemikaaleilla, tarvitaan järeämpiä otteita.</p>
-        <p><strong class="text-primary">Oikea valinta: Railo Kova Kulutus.</strong> Asennamme lattiaan paksun, erikoishiekalla vahvistetun massapinnoitteen. Se on markkinoiden kestävin ratkaisu, joka ottaa iskut vastaan murtumatta. Pintaan voidaan (ja usein kannattaakin) lisätä karhennus, jotta lattia ei ole märkänä hengenvaarallisen liukas.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo - Kova Kulutus.</strong> Asennamme lattiaan paksun, erikoishiekalla vahvistetun massapinnoitteen. Se on markkinoiden kestävin ratkaisu, joka ottaa iskut vastaan murtumatta. Pintaan voidaan (ja usein kannattaakin) lisätä karhennus, jotta lattia ei ole märkänä hengenvaarallisen liukas.</p>
         
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Edustustilat ja katseenvangitsijat – Man cavet ja myymälät</h3>
         <p>Joskus lattian pitää olla paitsi kestävä, myös tajuttoman upea. Kun teet itsellesi unelmien "miesluolaa", edustavaa myymälää tai premium-tason autotallia, yksivärinen harmaa lattia voi tuntua tylsältä.</p>
-        <p><strong class="text-primary">Oikea valinta: Railo Custom-Lattiat.</strong> Esimerkiksi tyylikkäillä Mosaic-värihiutaleilla viimeistelty pinnoite näyttää arvokkaalta kivilattialta. Eläväisen ulkonäön lisäksi hiutalepinta on nerokas arjessa: sen kuviointi antaa anteeksi pientä likaa ja pölyä huomattavasti yksiväristä pintaa paremmin.</p>
+        <p><strong class="text-primary">Oikea valinta: Railo - Custom-Lattiat.</strong> Esimerkiksi tyylikkäillä Mosaic-värihiutaleilla viimeistelty pinnoite näyttää arvokkaalta kivilattialta. Eläväisen ulkonäön lisäksi hiutalepinta on nerokas arjessa: sen kuviointi antaa anteeksi pientä likaa ja pölyä huomattavasti yksiväristä pintaa paremmin.</p>
         
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Älä arvaa, kysy ammattilaiselta!</h3>
         <p>Karkeana muistisääntönä: pölynsidonta riittää varastoon, keskikulutus perusarkeen, kova kulutus autotalleihin ja raskaaseen rassaamiseen ja custom edustustiloihin.</p>
@@ -116,7 +116,7 @@ const Blog: React.FC = () => {
         
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Yhteenveto: Kumpi siis valitaan?</h3>
         <p>Valinta tehdään aina tilan vaatimusten perusteella:</p>
-        <p><strong class="text-primary">Valitse EPOKSI</strong> (esim. Railo Keskikova Kulutus tai Kova Kulutus), kun: Tilaan kohdistuu kovaa mekaanista rasitusta, siellä käsitellään paljon kemikaaleja tai öljyjä, ja alustan betoni on tukeva ja liikkumaton. Ehdoton valinta ammattikorjaamoihin, raskaaseen autotallikäyttöön ja konehalleihin.</p>
+        <p><strong class="text-primary">Valitse EPOKSI</strong> (esim. Railo - Keskikova Kulutus tai Railo - Kova Kulutus), kun: Tilaan kohdistuu kovaa mekaanista rasitusta, siellä käsitellään paljon kemikaaleja tai öljyjä, ja alustan betoni on tukeva ja liikkumaton. Ehdoton valinta ammattikorjaamoihin, raskaaseen autotallikäyttöön ja konehalleihin.</p>
         <p><strong class="text-primary">Valitse POLYURETAANI</strong>, kun: Alustan betoni on vanhaa ja altis halkeilemaan, tilassa on suuri riski raskaiden terävien esineiden putoamiselle (kotikuntosalit, verstaat), tai tilassa oleskellaan paljon ja kaivataan parempaa akustiikkaa.</p>
         
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Etkö ole vieläkään varma? Ei hätää!</h3>

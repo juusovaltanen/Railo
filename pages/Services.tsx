@@ -5,7 +5,7 @@ import SEO from '../components/SEO';
 const Services: React.FC = () => {
   const services = [
     {
-      title: "Railo Pölynsidonta",
+      title: "Railo - Pölynsidonta",
       subtitle: "Kustannustehokas suojaus",
       description: "Tämä on helpoin ja edullisin tapa laittaa loppu betonin jatkuvalle pölyämiselle. Pölynsidontamaalaus sopii parhaiten pienen kulutuksen kohteisiin. Me pinnoitamme lattiasi laadukkailla Tikkurilan tuotteilla. Pölynsidonta voidaan toteuttaa kirkkaalla tai sävytetyllä pinnoitteella. Värisävyjä on tarjolla yli 200 kpl.",
       usage: "Varastot, Kellarit",
@@ -19,7 +19,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Railo Keskikova Kulutus",
+      title: "Railo - Keskikova Kulutus",
       subtitle: "Viimeistelty ja kestävä pinta",
       description: "Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Railo Keskikulutus sopii parhaiten normaalin arjen ja harrastamisen rasittamiin kohteisiin. Me pinnoitamme lattiasi laadukkailla Tikkurilan epoksi- tai polyuretaanituotteilla. Pinnoite antaa loistavan suojan likaa ja öljyjä vastaan, ja värisävyjä on tarjolla yli 200 kpl.",
       usage: "Varastot, Verstaat, Autotallit, Tuotantotilat, Kellarit, Pyörävarastot",
@@ -33,7 +33,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Railo Kova Kulutus",
+      title: "Railo - Kova Kulutus",
       subtitle: "Äärimmäistä kestävyyttä",
       description: "Kun lattiasta ei voi tehdä kompromisseja, tämä on meidän kestävin ratkaisu. Railo Kovakulutus -massapinnoite sopii parhaiten raskaan kaluston talleihin, pesuhalleihin ja teollisuustiloihin. Me asennamme lattiaasi laadukkaan, erikoishiekalla vahvistetun Tikkurilan epoksimassan-tai polyuretaanituotteilla. Ne kestävät erinomaisesti nastarenkaita, iskuja ja kemikaaleja. Pinta voidaan tarvittaessa karhentaa turvalliseksi.",
       usage: "Autotallit, Korjaamot, Teollisuustilat, Tuotantotilat.",
@@ -47,7 +47,7 @@ const Services: React.FC = () => {
       ]
     },
     {
-      title: "Railo Custom-Lattiat",
+      title: "Railo - Custom-Lattiat",
       subtitle: "Yksilöllinen ja näyttävä design",
       description: "Kun haluat lattiastasi todellisen katseenvangitsijan, me toteutamme sen toiveidesi mukaan. Custom-lattiat sopivat parhaiten edustustiloihin, myymälöihin, miesluoliin (man cave) ja premium-tason autotalleihin. Me luomme täysin uniikin ilmeen laadukkailla Tikkurilan tuotteilla hyödyntäen esimerkiksi tyylikkäitä Mosaic-hiutaleita tai useampia värisävyjä käyttäen. Lopputulos on täysin saumaton, kestävä ja juuri sinun näköisesi tila.",
       usage: "Autotallit, Sisätilat, Varastot, Showroomit, Miesluolat.",
@@ -94,7 +94,8 @@ const Services: React.FC = () => {
                 <img
                   src={service.image}
                   alt={`${service.title} - Autotallin lattiapinnoitus`}
-                  className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 img-brighten"
+                  className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 img-brighten mobile-img-fix"
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark/70 to-transparent"></div>
               </div>

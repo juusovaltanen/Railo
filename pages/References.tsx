@@ -25,9 +25,9 @@ const references: Reference[] = [
     ],
     size: '40 m²',
     location: 'Liminka',
-    service: 'Railo Kova Kulutus (1 mm)',
+    service: 'Railo - Kova Kulutus (1 mm)',
     material: 'Epoksi',
-    description: 'Toteutimme Oulussa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Railo Kova Kulutus -epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.'
+    description: 'Toteutimme Oulussa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Railo - Kova Kulutus -epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.'
   },
   {
     id: '2',
@@ -39,9 +39,9 @@ const references: Reference[] = [
     ],
     size: '400 m²',
     location: 'Liminka',
-    service: 'Railo Kova Kulutus',
+    service: 'Railo - Kova Kulutus',
     material: 'Epoksi',
-    description: 'Oulussa sijaitsevan varastohallin lattia sai uuden elämän järeällä Railo Kova Kulutus -massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.'
+    description: 'Oulussa sijaitsevan varastohallin lattia sai uuden elämän järeällä Railo - Kova Kulutus -massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.'
   }
 ];
 
@@ -97,7 +97,8 @@ const References: React.FC = () => {
                 <img 
                   src={ref.mainImage} 
                   alt={ref.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 img-brighten"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 img-brighten mobile-img-fix"
+                  loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
               </div>

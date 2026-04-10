@@ -136,9 +136,9 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex overflow-x-auto gap-6 pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-            {/* Railo Pölynsidonta */}
+            {/* Railo - Pölynsidonta */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo - Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -146,7 +146,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Kustannustehokas</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo Pölynsidonta</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo - Pölynsidonta</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -157,9 +157,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Railo Keskikova Kulutus */}
+            {/* Railo - Keskikova Kulutus */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo Keskikova Kulutus - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo - Keskikova Kulutus - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -167,7 +167,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Ohutkalvopinnoite</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo Keskikova Kulutus</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo - Keskikova Kulutus</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -178,9 +178,14 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Railo Kova Kulutus */}
+            {/* Railo - Kova Kulutus */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" alt="Railo Kova Kulutus - Epoksilattian asennus Oulu" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img 
+                src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" 
+                alt="Railo - Kova Kulutus - Epoksilattian asennus Oulu" 
+                className="w-full h-full object-cover opacity-60 img-brighten mobile-img-fix" 
+                loading="eager"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -188,7 +193,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Suosituin</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo Kova Kulutus</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo - Kova Kulutus</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
@@ -199,9 +204,9 @@ const Home: React.FC = () => {
               </div>
             </Link>
 
-            {/* Railo Custom-Lattiat */}
+            {/* Railo - Custom-Lattiat */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo Custom-Lattiat - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo - Custom-Lattiat - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -209,7 +214,7 @@ const Home: React.FC = () => {
                     <span className="bg-primary px-3 py-1 rounded-full text-[8px] font-bold text-white uppercase tracking-widest inline-block italic">Näyttävä</span>
                   </div>
                   <div className="min-h-[3rem] flex items-center">
-                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo Custom-Lattiat</h3>
+                    <h3 className="text-xl font-black text-white uppercase tracking-tight italic leading-tight">Railo - Custom-Lattiat</h3>
                   </div>
                   <div className="min-h-[4rem]">
                     <p className="text-slate-200 text-[10px] font-bold italic leading-relaxed">
