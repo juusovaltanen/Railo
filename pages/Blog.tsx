@@ -184,7 +184,7 @@ const Blog: React.FC = () => {
                     <img 
                       src={post.image} 
                       alt={`${post.title} - Epoksilattiat`} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      className="w-full h-full object-cover object-[center_80%] group-hover:scale-110 transition-transform duration-700 img-brighten"
                       referrerPolicy="no-referrer"
                     />
                   </div>

@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
               <img 
                 src="https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg" 
                 alt="Railo Pinnoitus - Kestävät lattiapinnoitukset Logo" 
-                className="h-14 md:h-16 w-auto object-contain rounded-sm"
+                className="h-14 md:h-16 w-auto object-contain rounded-sm img-brighten"
               />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs font-medium tracking-normal">

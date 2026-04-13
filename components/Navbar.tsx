@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
             <img 
               src="https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg" 
               alt="Railo Pinnoitus - Epoksilattiat Oulu Logo" 
-              className="h-16 md:h-20 w-auto object-contain rounded-sm"
+              className="h-16 md:h-20 w-auto object-contain rounded-sm img-brighten"
             />
           </Link>
 

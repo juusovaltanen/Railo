@@ -12,6 +12,7 @@ interface CalculatorData {
 
 const PriceCalculator: React.FC = () => {
   const [step, setStep] = useState<Step>('area');
+  const [showFallback, setShowFallback] = useState(false);
   const [data, setData] = useState<CalculatorData>({
     area: 25,
     service: 'kova_kulutus',
@@ -62,6 +63,20 @@ const PriceCalculator: React.FC = () => {
       case 'kova_kulutus': return 'Railo - Kova Kulutus';
       case 'custom': return 'Railo - Custom-Lattiat';
     }
+  };
+
+  const handleSendEmail = () => {
+    const subject = encodeURIComponent("Tarjouspyyntö laskurin kautta");
+    const body = encodeURIComponent(
+      `Hei!\n\nLaskin hinta-arvion sivuillanne:\nPinta-ala: ${data.area} m²\nPalvelu: ${getServiceName()}\nHiutaleet: ${data.flakes ? 'Kyllä' : 'Ei'}\nKunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono'}\n\nArvio (sis. ALV 25,5%): ${calculateBreakdown().total.toFixed(2)}€\n\nOttaisitteko yhteyttä?`
+    );
+    
+    const mailtoLink = `mailto:railopinnoitus@gmail.com?subject=${subject}&body=${body}`;
+    
+    setTimeout(() => {
+      window.location.href = mailtoLink;
+      setShowFallback(true);
+    }, 800);
   };
 
   const getServiceDescription = () => {
@@ -255,13 +270,19 @@ const PriceCalculator: React.FC = () => {
                   >
                     Muuta tietoja
                   </button>
-                  <a
-                    href={`mailto:railopinnoitus@gmail.com?subject=Tarjouspyyntö laskurin kautta&body=Hei!%0D%0A%0D%0ALaskin hinta-arvion sivuillanne:%0D%0APinta-ala: ${data.area} m2%0D%0APalvelu: ${getServiceName()}%0D%0AHiutaleet: ${data.flakes ? 'Kyllä' : 'Ei'}%0D%0AKunto: ${data.condition}%0D%0A%0D%0AArvio (sis. ALV 25,5%): ${calculateBreakdown().total.toFixed(2)}€%0D%0A%0D%0AOttaisitteko yhteyttä?`}
+                  <button
+                    onClick={handleSendEmail}
                     className="py-6 px-10 bg-primary hover:bg-secondary text-white rounded-2xl font-bold uppercase tracking-widest transition-all shadow-2xl shadow-primary/30 text-center italic glow-gold"
                   >
                     Pyydä tarkka tarjous
-                  </a>
+                  </button>
                 </div>
+                {showFallback && (
+                  <div className="mt-8 bg-background-dark/50 p-6 rounded-2xl border border-white/5 animate-in fade-in duration-500">
+                    <p className="text-slate-400 text-sm mb-2">Jos sähköpostiohjelma ei auennut automaattisesti, voit lähettää viestin suoraan osoitteeseen:</p>
+                    <a href="mailto:railopinnoitus@gmail.com" className="text-primary font-bold text-lg hover:underline break-all">railopinnoitus@gmail.com</a>
+                  </div>
+                )}
               </div>
             </div>
           )}

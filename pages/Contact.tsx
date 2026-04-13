@@ -109,7 +109,11 @@ const Contact: React.FC = () => {
                     <span className="material-icons-outlined text-7xl">check_circle</span>
                   </div>
                   <h3 className="text-4xl font-black text-white uppercase tracking-tighter italic">Kiitos!</h3>
-                  <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Viestisi on valmiina lähetettäväksi sähköpostiohjelmassasi.</p>
+                  <p className="text-slate-400 font-bold uppercase tracking-widest text-sm leading-relaxed">Viestisi on valmiina lähetettäväksi sähköpostiohjelmassasi.</p>
+                  <div className="bg-background-dark/50 p-6 rounded-2xl border border-white/5 mt-6">
+                    <p className="text-slate-400 text-sm mb-2">Jos sähköpostiohjelma ei auennut automaattisesti, voit lähettää viestin suoraan osoitteeseen:</p>
+                    <a href="mailto:railopinnoitus@gmail.com" className="text-primary font-bold text-lg hover:underline break-all">railopinnoitus@gmail.com</a>
+                  </div>
                   <button
                     onClick={() => setIsSuccess(false)}
                     className="text-primary font-bold uppercase tracking-widest text-xs hover:underline pt-10 italic"

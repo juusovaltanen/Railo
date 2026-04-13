@@ -97,10 +97,10 @@ const References: React.FC = () => {
                 <img 
                   src={ref.mainImage} 
                   alt={ref.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 img-brighten mobile-img-fix"
+                  className="w-full h-full object-cover object-[center_75%] transition-transform duration-700 group-hover:scale-105 img-brighten mobile-img-fix"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-50"></div>
               </div>
               <div className="p-8">
                 <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter italic group-hover:text-primary transition-colors">{ref.title}</h3>

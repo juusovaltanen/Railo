@@ -18,18 +18,18 @@ const Home: React.FC = () => {
           <img
             src="https://i.postimg.cc/wvmnYbd1/IMG-6609.jpg"
             alt="Epoksilattian timanttihionta autotallissa"
-            className="w-full h-full object-cover opacity-80 img-brighten"
+            className="w-full h-full object-cover object-[center_80%] img-brighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background-dark/90 via-background-dark/40 to-background-dark"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-background-dark/70 via-background-dark/20 to-background-dark/90"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
-          <h1 className="font-black text-white mb-6 tracking-tight leading-none text-glow uppercase italic">
-            <span className="block text-[7vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] mb-2">KESTÄVÄT</span>
-            <span className="block text-primary text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] mb-2">EPOKSILATTIAT JA</span>
-            <span className="block text-primary text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] whitespace-nowrap">LATTIAPINNOITUKSET</span>
+          <h1 className="font-black text-white mb-6 tracking-tight leading-none uppercase italic">
+            <span className="block text-[7vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] mb-2 drop-shadow-md text-glow-white">KESTÄVÄT</span>
+            <span className="block text-primary text-glow-strong text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] mb-2">EPOKSILATTIAT JA</span>
+            <span className="block text-primary text-glow-strong text-[5.5vw] sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] whitespace-nowrap">LATTIAPINNOITUKSET</span>
           </h1>
-          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-300 mb-10 tracking-tight uppercase italic max-w-4xl mx-auto">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-10 tracking-tight uppercase italic max-w-4xl mx-auto drop-shadow-md">
             Ammattitaitoista jälkeä Oulusta koko Suomeen
           </h2>
           <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16">
@@ -138,7 +138,7 @@ const Home: React.FC = () => {
           <div className="flex overflow-x-auto gap-6 pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
             {/* Railo - Pölynsidonta */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo - Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo - Pölynsidonta - Autotallin lattiapinnoitus" className="w-full h-full object-cover object-[center_80%] img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -159,7 +159,7 @@ const Home: React.FC = () => {
 
             {/* Railo - Keskikova Kulutus */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo - Keskikova Kulutus - Kestävä epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo - Keskikova Kulutus - Kestävä epoksilattia" className="w-full h-full object-cover object-[center_80%] img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -183,7 +183,7 @@ const Home: React.FC = () => {
               <img 
                 src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" 
                 alt="Railo - Kova Kulutus - Epoksilattian asennus Oulu" 
-                className="w-full h-full object-cover opacity-60 img-brighten mobile-img-fix" 
+                className="w-full h-full object-cover object-[center_80%] img-brighten mobile-img-fix" 
                 loading="eager"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
@@ -206,7 +206,7 @@ const Home: React.FC = () => {
 
             {/* Railo - Custom-Lattiat */}
             <Link to="/palvelut" className="flex-none w-[280px] md:w-[350px] group relative aspect-[3/4] rounded-[3rem] overflow-hidden shadow-2xl border border-white/5 bg-surface-dark">
-              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo - Custom-Lattiat - Yksilöllinen epoksilattia" className="w-full h-full object-cover opacity-60 img-brighten" />
+              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo - Custom-Lattiat - Yksilöllinen epoksilattia" className="w-full h-full object-cover object-[center_80%] img-brighten" />
               <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/20 to-transparent"></div>
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="space-y-2">
@@ -244,11 +244,11 @@ const Home: React.FC = () => {
       <section className="py-40 bg-surface-dark overflow-hidden relative border-y border-white/5 text-center">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://i.postimg.cc/SKP2dk7n/IMG-6700.jpg"
+            src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg"
             alt="Valmis muuttamaan lattiasi"
-            className="w-full h-full object-cover opacity-80 img-brighten"
+            className="w-full h-full object-cover object-[center_80%] img-brighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/90 via-surface-dark/40 to-surface-dark/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-surface-dark/70 via-surface-dark/20 to-surface-dark/80"></div>
         </div>
         <div className="max-w-5xl mx-auto px-4 relative z-10">
           <h2 className="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-10 tracking-tight uppercase italic">Valmis muuttamaan lattiasi?</h2>

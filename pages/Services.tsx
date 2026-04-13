@@ -94,7 +94,7 @@ const Services: React.FC = () => {
                 <img
                   src={service.image}
                   alt={`${service.title} - Autotallin lattiapinnoitus`}
-                  className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105 img-brighten mobile-img-fix"
+                  className="w-full h-full object-cover object-[center_80%] transition-all duration-1000 group-hover:scale-105 img-brighten mobile-img-fix"
                   loading="eager"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark/70 to-transparent"></div>
