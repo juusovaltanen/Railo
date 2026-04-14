@@ -13,6 +13,9 @@ interface CalculatorData {
 const PriceCalculator: React.FC = () => {
   const [step, setStep] = useState<Step>('area');
   const [showFallback, setShowFallback] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '' });
   const [data, setData] = useState<CalculatorData>({
     area: 25,
     service: 'kova_kulutus',
@@ -65,18 +68,39 @@ const PriceCalculator: React.FC = () => {
     }
   };
 
-  const handleSendEmail = () => {
-    const subject = encodeURIComponent("Tarjouspyyntö laskurin kautta");
-    const body = encodeURIComponent(
-      `Hei!\n\nLaskin hinta-arvion sivuillanne:\nPinta-ala: ${data.area} m²\nPalvelu: ${getServiceName()}\nHiutaleet: ${data.flakes ? 'Kyllä' : 'Ei'}\nKunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono'}\n\nArvio (sis. ALV 25,5%): ${calculateBreakdown().total.toFixed(2)}€\n\nOttaisitteko yhteyttä?`
-    );
-    
-    const mailtoLink = `mailto:railopinnoitus@gmail.com?subject=${subject}&body=${body}`;
-    
-    setTimeout(() => {
-      window.location.href = mailtoLink;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setShowFallback(false);
+
+    const formData = new FormData();
+    formData.append('form-name', 'tarjouspyynto');
+    formData.append('name', contactInfo.name);
+    formData.append('email', contactInfo.email);
+    formData.append('phone', contactInfo.phone);
+    formData.append('palvelu', getServiceName());
+    formData.append('neliomaara', data.area.toString());
+    formData.append('hinta_arvio', calculateBreakdown().total.toFixed(2));
+    formData.append('hiutaleet', data.flakes ? 'Kyllä' : 'Ei');
+    formData.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono');
+    formData.append('message', 'Tarjouspyyntö laskurin kautta');
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        body: formData
+      });
+
+      if (response.ok) {
+        setIsSuccess(true);
+      } else {
+        setShowFallback(true);
+      }
+    } catch (error) {
       setShowFallback(true);
-    }, 800);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const getServiceDescription = () => {
@@ -260,27 +284,76 @@ const PriceCalculator: React.FC = () => {
               </div>
 
               <div className="pt-12 border-t border-white/5 text-center">
-                <p className="text-slate-400 text-lg mb-10 font-bold italic leading-relaxed">
-                  Tämä on suuntaa-antava arvio. Lopullinen hinta ja ratkaisu varmistuvat aina paikan päällä. Lähetä nämä tiedot meille, niin soitamme ja sovimme ilmaisen arviokäynnin!
-                </p>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <button
-                    onClick={() => setStep('area')}
-                    className="py-6 px-10 rounded-2xl border border-white/10 text-slate-400 font-bold uppercase tracking-widest hover:text-white hover:bg-white/5 transition-all italic"
-                  >
-                    Muuta tietoja
-                  </button>
-                  <button
-                    onClick={handleSendEmail}
-                    className="py-6 px-10 bg-primary hover:bg-secondary text-white rounded-2xl font-bold uppercase tracking-widest transition-all shadow-2xl shadow-primary/30 text-center italic glow-gold"
-                  >
-                    Pyydä tarkka tarjous
-                  </button>
-                </div>
-                {showFallback && (
+                {isSuccess ? (
+                  <div className="bg-primary/20 border border-primary/50 p-8 rounded-2xl animate-in fade-in duration-500">
+                    <h3 className="text-2xl font-black text-white uppercase italic mb-4">Kiitos!</h3>
+                    <p className="text-slate-300 font-bold italic">Tarjouspyyntösi on vastaanotettu. Olemme sinuun pian yhteydessä.</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6 text-left">
+                    <p className="text-slate-400 text-lg mb-8 font-bold italic leading-relaxed text-center">
+                      Tämä on suuntaa-antava arvio. Lopullinen hinta ja ratkaisu varmistuvat aina paikan päällä. Jätä yhteystietosi, niin soitamme ja sovimme ilmaisen arviokäynnin!
+                    </p>
+                    
+                    <div>
+                      <label className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Nimi</label>
+                      <input 
+                        type="text" 
+                        required
+                        value={contactInfo.name}
+                        onChange={(e) => setContactInfo({...contactInfo, name: e.target.value})}
+                        className="w-full bg-surface-dark border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors"
+                        placeholder="Matti Meikäläinen"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Sähköposti</label>
+                      <input 
+                        type="email" 
+                        required
+                        value={contactInfo.email}
+                        onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
+                        className="w-full bg-surface-dark border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors"
+                        placeholder="matti@esimerkki.fi"
+                      />
+                    </div>
+                    
+                    <div>
+                      <label className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Puhelinnumero</label>
+                      <input 
+                        type="tel" 
+                        required
+                        value={contactInfo.phone}
+                        onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})}
+                        className="w-full bg-surface-dark border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors"
+                        placeholder="040 123 4567"
+                      />
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-4 pt-6">
+                      <button
+                        type="button"
+                        onClick={() => setStep('area')}
+                        className="py-6 px-4 rounded-2xl border border-white/10 text-slate-400 font-bold uppercase tracking-widest hover:text-white hover:bg-white/5 transition-all italic text-sm"
+                      >
+                        Muuta tietoja
+                      </button>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="py-6 px-4 bg-primary hover:bg-secondary text-white rounded-2xl font-bold uppercase tracking-widest transition-all shadow-2xl shadow-primary/30 text-center italic glow-gold disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                      >
+                        {isSubmitting ? 'Lähetetään...' : 'Pyydä tarjous'}
+                      </button>
+                    </div>
+                  </form>
+                )}
+                
+                {showFallback && !isSuccess && (
                   <div className="mt-8 bg-background-dark/50 p-6 rounded-2xl border border-white/5 animate-in fade-in duration-500">
-                    <p className="text-slate-400 text-sm mb-2">Jos sähköpostiohjelma ei auennut automaattisesti, voit lähettää viestin suoraan osoitteeseen:</p>
-                    <a href="mailto:railopinnoitus@gmail.com" className="text-primary font-bold text-lg hover:underline break-all">railopinnoitus@gmail.com</a>
+                    <p className="text-slate-400 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
+                    <p className="text-slate-300 font-bold italic">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-primary hover:underline break-all">railopinnoitus@gmail.com</a></p>
                   </div>
                 )}
               </div>

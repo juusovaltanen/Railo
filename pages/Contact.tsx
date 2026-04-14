@@ -4,10 +4,12 @@ import SEO from '../components/SEO';
 const Contact: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showFallback, setShowFallback] = useState(false);
   
   // Lomakkeen kenttien tila
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     phone: '',
     area: '',
     message: ''
@@ -18,37 +20,42 @@ const Contact: React.FC = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setShowFallback(false);
 
-    // Muotoillaan sähköpostin sisältö
-    const subject = encodeURIComponent(`Tarjouspyyntö verkkosivuilta: ${formData.name}`);
-    const body = encodeURIComponent(
-      `Yhteydenottopyyntö RAILO-verkkosivuilta:\n\n` +
-      `Nimi: ${formData.name}\n` +
-      `Puhelin: ${formData.phone}\n` +
-      `Lattian koko: ${formData.area} m²\n` +
-      `Kuvaus kohteesta:\n${formData.message}`
-    );
+    const data = new FormData();
+    data.append('form-name', 'tarjouspyynto');
+    data.append('name', formData.name);
+    data.append('email', formData.email);
+    data.append('phone', formData.phone);
+    data.append('neliomaara', formData.area);
+    data.append('message', formData.message);
 
-    // Luodaan mailto-linkki
-    const mailtoLink = `mailto:railopinnoitus@gmail.com?subject=${subject}&body=${body}`;
-
-    // Simuloidaan lähetystä ja avataan sähköposti
-    setTimeout(() => {
-      window.location.href = mailtoLink;
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      
-      // Tyhjennetään lomake
-      setFormData({
-        name: '',
-        phone: '',
-        area: '',
-        message: ''
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        body: data
       });
-    }, 800);
+
+      if (response.ok) {
+        setIsSuccess(true);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          area: '',
+          message: ''
+        });
+      } else {
+        setShowFallback(true);
+      }
+    } catch (error) {
+      setShowFallback(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -109,11 +116,7 @@ const Contact: React.FC = () => {
                     <span className="material-icons-outlined text-7xl">check_circle</span>
                   </div>
                   <h3 className="text-4xl font-black text-white uppercase tracking-tighter italic">Kiitos!</h3>
-                  <p className="text-slate-400 font-bold uppercase tracking-widest text-sm leading-relaxed">Viestisi on valmiina lähetettäväksi sähköpostiohjelmassasi.</p>
-                  <div className="bg-background-dark/50 p-6 rounded-2xl border border-white/5 mt-6">
-                    <p className="text-slate-400 text-sm mb-2">Jos sähköpostiohjelma ei auennut automaattisesti, voit lähettää viestin suoraan osoitteeseen:</p>
-                    <a href="mailto:railopinnoitus@gmail.com" className="text-primary font-bold text-lg hover:underline break-all">railopinnoitus@gmail.com</a>
-                  </div>
+                  <p className="text-slate-400 font-bold uppercase tracking-widest text-sm leading-relaxed">Tarjouspyyntösi on vastaanotettu. Olemme sinuun pian yhteydessä.</p>
                   <button
                     onClick={() => setIsSuccess(false)}
                     className="text-primary font-bold uppercase tracking-widest text-xs hover:underline pt-10 italic"
@@ -133,6 +136,18 @@ const Contact: React.FC = () => {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Matti Meikäläinen"
+                        className="w-full bg-background-dark/50 border-white/5 rounded-2xl py-6 px-8 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-700 font-bold uppercase tracking-widest"
+                      />
+                    </div>
+                    <div className="space-y-4">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-500 ml-1">Sähköposti</label>
+                      <input
+                        required
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="matti@esimerkki.fi"
                         className="w-full bg-background-dark/50 border-white/5 rounded-2xl py-6 px-8 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-slate-700 font-bold uppercase tracking-widest"
                       />
                     </div>
@@ -187,6 +202,13 @@ const Contact: React.FC = () => {
                       </>
                     )}
                   </button>
+                  
+                  {showFallback && (
+                    <div className="mt-8 bg-background-dark/50 p-6 rounded-2xl border border-white/5 animate-in fade-in duration-500">
+                      <p className="text-slate-400 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
+                      <p className="text-slate-300 font-bold italic">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-primary hover:underline break-all">railopinnoitus@gmail.com</a></p>
+                    </div>
+                  )}
                 </form>
               )}
             </div>
