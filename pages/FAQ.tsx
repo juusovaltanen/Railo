@@ -43,44 +43,66 @@ const FAQ: React.FC = () => {
     {
       question: "Saako epoksilattian asennuksesta kotitalousvähennystä?",
       answer: "Kyllä vain! Epoksilattian asennus kotiin tai vapaa-ajan asunnolle oikeuttaa kotitalousvähennykseen työn osuudesta. Tämä säästää sinulta pitkän pennin. Meiltä saat aina selkeän erittelyn työn ja materiaalien osuudesta verotusta varten."
+    },
+    {
+      question: "Mitä eroa on epoksilla ja polyuretaanilla?",
+      answer: (
+        <>
+          <p className="mb-4">
+            Epoksi on äärimmäisen kova ja mekaanista kulutusta kestävä pinnoite. Se on paras valinta autotalleihin ja halleihin, joissa lattiaan kohdistuu kovaa hankausta, painoa tai kemikaaleja. Epoksi antaa lasimaisen kovan ja helposti puhdistettavan pinnan.
+          </p>
+          <p className="mb-8">
+            Polyuretaani on materiaali, joka on epoksia joustavampi ja elastisempi. Se kestää paremmin iskuja ja suuria lämpötilan vaihteluita halkeilematta. Polyuretaani on myös UV-suojattu, eli se ei kellastu auringonvalossa, ja se tuntuu jalalle hieman pehmeämmältä sekä hiljaisemmalta.
+          </p>
+          <div className="flex justify-start">
+            <Link 
+              to="/blogi?id=3" 
+              className="inline-flex items-center gap-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-white px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-widest transition-all border border-[#D4AF37]/20"
+            >
+              Lue lisää
+              <span className="material-icons-outlined text-sm">east</span>
+            </Link>
+          </div>
+        </>
+      )
     }
   ];
 
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 bg-white">
       <SEO 
         title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
         description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
       />
       <section className="py-32 max-w-3xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl sm:text-6xl font-black text-white mb-6 uppercase tracking-tighter italic">UKK</h1>
-          <p className="text-slate-400 text-lg font-bold italic tracking-normal">
+        <div className="text-center mb-24">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-[#00001C] mb-8 tracking-tight">Usein kysytyt kysymykset</h1>
+          <p className="text-[#00001C]/60 text-lg font-medium leading-relaxed">
             Vastauksia yleisimpiin kysymyksiin epoksilattioista.
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-6">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="bg-surface-dark rounded-[2rem] border border-white/5 overflow-hidden shadow-2xl transition-all hover:border-primary/30">
+            <div key={idx} className="bg-[#00001C] rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl shadow-black/20 transition-all hover:border-[#D4AF37]/30">
               <button
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-8 text-left"
+                className="w-full flex items-center justify-between p-10 text-left"
               >
-                <h3 className={`text-xl font-bold uppercase tracking-tight transition-colors italic ${openIndex === idx ? 'text-primary' : 'text-white'}`}>
+                <h3 className={`text-xl font-semibold tracking-tight transition-colors ${openIndex === idx ? 'text-[#D4AF37]' : 'text-white'}`}>
                   {faq.question}
                 </h3>
-                <span className={`material-icons-outlined transition-transform duration-300 ${openIndex === idx ? 'rotate-180 text-primary' : 'text-slate-500'}`}>
+                <span className={`material-icons-outlined transition-transform duration-300 ${openIndex === idx ? 'rotate-180 text-[#D4AF37]' : 'text-white/40'}`}>
                   expand_more
                 </span>
               </button>
               <div
                 className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
               >
-                <div className="p-8 pt-0 border-t border-white/5 mt-0">
-                  <div className="text-slate-400 leading-relaxed italic pt-8 text-sm tracking-normal">
+                <div className="p-10 pt-0 border-t border-white/5">
+                  <div className="text-white/70 leading-relaxed pt-10 text-base">
                     {faq.answer}
                   </div>
                 </div>
@@ -89,15 +111,15 @@ const FAQ: React.FC = () => {
           ))}
         </div>
 
-        <div className="mt-24 p-12 rounded-[3rem] bg-white/5 border border-white/5 text-center shadow-2xl">
-          <h3 className="text-2xl font-black text-white uppercase italic mb-4 tracking-tight">Etkö löytänyt vastausta?</h3>
-          <p className="text-slate-400 mb-10 font-bold uppercase tracking-widest text-xs italic">Olemme täällä auttamassa. Kysy meiltä suoraan!</p>
+        <div className="mt-32 p-16 rounded-[4rem] bg-[#00001C] border border-white/5 text-center shadow-2xl shadow-black/30">
+          <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight">Etkö löytänyt vastausta?</h3>
+          <p className="text-white/40 mb-12 font-semibold uppercase tracking-widest text-[10px]">Olemme täällä auttamassa. Kysy meiltä suoraan!</p>
           <Link 
             to="/yhteystiedot" 
-            className="inline-flex items-center gap-4 bg-primary hover:bg-secondary text-white px-12 py-5 rounded-2xl font-bold uppercase tracking-widest transition-all shadow-xl shadow-primary/30 active:scale-95 italic"
+            className="inline-flex items-center gap-4 bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-12 py-5 rounded-full font-semibold uppercase tracking-widest transition-all shadow-xl shadow-[#D4AF37]/20 active:scale-95"
           >
             Ota yhteyttä
-            <span className="material-icons-outlined">arrow_forward</span>
+            <span className="material-icons-outlined">east</span>
           </Link>
         </div>
       </section>

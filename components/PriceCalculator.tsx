@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 type Step = 'area' | 'service' | 'thickness' | 'flakes' | 'condition' | 'result';
 
@@ -24,26 +25,43 @@ const PriceCalculator: React.FC = () => {
     condition: 'good'
   });
 
+  const location = useLocation();
+
+  const resetCalculator = () => {
+    setStep('area');
+    setIsSuccess(false);
+    // Scroll element into view if needed
+    const el = document.getElementById('calculator');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  // Reset calculator when navigating via navbar or other same-page links
+  useEffect(() => {
+    if (location.pathname === '/laskuri') {
+      resetCalculator();
+    }
+  }, [location.key]);
+
   const getServicePrice = () => {
     switch (data.service) {
-      case 'polynsidonta': return 28.94;
-      case '0.5mm': return 36.49;
-      case 'kova_kulutus': return data.thickness === '1mm' ? 44.65 : 66.32;
-      case 'custom': return 71.32;
+      case 'polynsidonta': return 38.20;
+      case '0.5mm': return 48.17;
+      case 'kova_kulutus': return data.thickness === '1mm' ? 58.94 : 87.54;
+      case 'custom': return 94.14;
     }
   };
 
   const getConditionPrice = () => {
     switch (data.condition) {
       case 'good': return 0;
-      case 'medium': return 3.00;
-      case 'poor': return 6.00;
+      case 'medium': return 3.96;
+      case 'poor': return 13.20;
     }
   };
 
   const calculateBreakdown = () => {
     const servicePrice = getServicePrice();
-    const flakePrice = data.flakes ? 2.00 : 0;
+    const flakePrice = data.flakes ? 2.64 : 0;
     const conditionPrice = getConditionPrice();
     const fixedFee = 0;
 
@@ -114,42 +132,63 @@ const PriceCalculator: React.FC = () => {
 
   const nextStep = (currentStep: Step) => {
     if (currentStep === 'area') setStep('service');
-    if (currentStep === 'service') {
-      if (data.service === 'kova_kulutus') {
-        setStep('thickness');
-      } else {
-        setStep('flakes');
-      }
-    }
     if (currentStep === 'thickness') setStep('flakes');
     if (currentStep === 'flakes') setStep('condition');
     if (currentStep === 'condition') setStep('result');
   };
 
+  const prevStep = () => {
+    if (step === 'service') setStep('area');
+    if (step === 'thickness') setStep('service');
+    if (step === 'flakes') {
+      if (data.service === 'kova_kulutus') setStep('thickness');
+      else setStep('service');
+    }
+    if (step === 'condition') setStep('flakes');
+    if (step === 'result') setStep('condition');
+  };
+
   return (
     <div id="calculator" className="scroll-mt-32">
-      <div className="bg-primary/5 backdrop-blur-xl border border-primary/20 rounded-[3.5rem] p-10 md:p-16 shadow-2xl relative overflow-hidden group">
-        <div className="absolute top-0 right-0 p-12 text-primary/10 pointer-events-none transition-transform duration-1000 group-hover:scale-110">
-          <span className="material-icons-outlined text-[12rem]">calculate</span>
-        </div>
+      <div className="bg-[#00001C] border border-white/5 rounded-[4rem] p-10 md:p-20 shadow-2xl shadow-black/50 relative overflow-hidden group">
+        <button 
+          onClick={resetCalculator}
+          title="Aloita alusta"
+          className="absolute top-8 right-8 p-4 text-[#D4AF37]/10 z-30 transition-all duration-300 hover:scale-110 hover:text-[#D4AF37]/40 rounded-full hover:bg-white/5"
+        >
+          <span className="material-icons-outlined text-4xl md:text-6xl">calculate</span>
+        </button>
 
         <div className="relative z-10">
+          {step !== 'area' && step !== 'result' && (
+            <button 
+              onClick={prevStep}
+              className="flex items-center gap-2 text-white/40 hover:text-[#D4AF37] transition-colors mb-8 font-semibold uppercase tracking-widest text-[10px]"
+            >
+              <span className="material-icons-outlined text-sm">west</span>
+              Palaa
+            </button>
+          )}
           {step === 'area' && (
-            <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <h3 className="text-2xl font-black text-white uppercase italic tracking-tight text-center md:text-left">1. Syötä lattian pinta-ala</h3>
+            <div className="space-y-12 animate-in fade-in slide-in-from-bottom-6 duration-500">
+              <h3 className="text-2xl font-semibold text-white tracking-tight text-center md:text-left">1. Syötä lattian pinta-ala</h3>
               <div className="relative max-w-xs mx-auto md:mx-0">
                 <input
                   type="number"
+                  min="0"
                   value={data.area === 0 ? '' : data.area}
-                  onChange={(e) => setData({ ...data, area: e.target.value === '' ? 0 : parseInt(e.target.value) })}
+                  onChange={(e) => {
+                    const val = parseInt(e.target.value);
+                    setData({ ...data, area: isNaN(val) ? 0 : Math.max(0, val) });
+                  }}
                   placeholder="0"
-                  className="w-full bg-background-dark/50 border-white/10 rounded-2xl py-6 pl-10 pr-28 text-5xl font-black text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all text-right italic leading-tight"
+                  className="w-full bg-white/5 border-white/10 rounded-3xl py-8 pl-10 pr-32 text-5xl font-semibold text-white focus:border-[#D4AF37] focus:ring-0 transition-all text-right leading-none"
                 />
-                <span className="absolute right-8 top-1/2 -translate-y-1/2 text-3xl font-black text-primary italic pointer-events-none">m²</span>
+                <span className="absolute right-10 top-1/2 -translate-y-1/2 text-3xl font-semibold text-[#D4AF37] pointer-events-none">m²</span>
               </div>
               <button
                 onClick={() => nextStep('area')}
-                className="w-full bg-primary hover:bg-secondary text-white py-6 rounded-2xl text-lg font-bold uppercase tracking-widest transition-all shadow-xl shadow-primary/30 active:scale-[0.98] glow-gold"
+                className="w-full bg-[#D4AF37] hover:bg-[#AA8B2E] text-white py-6 rounded-full text-lg font-semibold uppercase tracking-widest transition-all shadow-xl shadow-[#D4AF37]/20 active:scale-[0.98]"
               >
                 Seuraava vaihe
               </button>
@@ -157,9 +196,9 @@ const PriceCalculator: React.FC = () => {
           )}
 
           {step === 'service' && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-              <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">2. Valitse palvelu</h3>
-              <div className="grid gap-4">
+            <div className="space-y-10 animate-in fade-in slide-in-from-right-6 duration-500">
+              <h3 className="text-2xl font-semibold text-white tracking-tight">2. Valitse palvelu</h3>
+              <div className="grid gap-6">
                 {[
                   { id: 'polynsidonta', label: 'Railo - Pölynsidonta', desc: 'Edullinen suojaus' },
                   { id: '0.5mm', label: 'Railo - Keskikova Kulutus', desc: 'Siisti peruspinnoite' },
@@ -170,12 +209,16 @@ const PriceCalculator: React.FC = () => {
                     key={item.id}
                     onClick={() => {
                       setData({ ...data, service: item.id as any });
-                      nextStep('service');
+                      if (item.id === 'kova_kulutus') {
+                        setStep('thickness');
+                      } else {
+                        setStep('flakes');
+                      }
                     }}
-                    className={`p-8 rounded-3xl border text-left transition-all group/btn ${data.service === item.id ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(212,175,55,0.1)]' : 'border-white/5 bg-white/5 hover:border-white/20'}`}
+                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.service === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
-                    <p className="text-xl font-black text-white uppercase italic mb-1 transition-colors group-hover/btn:text-primary">{item.label}</p>
-                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest italic">{item.desc}</p>
+                    <p className={`text-xl font-semibold mb-2 transition-colors ${data.service === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
+                    <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -183,9 +226,9 @@ const PriceCalculator: React.FC = () => {
           )}
 
           {step === 'thickness' && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-              <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">Valitse paksuus</h3>
-              <div className="grid gap-4">
+            <div className="space-y-10 animate-in fade-in slide-in-from-right-6 duration-500">
+              <h3 className="text-2xl font-semibold text-white tracking-tight">Valitse paksuus</h3>
+              <div className="grid gap-6">
                 {[
                   { id: '1mm', label: '1 mm', desc: 'esim. autotallit' },
                   { id: '2-3mm', label: '2-3 mm', desc: 'esim. teollisuushallit' }
@@ -196,10 +239,10 @@ const PriceCalculator: React.FC = () => {
                       setData({ ...data, thickness: item.id as any });
                       nextStep('thickness');
                     }}
-                    className={`p-8 rounded-3xl border text-left transition-all group/btn ${data.thickness === item.id ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(212,175,55,0.1)]' : 'border-white/5 bg-white/5 hover:border-white/20'}`}
+                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.thickness === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
-                    <p className="text-xl font-black text-white uppercase italic mb-1 transition-colors group-hover/btn:text-primary">{item.label}</p>
-                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest italic">{item.desc}</p>
+                    <p className={`text-xl font-semibold mb-2 transition-colors ${data.thickness === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
+                    <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -207,9 +250,9 @@ const PriceCalculator: React.FC = () => {
           )}
 
           {step === 'flakes' && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-              <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">3. Lisätäänkö hiutaleet?</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-10 animate-in fade-in slide-in-from-right-6 duration-500">
+              <h3 className="text-2xl font-semibold text-white tracking-tight">3. Lisätäänkö hiutaleet?</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {[
                   { id: true, label: 'Kyllä', desc: 'Värihiutaleilla' },
                   { id: false, label: 'Ei', desc: 'Tasainen väri' }
@@ -220,10 +263,10 @@ const PriceCalculator: React.FC = () => {
                       setData({ ...data, flakes: item.id });
                       nextStep('flakes');
                     }}
-                    className={`p-8 rounded-3xl border text-left transition-all group/btn ${data.flakes === item.id ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(212,175,55,0.1)]' : 'border-white/5 bg-white/5 hover:border-white/20'}`}
+                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.flakes === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
-                    <p className="text-xl font-black text-white uppercase italic mb-1 transition-colors group-hover/btn:text-primary">{item.label}</p>
-                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest italic">{item.desc}</p>
+                    <p className={`text-xl font-semibold mb-2 transition-colors ${data.flakes === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
+                    <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -231,9 +274,9 @@ const PriceCalculator: React.FC = () => {
           )}
 
           {step === 'condition' && (
-            <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-500">
-              <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">4. Lattian nykykunto</h3>
-              <div className="grid gap-4">
+            <div className="space-y-10 animate-in fade-in slide-in-from-right-6 duration-500">
+              <h3 className="text-2xl font-semibold text-white tracking-tight">4. Lattian nykykunto</h3>
+              <div className="grid gap-6">
                 {[
                   { id: 'good', label: 'Hyvä kunto', desc: 'Puhdas ja ehjä betoni' },
                   { id: 'medium', label: 'Keskihuono kunto', desc: 'Halkeamia tai vanhaa maalia' },
@@ -245,10 +288,10 @@ const PriceCalculator: React.FC = () => {
                       setData({ ...data, condition: item.id as any });
                       nextStep('condition');
                     }}
-                    className={`p-8 rounded-3xl border text-left transition-all group/btn ${data.condition === item.id ? 'border-primary bg-primary/20 shadow-[0_0_20px_rgba(212,175,55,0.1)]' : 'border-white/5 bg-white/5 hover:border-white/20'}`}
+                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.condition === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
-                    <p className="text-xl font-black text-white uppercase italic mb-1 transition-colors group-hover/btn:text-primary">{item.label}</p>
-                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest italic">{item.desc}</p>
+                    <p className={`text-xl font-semibold mb-2 transition-colors ${data.condition === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
+                    <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
                   </button>
                 ))}
               </div>
@@ -256,93 +299,93 @@ const PriceCalculator: React.FC = () => {
           )}
 
           {step === 'result' && (
-            <div className="space-y-12 animate-in fade-in zoom-in-95 duration-500">
+            <div className="space-y-16 animate-in fade-in zoom-in-95 duration-500">
               <div className="text-center">
-                <div className="mb-8">
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 italic mb-2 block">Yhteenveto valinnoista</span>
-                  <p className="text-xl font-black text-white italic">
+                <div className="mb-12">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-4 block">Yhteenveto valinnoista</span>
+                  <p className="text-xl font-semibold text-white">
                     {data.area} m², {getServiceName()}{data.flakes ? ', hiutaleilla' : ''}, {data.condition === 'good' ? 'hyvä kunto' : data.condition === 'medium' ? 'keskihuono kunto' : 'huono kunto'}
                   </p>
                 </div>
 
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-sm mb-4">Arvioitu hinta asennettuna (sis. ALV 25,5%):</p>
-                <p className="text-7xl md:text-9xl font-black text-white italic tracking-tighter mb-8 leading-none">
+                <p className="text-white/60 font-semibold uppercase tracking-widest text-xs mb-6">Arvioitu hinta asennettuna (sis. ALV 25,5%):</p>
+                <p className="text-7xl md:text-8xl font-semibold text-white tracking-tight mb-12 leading-none">
                   ~{calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}€
                 </p>
                 
-                <div className="max-w-md mx-auto p-6 rounded-2xl bg-white/5 border border-white/10 mb-8">
-                  <p className="text-slate-300 text-sm font-bold italic leading-relaxed">
+                <div className="max-w-md mx-auto p-10 rounded-[2.5rem] bg-white/5 border border-white/5 mb-10">
+                  <p className="text-white/80 text-base font-medium leading-relaxed">
                     {getServiceDescription()}
                   </p>
                 </div>
 
-                <div className="max-w-md mx-auto p-6 rounded-2xl bg-primary/10 border border-primary/20 backdrop-blur-md">
-                  <p className="text-primary text-sm font-bold italic leading-relaxed">
+                <div className="max-w-md mx-auto p-10 rounded-[2.5rem] bg-[#D4AF37]/10 border border-[#D4AF37]/20">
+                  <p className="text-[#D4AF37] text-sm font-semibold leading-relaxed">
                     Muista hyödyntää kotitalousvähennys! Yksityisasiakkaana saat verotuksessa tuntuvan edun asennustyön osuudesta.
                   </p>
                 </div>
               </div>
 
-              <div className="pt-12 border-t border-white/5 text-center">
+              <div className="pt-16 border-t border-white/10 text-center">
                 {isSuccess ? (
-                  <div className="bg-primary/20 border border-primary/50 p-8 rounded-2xl animate-in fade-in duration-500">
-                    <h3 className="text-2xl font-black text-white uppercase italic mb-4">Kiitos!</h3>
-                    <p className="text-slate-300 font-bold italic">Tarjouspyyntösi on vastaanotettu. Olemme sinuun pian yhteydessä.</p>
+                  <div className="bg-[#D4AF37]/10 border border-[#D4AF37]/20 p-12 rounded-[3rem] animate-in fade-in duration-500">
+                    <h3 className="text-2xl font-semibold text-white mb-4">Kiitos!</h3>
+                    <p className="text-white/80 font-medium leading-relaxed">Tarjouspyyntösi on vastaanotettu. Olemme sinuun pian yhteydessä.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6 text-left">
-                    <p className="text-slate-400 text-lg mb-8 font-bold italic leading-relaxed text-center">
+                  <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-8 text-left">
+                    <p className="text-white/60 text-lg mb-12 font-medium leading-relaxed text-center">
                       Tämä on suuntaa-antava arvio. Lopullinen hinta ja ratkaisu varmistuvat aina paikan päällä. Jätä yhteystietosi, niin soitamme ja sovimme ilmaisen arviokäynnin!
                     </p>
                     
-                    <div>
-                      <label className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Nimi</label>
+                    <div className="space-y-2">
+                      <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-4">Nimi</label>
                       <input 
                         type="text" 
                         required
                         value={contactInfo.name}
                         onChange={(e) => setContactInfo({...contactInfo, name: e.target.value})}
-                        className="w-full bg-surface-dark border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-white placeholder:text-white/10 focus:outline-none focus:border-[#D4AF37] transition-colors"
                         placeholder="Matti Meikäläinen"
                       />
                     </div>
                     
-                    <div>
-                      <label className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Sähköposti</label>
+                    <div className="space-y-2">
+                      <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-4">Sähköposti</label>
                       <input 
                         type="email" 
                         required
                         value={contactInfo.email}
                         onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
-                        className="w-full bg-surface-dark border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-white placeholder:text-white/10 focus:outline-none focus:border-[#D4AF37] transition-colors"
                         placeholder="matti@esimerkki.fi"
                       />
                     </div>
                     
-                    <div>
-                      <label className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-2 italic">Puhelinnumero</label>
+                    <div className="space-y-2">
+                      <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-4">Puhelinnumero</label>
                       <input 
                         type="tel" 
                         required
                         value={contactInfo.phone}
                         onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})}
-                        className="w-full bg-surface-dark border border-white/10 rounded-xl px-6 py-4 text-white focus:outline-none focus:border-primary transition-colors"
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-white placeholder:text-white/10 focus:outline-none focus:border-[#D4AF37] transition-colors"
                         placeholder="040 123 4567"
                       />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-4 pt-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-10">
                       <button
                         type="button"
                         onClick={() => setStep('area')}
-                        className="py-6 px-4 rounded-2xl border border-white/10 text-slate-400 font-bold uppercase tracking-widest hover:text-white hover:bg-white/5 transition-all italic text-sm"
+                        className="py-6 px-10 rounded-full border border-white/10 text-white/60 font-semibold uppercase tracking-widest hover:text-white hover:bg-white/5 transition-all text-[10px]"
                       >
                         Muuta tietoja
                       </button>
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="py-6 px-4 bg-primary hover:bg-secondary text-white rounded-2xl font-bold uppercase tracking-widest transition-all shadow-2xl shadow-primary/30 text-center italic glow-gold disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                        className="py-6 px-10 bg-[#D4AF37] hover:bg-[#AA8B2E] text-white rounded-full font-semibold uppercase tracking-widest transition-all shadow-xl shadow-[#D4AF37]/20 text-center disabled:opacity-50 disabled:cursor-not-allowed text-[10px]"
                       >
                         {isSubmitting ? 'Lähetetään...' : 'Pyydä tarjous'}
                       </button>
@@ -351,9 +394,9 @@ const PriceCalculator: React.FC = () => {
                 )}
                 
                 {showFallback && !isSuccess && (
-                  <div className="mt-8 bg-background-dark/50 p-6 rounded-2xl border border-white/5 animate-in fade-in duration-500">
-                    <p className="text-slate-400 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
-                    <p className="text-slate-300 font-bold italic">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-primary hover:underline break-all">railopinnoitus@gmail.com</a></p>
+                  <div className="mt-8 bg-white/5 p-6 rounded-2xl border border-white/10 animate-in fade-in duration-500">
+                    <p className="text-white/60 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
+                    <p className="text-white/80 font-bold">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">railopinnoitus@gmail.com</a></p>
                   </div>
                 )}
               </div>

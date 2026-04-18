@@ -39,21 +39,21 @@ const BeforeAfterSlider: React.FC<Props> = ({ before, after, isStatic = false })
 
       {/* Slider Line & Handle */}
       <div
-        className={`absolute top-0 bottom-0 w-1 ${isStatic ? 'bg-blue-900' : 'bg-white'} shadow-[0_0_10px_rgba(0,0,0,0.5)] flex items-center justify-center pointer-events-none`}
+        className={`absolute top-0 bottom-0 w-[1px] ${isStatic ? 'bg-[#00001C]' : 'bg-white'} flex items-center justify-center pointer-events-none`}
         style={{ left: `${position}%` }}
       >
         {!isStatic && (
-          <div className="w-10 h-10 bg-primary rounded-full border-4 border-white flex items-center justify-center shadow-xl">
+          <div className="w-10 h-10 bg-[#D4AF37] rounded-full border-2 border-white flex items-center justify-center shadow-lg">
             <span className="material-icons-outlined text-white text-lg">unfold_more</span>
           </div>
         )}
       </div>
 
       {/* Labels */}
-      <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-sm px-3 py-1 rounded text-white text-[10px] font-bold uppercase tracking-widest pointer-events-none border border-white/20">
+      <div className="absolute top-6 left-6 bg-black/40 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-[10px] font-semibold tracking-wide pointer-events-none border border-white/10">
         Ennen
       </div>
-      <div className="absolute top-4 right-4 bg-primary/80 backdrop-blur-sm px-3 py-1 rounded text-white text-[10px] font-bold uppercase tracking-widest pointer-events-none border border-white/20">
+      <div className="absolute top-6 right-6 bg-[#D4AF37]/90 backdrop-blur-md px-4 py-1.5 rounded-full text-white text-[10px] font-semibold tracking-wide pointer-events-none border border-white/10">
         Jälkeen
       </div>
     </div>

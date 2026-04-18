@@ -71,56 +71,51 @@ const References: React.FC = () => {
   };
 
   return (
-    <div className="pt-20 min-h-screen">
+    <div className="pt-20 min-h-screen bg-white">
       <SEO 
         title="Referenssit | Railo Pinnoitus - Kestävät lattiapinnoitukset."
         description="Tutustu Railo Pinnoituksen toteuttamiin kohteisiin. Teemme lattiapinnoitukset tinkimättömällä ammattitaidolla autotalleista teollisuushalleihin."
       />
       
-      <section className="py-24 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Työmme jälki puhuu <span className="text-primary">puolestaan</span></h1>
-          <p className="max-w-3xl mx-auto text-slate-400 text-lg font-bold italic tracking-normal">
+      <section className="py-32 max-w-7xl mx-auto px-4 pb-60">
+        <div className="text-center mb-24">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold text-[#00001C] mb-8 tracking-tight">Työmme jälki puhuu <span className="text-[#D4AF37]">puolestaan</span></h1>
+          <p className="max-w-3xl mx-auto text-[#00001C]/60 text-base sm:text-lg font-medium leading-relaxed">
             Tutustu toteuttamiimme kohteisiin. Teemme lattiapinnoitukset tinkimättömällä ammattitaidolla autotalleista teollisuushalleihin Pohjois-Suomessa.
           </p>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {references.map(ref => (
             <div 
               key={ref.id} 
               onClick={() => openModal(ref)}
-              className="bg-surface-dark rounded-[2rem] overflow-hidden border border-slate-800 shadow-2xl cursor-pointer group transition-all hover:border-primary/50 hover:shadow-primary/10"
+              className="bg-[#00001C] rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl shadow-black/20 cursor-pointer group transition-all hover:border-[#D4AF37]/30"
             >
               <div className="aspect-[4/3] overflow-hidden relative">
                 <img 
                   src={ref.mainImage} 
                   alt={ref.title} 
-                  className="w-full h-full object-cover object-[center_75%] transition-transform duration-700 group-hover:scale-105 img-brighten mobile-img-fix"
-                  loading="eager"
+                  className="w-full h-full object-cover object-[center_75%] transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-50"></div>
               </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-black text-white mb-4 uppercase tracking-tighter italic group-hover:text-primary transition-colors">{ref.title}</h3>
+              <div className="p-10">
+                <h3 className="text-2xl font-semibold text-white mb-6 tracking-tight group-hover:text-[#D4AF37] transition-colors">{ref.title}</h3>
                 
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3">
-                    <span className="material-icons-outlined text-primary text-sm">square_foot</span>
-                    <span className="text-white font-bold text-sm tracking-widest uppercase">{ref.size}</span>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-4">
+                    <span className="material-icons-outlined text-[#D4AF37] text-sm">square_foot</span>
+                    <span className="text-white/40 font-medium text-xs tracking-widest uppercase">{ref.size}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="material-icons-outlined text-primary text-sm">location_on</span>
-                    <span className="text-white font-bold text-sm tracking-widest uppercase">{ref.location}</span>
+                  <div className="flex items-center gap-4">
+                    <span className="material-icons-outlined text-[#D4AF37] text-sm">location_on</span>
+                    <span className="text-white/40 font-medium text-xs tracking-widest uppercase">{ref.location}</span>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="material-icons-outlined text-primary text-sm">layers</span>
-                    <span className="text-white font-bold text-sm tracking-widest uppercase">{ref.service}</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <span className="material-icons-outlined text-primary text-sm">science</span>
-                    <span className="text-white font-bold text-sm tracking-widest uppercase">Materiaali: {ref.material}</span>
+                  <div className="flex items-center gap-4">
+                    <span className="material-icons-outlined text-[#D4AF37] text-sm">layers</span>
+                    <span className="text-white/40 font-medium text-xs tracking-widest uppercase">{ref.service}</span>
                   </div>
                 </div>
               </div>
@@ -131,37 +126,37 @@ const References: React.FC = () => {
 
       {/* Modal */}
       {selectedRef && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-background-dark/95 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-surface-dark w-full max-w-5xl rounded-[2rem] border border-primary/20 shadow-2xl overflow-hidden relative flex flex-col md:flex-row my-auto">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-[#00001C]/95 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white w-full max-w-5xl rounded-[2rem] border border-[#D4AF37]/20 shadow-2xl overflow-hidden relative flex flex-col md:flex-row my-auto">
             
             {/* Close button */}
             <button 
               onClick={closeModal}
-              className="absolute top-4 right-4 z-10 w-12 h-12 bg-background-dark/80 backdrop-blur-md rounded-full flex items-center justify-center text-primary hover:text-white hover:bg-primary transition-colors border border-primary/30"
+              className="absolute top-4 right-4 z-10 w-12 h-12 bg-white/80 backdrop-blur-md rounded-full flex items-center justify-center text-[#D4AF37] hover:text-white hover:bg-[#D4AF37] transition-colors border border-[#D4AF37]/30"
             >
               <span className="material-icons-outlined">close</span>
             </button>
 
             {/* Image Gallery Section */}
-            <div className="w-full md:w-1/2 bg-background-dark flex flex-col">
+            <div className="w-full md:w-1/2 bg-[#00001C]/5 flex flex-col">
               <div className="aspect-[4/3] w-full relative">
                 <img 
                   src={selectedRef.additionalImages[activeImageIndex] || selectedRef.mainImage} 
                   alt={selectedRef.title} 
-                  className="w-full h-full object-cover img-brighten"
+                  className="w-full h-full object-cover"
                 />
               </div>
               
               {/* Thumbnails */}
               {selectedRef.additionalImages.length > 1 && (
-                <div className="flex gap-2 p-4 overflow-x-auto scrollbar-hide bg-surface-darker">
+                <div className="flex gap-2 p-4 overflow-x-auto scrollbar-hide bg-[#00001C]/10">
                   {selectedRef.additionalImages.map((img, idx) => (
                     <button 
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
-                      className={`flex-none w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${activeImageIndex === idx ? 'border-primary opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}`}
+                      className={`flex-none w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${activeImageIndex === idx ? 'border-[#D4AF37] opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}`}
                     >
-                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover img-brighten" />
+                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
                     </button>
                   ))}
                 </div>
@@ -169,43 +164,43 @@ const References: React.FC = () => {
             </div>
 
             {/* Content Section */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col">
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-6 uppercase tracking-tighter italic">{selectedRef.title}</h2>
+            <div className="w-full md:w-1/2 p-10 md:p-16 flex flex-col">
+              <h2 className="text-3xl md:text-4xl font-semibold text-[#00001C] mb-8 tracking-tight">{selectedRef.title}</h2>
               
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-background-dark p-4 rounded-2xl border border-white/5">
-                  <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1">Koko</p>
-                  <p className="text-white font-bold">{selectedRef.size}</p>
+              <div className="grid grid-cols-2 gap-4 mb-10">
+                <div className="bg-[#00001C] p-5 rounded-2xl border border-white/5 shadow-lg">
+                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest mb-2">Koko</p>
+                  <p className="text-white font-semibold">{selectedRef.size}</p>
                 </div>
-                <div className="bg-background-dark p-4 rounded-2xl border border-white/5">
-                  <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1">Sijainti</p>
-                  <p className="text-white font-bold">{selectedRef.location}</p>
+                <div className="bg-[#00001C] p-5 rounded-2xl border border-white/5 shadow-lg">
+                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest mb-2">Sijainti</p>
+                  <p className="text-white font-semibold">{selectedRef.location}</p>
                 </div>
-                <div className="bg-background-dark p-4 rounded-2xl border border-white/5">
-                  <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1">Palvelu</p>
-                  <p className="text-white font-bold">{selectedRef.service}</p>
+                <div className="bg-[#00001C] p-5 rounded-2xl border border-white/5 shadow-lg">
+                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest mb-2">Palvelu</p>
+                  <p className="text-white font-semibold">{selectedRef.service}</p>
                 </div>
-                <div className="bg-background-dark p-4 rounded-2xl border border-white/5">
-                  <p className="text-primary text-[10px] font-bold uppercase tracking-widest mb-1">Materiaali</p>
-                  <p className="text-white font-bold">{selectedRef.material}</p>
+                <div className="bg-[#00001C] p-5 rounded-2xl border border-white/5 shadow-lg">
+                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest mb-2">Materiaali</p>
+                  <p className="text-white font-semibold">{selectedRef.material}</p>
                 </div>
               </div>
 
               <div className="flex-grow">
-                <h4 className="text-primary font-bold uppercase tracking-widest text-xs mb-3 italic">Projektin kuvaus</h4>
-                <p className="text-slate-300 leading-relaxed text-sm">
+                <h4 className="text-[#D4AF37] font-semibold uppercase tracking-widest text-[10px] mb-4">Projektin kuvaus</h4>
+                <p className="text-[#00001C]/70 leading-relaxed text-base">
                   {selectedRef.description}
                 </p>
               </div>
 
-              <div className="mt-10 pt-8 border-t border-white/10">
+              <div className="mt-12 pt-10 border-t border-[#00001C]/5">
                 <Link 
                   to="/yhteystiedot" 
                   onClick={closeModal}
-                  className="w-full py-5 rounded-2xl bg-primary text-white font-black uppercase tracking-widest hover:bg-secondary transition-all flex items-center justify-center gap-3 group italic shadow-lg shadow-primary/20"
+                  className="w-full py-6 rounded-full bg-[#D4AF37] text-white font-semibold uppercase tracking-widest hover:bg-[#AA8B2E] transition-all flex items-center justify-center gap-4 group shadow-xl shadow-[#D4AF37]/20"
                 >
                   Haluatko samanlaisen?
-                  <span className="material-icons-outlined text-xl group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                  <span className="material-icons-outlined text-xl group-hover:translate-x-2 transition-transform">east</span>
                 </Link>
               </div>
             </div>

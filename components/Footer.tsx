@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-surface-darker text-slate-400 py-20 border-t border-white/5">
+    <footer className="bg-[#00001C] text-white py-20 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 mb-20">
           <div className="space-y-8">
-            <Link to="/" className="flex items-center gap-2">
+            <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2">
               <img 
                 src="https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg" 
                 alt="Railo Pinnoitus - Kestävät lattiapinnoitukset Logo" 
-                className="h-14 md:h-16 w-auto object-contain rounded-sm img-brighten"
+                className="h-14 md:h-16 w-auto object-contain rounded-sm"
               />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs font-medium tracking-normal">
@@ -72,10 +72,10 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs italic">Pikalinkit</h4>
-            <ul className="space-y-4 text-sm font-bold uppercase tracking-widest">
+            <h4 className="text-white font-semibold mb-8 uppercase tracking-[0.2em] text-[10px] opacity-80">Pikalinkit</h4>
+            <ul className="space-y-4 text-sm font-medium">
               <li><Link to="/" className="hover:text-primary transition-colors">Etusivu</Link></li>
-              <li><Link to="/laskuri" className="text-primary font-black hover:text-white transition-colors">Laske hinta-arvio</Link></li>
+              <li><Link to="/laskuri" className="text-[#D4AF37] font-semibold hover:text-white transition-colors">Laske hinta-arvio</Link></li>
               <li><Link to="/palvelut" className="hover:text-primary transition-colors">Palvelut</Link></li>
               <li><Link to="/referenssit" className="hover:text-primary transition-colors">Referenssit</Link></li>
               <li><Link to="/meista" className="hover:text-primary transition-colors">Meistä</Link></li>
@@ -86,25 +86,28 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-8 uppercase tracking-widest text-xs italic">Yhteystiedot</h4>
-            <ul className="space-y-5 text-sm font-bold uppercase tracking-widest">
+            <h4 className="text-white font-semibold mb-8 uppercase tracking-[0.2em] text-[10px] opacity-80">Yhteystiedot</h4>
+            <ul className="space-y-5 text-sm font-medium">
               <li className="flex items-start gap-3">
                 <span className="material-icons-outlined text-primary text-xl">place</span>
-                <span className="text-slate-300">Pölykuja 22, 91900 Liminka</span>
+                <span className="text-white">Pölykuja 22, 91900 Liminka</span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">phone</span>
-                <a href="tel:+358458972344" className="text-slate-300 hover:text-primary transition-colors">045 897 2344</a>
+                <div>
+                  <a href="tel:+358458972344" className="text-white hover:text-primary transition-colors block">045 897 2344</a>
+                  <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold">Sakari Lumme</p>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">email</span>
-                <a href="mailto:railopinnoitus@gmail.com" className="text-slate-300 hover:text-primary transition-colors text-base break-all italic tracking-tight normal-case">railopinnoitus@gmail.com</a>
+                <a href="mailto:railopinnoitus@gmail.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">railopinnoitus@gmail.com</a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] font-bold uppercase tracking-widest text-slate-500 gap-6">
+        <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] font-medium uppercase tracking-[0.1em] text-white/40 gap-6">
           <div className="text-center md:text-left">
             <p>© {new Date().getFullYear()} RAILO Epoksilattiat. Y-tunnus: 3600636-7.</p>
             <p>Kaikki oikeudet pidätetään.</p>

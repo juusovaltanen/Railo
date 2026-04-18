@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const Blog: React.FC = () => {
   const [selectedPostId, setSelectedPostId] = useState<number | null>(null);
   const location = useLocation();
 
-  // Reset selected post when navigating to the blog root
+  // Reset selected post when navigating to the blog root or handle deep links
   useEffect(() => {
-    if (location.pathname === '/blogi' && !location.search && !location.hash) {
-      // If we are on the blog page but not viewing a specific post (via state)
-      // Actually, since we use local state, it resets on mount.
-      // But if the user clicks "Blogi" in the menu while already on a post, 
-      // we want to go back to the list.
+    const searchParams = new URLSearchParams(location.search);
+    const idParam = searchParams.get('id');
+    
+    if (idParam) {
+      setSelectedPostId(parseInt(idParam));
+      // Scroll to top when post is selected via URL
+      window.scrollTo(0, 0);
+    } else if (location.pathname === '/blogi' && !location.search && !location.hash) {
       setSelectedPostId(null);
     }
   }, [location]);
@@ -129,80 +132,86 @@ const Blog: React.FC = () => {
   const selectedPost = posts.find(p => p.id === selectedPostId);
 
   return (
-    <div className="pt-20">
+    <div className="pt-20 bg-white">
       <SEO 
         title={selectedPost ? `${selectedPost.title} | Epoksilattiat Oulu` : "Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."} 
         description={selectedPost ? selectedPost.excerpt : "Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"} 
       />
       
-      <section className="py-24 max-w-7xl mx-auto px-4">
+      <section className="py-32 max-w-7xl mx-auto px-4 pb-60">
         {selectedPost ? (
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto bg-white p-8 md:p-20 rounded-[4rem] shadow-2xl shadow-[#00001C]/5 border border-[#00001C]/5">
             <button 
               onClick={() => setSelectedPostId(null)}
-              className="flex items-center gap-2 text-white font-bold uppercase tracking-widest text-xs mb-12 hover:opacity-70 transition-colors italic"
+              className="flex items-center gap-2 text-[#00001C]/60 font-semibold uppercase tracking-widest text-[10px] mb-12 hover:text-[#D4AF37] transition-colors"
             >
-              <span className="material-icons-outlined text-sm">arrow_back</span>
+              <span className="material-icons-outlined text-sm">west</span>
               Takaisin blogiin
             </button>
             
             <div className="mb-12">
-              <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4 italic">{selectedPost.date}</p>
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-white uppercase tracking-tighter italic leading-tight mb-8">
+              <p className="text-[#00001C]/40 text-[10px] font-semibold uppercase tracking-widest mb-6">{selectedPost.date}</p>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#00001C] tracking-tight leading-tight mb-12">
                 {selectedPost.title}
               </h1>
               <div 
-                className="prose prose-invert prose-slate max-w-none italic text-slate-300 leading-relaxed space-y-6"
-                dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                className="prose prose-slate max-w-none text-[#00001C]/70 leading-relaxed space-y-8"
+                dangerouslySetInnerHTML={{ 
+                  __html: selectedPost.content
+                    .replace(/text-white/g, 'text-[#00001C]')
+                    .replace(/font-black/g, 'font-semibold')
+                    .replace(/italic/g, '')
+                    .replace(/uppercase/g, '') 
+                    .replace(/text-primary/g, 'text-[#D4AF37]')
+                }}
               />
             </div>
 
-            <div className="mt-20 p-12 bg-surface-dark rounded-[3rem] border border-white/20 text-center">
-              <h3 className="text-2xl font-black text-white uppercase italic mb-6">Kiinnostuitko?</h3>
-              <p className="text-slate-400 italic mb-10">Ota yhteyttä niin suunnitellaan sinullekin kestävä ja upea lattia.</p>
-              <a 
-                href="/yhteystiedot" 
-                className="inline-block bg-primary hover:bg-secondary text-white px-12 py-5 rounded-2xl font-bold uppercase tracking-widest transition-all italic shadow-2xl shadow-primary/30 glow-gold"
+            <div className="mt-32 p-16 bg-[#00001C] rounded-[4rem] border border-white/5 text-center shadow-2xl shadow-black/20">
+              <h3 className="text-2xl font-semibold text-white mb-6">Kiinnostuitko?</h3>
+              <p className="text-white/60 mb-12 font-medium">Ota yhteyttä niin suunnitellaan sinullekin kestävä ja upea lattia.</p>
+              <Link 
+                to="/yhteystiedot" 
+                className="inline-block bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-16 py-5 rounded-full font-semibold uppercase tracking-widest transition-all shadow-xl shadow-[#D4AF37]/20 hover:translate-y-[-2px]"
               >
                 Pyydä tarjous
-              </a>
+              </Link>
             </div>
           </div>
         ) : (
           <>
-            <div className="text-center mb-16">
-              <h1 className="text-4xl sm:text-5xl font-black text-white mb-6 uppercase tracking-tighter italic">Blogi</h1>
-              <p className="max-w-2xl mx-auto text-slate-400 text-lg font-bold italic">
+            <div className="text-center mb-24">
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-semibold text-[#00001C] mb-8 tracking-tight">Blogi</h1>
+              <p className="max-w-2xl mx-auto text-[#00001C]/60 text-base sm:text-lg font-medium leading-relaxed">
                 Ajatuksia, vinkkejä ja uutisia lattiapinnoituksen maailmasta.
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-12">
               {posts.map(post => (
-                <article key={post.id} className="bg-surface-dark rounded-[2rem] overflow-hidden border border-white/5 group hover:border-primary/30 transition-all shadow-2xl">
+                <article key={post.id} onClick={() => setSelectedPostId(post.id)} className="bg-[#00001C] rounded-[2.5rem] overflow-hidden border border-white/5 group cursor-pointer transition-all shadow-2xl shadow-black/20">
                   <div className="aspect-video overflow-hidden">
                     <img 
                       src={post.image} 
-                      alt={`${post.title} - Epoksilattiat`} 
-                      className="w-full h-full object-cover object-[center_80%] group-hover:scale-110 transition-transform duration-700 img-brighten"
-                      referrerPolicy="no-referrer"
+                      alt={post.title} 
+                      className="w-full h-full object-cover object-[center_80%] group-hover:scale-105 transition-transform duration-700"
+                      loading="lazy"
                     />
                   </div>
-                  <div className="p-8">
-                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-4 italic">{post.date}</p>
-                    <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight italic leading-tight group-hover:opacity-80 transition-opacity">
+                  <div className="p-10">
+                    <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest mb-4">{post.date}</p>
+                    <h2 className="text-xl font-semibold text-white mb-6 tracking-tight leading-tight group-hover:text-[#D4AF37] transition-colors">
                       {post.title}
                     </h2>
-                    <p className="text-slate-400 text-sm italic leading-relaxed mb-6">
+                    <p className="text-white/60 text-sm leading-relaxed mb-8 line-clamp-3">
                       {post.excerpt}
                     </p>
-                    <button 
-                      onClick={() => setSelectedPostId(post.id)}
-                      className="text-primary text-[10px] font-bold uppercase tracking-widest flex items-center gap-2 hover:opacity-70 transition-opacity italic"
+                    <div 
+                      className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest flex items-center gap-3"
                     >
                       Lue lisää
-                      <span className="material-icons-outlined text-sm">arrow_forward</span>
-                    </button>
+                      <span className="material-icons-outlined text-sm">east</span>
+                    </div>
                   </div>
                 </article>
               ))}
