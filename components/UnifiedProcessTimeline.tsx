@@ -12,7 +12,7 @@ const steps = [
   {
     id: 2,
     title: "Työmaa",
-    subtitle: "1–2 päivää!",
+    subtitle: "1–4 päivää!",
     description: "Voit tyhjentää tilan itse tai me hoidamme sen puolestasi pienestä lisähinnasta. Pölytön timanttihionta ja pinnoitus hoituvat ammattitaidolla nopeasti.",
     icon: Zap
   },

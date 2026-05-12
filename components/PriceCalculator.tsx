@@ -44,24 +44,24 @@ const PriceCalculator: React.FC = () => {
 
   const getServicePrice = () => {
     switch (data.service) {
-      case 'polynsidonta': return 38.20;
-      case '0.5mm': return 48.17;
-      case 'kova_kulutus': return data.thickness === '1mm' ? 58.94 : 87.54;
-      case 'custom': return 94.14;
+      case 'polynsidonta': return 36.29;
+      case '0.5mm': return 45.76;
+      case 'kova_kulutus': return data.thickness === '1mm' ? 55.99 : 83.16;
+      case 'custom': return 89.43;
     }
   };
 
   const getConditionPrice = () => {
     switch (data.condition) {
       case 'good': return 0;
-      case 'medium': return 3.96;
-      case 'poor': return 13.20;
+      case 'medium': return 3.76;
+      case 'poor': return 12.54;
     }
   };
 
   const calculateBreakdown = () => {
     const servicePrice = getServicePrice();
-    const flakePrice = data.flakes ? 2.64 : 0;
+    const flakePrice = data.flakes ? 2.51 : 0;
     const conditionPrice = getConditionPrice();
     const fixedFee = 0;
 

@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
             </Link>
             <Link
               to="/yhteystiedot"
-              className="hidden lg:inline-flex items-center border border-white/20 hover:bg-white/5 text-white px-5 py-2 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all"
+              className="hidden lg:inline-flex items-center border border-[#D4AF37]/60 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/25 text-white px-5 py-2 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all"
             >
               Ota yhteyttä
             </Link>

@@ -6,7 +6,7 @@ const FAQ: React.FC = () => {
   const faqs = [
     {
       question: "Kauanko epoksilattian asennus kestää?",
-      answer: "Railon pojat hoitavat homman yleensä 1–2 päivässä. Oulun alueella liikumme nopeasti, ja tehokas asennusprosessimme varmistaa, että autotallin pinnoitus tai varaston lattia on nopeasti taas käytössäsi. Lattialla voi kävellä jo vuorokauden kuluttua, mutta raskaampaa kuormitusta suosittelemme vasta viikon päästä."
+      answer: "Railon pojat hoitavat toteutuksen yleensä 1–4 päivässä. Aikatauluun vaikuttavat erityisesti lattian lähtökunto, tarvittavat pohjatyöt sekä se, tarvitseeko tila tyhjentää puolestasi. Lattialla voi yleensä kävellä jo vuorokauden kuluttua asennuksesta, mutta raskaampaa kuormitusta suosittelemme vasta viikon päästä."
     },
     {
       question: "Onko epoksilattia liukas märkänä?",
@@ -99,7 +99,7 @@ const FAQ: React.FC = () => {
                 </span>
               </button>
               <div
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === idx ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
+                className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === idx ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}
               >
                 <div className="p-10 pt-0 border-t border-white/5">
                   <div className="text-white/70 leading-relaxed pt-10 text-base">

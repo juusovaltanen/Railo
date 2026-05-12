@@ -50,7 +50,7 @@ const Home: React.FC = () => {
           <h1 className="flex flex-col items-center leading-tight">
             <span className="block text-white text-[clamp(2.0rem,7vw,5rem)] font-normal uppercase tracking-[0.2em] mb-4">KESTÄVÄT</span>
             <span className="block text-[#D4AF37] text-[clamp(1.1rem,5vw,4rem)] font-semibold uppercase tracking-wide mb-8 text-center">EPOKSILATTIAT JA LATTIAPINNOITUKSET</span>
-            <span className="block text-white text-[clamp(0.8rem,2.5vw,1.25rem)] font-medium tracking-normal opacity-100 capitalize text-center px-4">Ammattitaitoista Jälkeä Pohjoisesta Koko Suomeen</span>
+            <span className="block text-white text-[clamp(0.8rem,2.5vw,1.25rem)] font-medium tracking-normal opacity-100 text-center px-4">Ammattitaitoista jälkeä Pohjoisesta koko Suomeen</span>
           </h1>
           
           <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16">
@@ -62,7 +62,7 @@ const Home: React.FC = () => {
             </Link>
             <Link
               to="/yhteystiedot"
-              className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-white px-12 py-5 rounded-full text-sm font-semibold uppercase tracking-[0.15em] transition-all hover:translate-y-[-2px] active:scale-95"
+              className="bg-[#D4AF37]/15 hover:bg-[#D4AF37]/30 backdrop-blur-md border border-[#D4AF37]/60 text-white px-12 py-5 rounded-full text-sm font-semibold uppercase tracking-[0.15em] transition-all hover:translate-y-[-2px] active:scale-95"
             >
               Ota yhteyttä
             </Link>

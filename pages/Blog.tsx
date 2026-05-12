@@ -125,7 +125,7 @@ const Blog: React.FC = () => {
         <h3 class="text-white font-black uppercase italic mt-8 mb-4">Etkö ole vieläkään varma? Ei hätää!</h3>
         <p>Sinun ei tarvitsekaan olla lattiakemian asiantuntija. Kun pyydät meiltä Railo Pinnoitukselta ilmaisen arviokäynnin, tutkimme betonisi kunnon, kuuntelemme tilan käyttötarkoituksen ja valitsemme yhdessä juuri sen oikean materiaalin, joka kestää katsetta ja kulutusta vuosikymmeniä eteenpäin.</p>
       `,
-      image: 'https://i.postimg.cc/B6jNmvjK/RAILO_NIMI_SININEN.jpg'
+      image: 'https://i.postimg.cc/BQG2hDDy/IMG-3841.avif'
     }
   ];
 
@@ -154,6 +154,15 @@ const Blog: React.FC = () => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#00001C] tracking-tight leading-tight mb-12">
                 {selectedPost.title}
               </h1>
+
+              <div className="mb-12 rounded-[2rem] overflow-hidden border border-[#00001C]/5">
+                <img 
+                  src={selectedPost.image} 
+                  alt={selectedPost.title} 
+                  className="w-full h-auto object-contain bg-slate-50"
+                />
+              </div>
+
               <div 
                 className="prose prose-slate max-w-none text-[#00001C]/70 leading-relaxed space-y-8"
                 dangerouslySetInnerHTML={{ 
@@ -194,7 +203,7 @@ const Blog: React.FC = () => {
                     <img 
                       src={post.image} 
                       alt={post.title} 
-                      className="w-full h-full object-cover object-[center_80%] group-hover:scale-105 transition-transform duration-700"
+                      className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${post.id === 3 ? 'object-[center_65%]' : 'object-[center_80%]'}`}
                       loading="lazy"
                     />
                   </div>

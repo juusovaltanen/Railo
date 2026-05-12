@@ -42,6 +42,17 @@ const references: Reference[] = [
     service: 'Railo - Kova Kulutus',
     material: 'Epoksi',
     description: 'Oulussa sijaitsevan varastohallin lattia sai uuden elämän järeällä Railo - Kova Kulutus -massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.'
+  },
+  {
+    id: '3',
+    title: 'Autotalli',
+    mainImage: 'https://images.unsplash.com/photo-1595155515052-19e9f9065604?q=80&w=2070&auto=format&fit=crop',
+    additionalImages: [],
+    size: '48 m²',
+    location: 'Tupos',
+    service: 'Railo - Kova Kulutus (1 mm)',
+    material: 'Epoksi',
+    description: 'Toteutimme Tupoksessa 48m² autotalliin erittäin kestävän Railo - Kova Kulutus (1mm) -pinnoituksen. Lähtötilanteessa lattia oli todella huonossa kunnossa, mikä vaati perusteelliset pohjatyöt. Asiakkaan toiveesta lisäsimme pinnoitteeseen hiekkakarhennuksen koko lattian alueelle, mikä takaa maksimaalisen pidon ja turvallisuuden kaikissa olosuhteissa.'
   }
 ];
 
