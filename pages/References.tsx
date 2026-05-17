@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
@@ -21,6 +21,8 @@ const references: Reference[] = [
     mainImage: 'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg',
     additionalImages: [
       'https://i.postimg.cc/8cchL0B4/IMG-3746.avif',
+      'https://i.postimg.cc/7PnL6HR9/IMG-3845.avif',
+      'https://i.postimg.cc/Yq2Cmccs/IMG-3884.avif',
       'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg'
     ],
     size: '40 m²',
@@ -46,8 +48,17 @@ const references: Reference[] = [
   {
     id: '3',
     title: 'Autotalli',
-    mainImage: 'https://images.unsplash.com/photo-1595155515052-19e9f9065604?q=80&w=2070&auto=format&fit=crop',
-    additionalImages: [],
+    mainImage: 'https://i.postimg.cc/QxKnmCrb/IMG-6257.avif',
+    additionalImages: [
+      'https://i.postimg.cc/hvTZSZMD/IMG-6077.avif',
+      'https://i.postimg.cc/3rvcCWhF/IMG-6085.avif',
+      'https://i.postimg.cc/dQyxmDFL/IMG-6123.avif',
+      'https://i.postimg.cc/k5YpwbDL/726ba9bf-c130-46cf-99be-3ed0c27e6a92.jpg',
+      'https://i.postimg.cc/MZQFbXwQ/IMG-6146.avif',
+      'https://i.postimg.cc/66vmLTK7/bcb10fb7-8a09-404b-bba3-88d999045939.jpg',
+      'https://i.postimg.cc/ncfwdZcH/IMG-6246.avif',
+      'https://i.postimg.cc/QxKnmCrb/IMG-6257.avif'
+    ],
     size: '48 m²',
     location: 'Tupos',
     service: 'Railo - Kova Kulutus (1 mm)',
@@ -59,6 +70,7 @@ const references: Reference[] = [
 const References: React.FC = () => {
   const [selectedRef, setSelectedRef] = useState<Reference | null>(null);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
 
   // Prevent scrolling when modal is open
   useEffect(() => {
@@ -79,6 +91,13 @@ const References: React.FC = () => {
 
   const closeModal = () => {
     setSelectedRef(null);
+  };
+
+  const scrollThumbnails = (direction: 'left' | 'right') => {
+    if (thumbnailsRef.current) {
+      const scrollAmount = direction === 'left' ? -160 : 160;
+      thumbnailsRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -160,16 +179,44 @@ const References: React.FC = () => {
               
               {/* Thumbnails */}
               {selectedRef.additionalImages.length > 1 && (
-                <div className="flex gap-2 p-4 overflow-x-auto scrollbar-hide bg-[#00001C]/10">
-                  {selectedRef.additionalImages.map((img, idx) => (
-                    <button 
-                      key={idx}
-                      onClick={() => setActiveImageIndex(idx)}
-                      className={`flex-none w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${activeImageIndex === idx ? 'border-[#D4AF37] opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}`}
-                    >
-                      <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
-                    </button>
-                  ))}
+                <div className="relative group/gallery">
+                  <div 
+                    ref={thumbnailsRef}
+                    className="flex gap-2 p-4 overflow-x-auto scrollbar-hide bg-[#00001C]/10 scroll-smooth"
+                  >
+                    {selectedRef.additionalImages.map((img, idx) => (
+                      <button 
+                        key={idx}
+                        onClick={() => setActiveImageIndex(idx)}
+                        className={`flex-none w-20 h-20 rounded-xl overflow-hidden border-2 transition-all ${activeImageIndex === idx ? 'border-[#D4AF37] opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}`}
+                      >
+                        <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                  {/* Scroll indicators for multiple images */}
+                  {selectedRef.additionalImages.length > 4 && (
+                    <>
+                      <div className="absolute left-0 top-0 bottom-0 flex items-center pl-2">
+                        <button 
+                          onClick={() => scrollThumbnails('left')}
+                          className="z-10 bg-[#D4AF37] hover:bg-[#AA8B2E] rounded-full w-8 h-8 flex items-center justify-center text-white shadow-lg border border-white/10 transition-all cursor-pointer pointer-events-auto active:scale-95"
+                          title="Edelliset kuvat"
+                        >
+                          <span className="material-icons-outlined text-xl">chevron_left</span>
+                        </button>
+                      </div>
+                      <div className="absolute right-0 top-0 bottom-0 flex items-center pr-2">
+                        <button 
+                          onClick={() => scrollThumbnails('right')}
+                          className="z-10 bg-[#D4AF37] hover:bg-[#AA8B2E] rounded-full w-8 h-8 flex items-center justify-center text-white shadow-lg border border-white/10 animate-pulse transition-all cursor-pointer pointer-events-auto active:scale-95"
+                          title="Lisää kuvia"
+                        >
+                          <span className="material-icons-outlined text-xl">chevron_right</span>
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </div>
