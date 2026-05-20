@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { triggerBookingModal } from '../components/BookingModal';
 import UnifiedProcessTimeline from '../components/UnifiedProcessTimeline';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import PriceCalculator from '../components/PriceCalculator';
@@ -23,8 +24,8 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col bg-white">
       <SEO 
-        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
-        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
+        title="Epoksilattiat Oulu | Autotallit & Varastot | Railo Pinnoitus"
+        description="Kestävät ja tyylikkäät epoksilattiat ja lattiapinnoitukset autotalleihin Oulun seudulla. Pölytön ja helppohoitoinen pinta. Varaa ilmainen arviokäynti paikan päälle!"
       />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -50,22 +51,36 @@ const Home: React.FC = () => {
           <h1 className="flex flex-col items-center leading-tight">
             <span className="block text-white text-[clamp(2.0rem,7vw,5rem)] font-normal uppercase tracking-[0.2em] mb-4">KESTÄVÄT</span>
             <span className="block text-[#D4AF37] text-[clamp(1.1rem,5vw,4rem)] font-semibold uppercase tracking-wide mb-8 text-center">EPOKSILATTIAT JA LATTIAPINNOITUKSET</span>
-            <span className="block text-white text-[clamp(0.8rem,2.5vw,1.25rem)] font-medium tracking-normal opacity-100 text-center px-4">Ammattitaitoista jälkeä Pohjoisesta koko Suomeen</span>
           </h1>
+          <h2 className="block text-white text-[clamp(0.8rem,2.5vw,1.25rem)] font-medium tracking-normal opacity-100 text-center px-4 mt-2">
+            Ammattitaitoista jälkeä Oulussa sekä Pohjois-Pohjanmaalla
+          </h2>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mt-16">
-            <Link
-              to="/laskuri"
-              className="bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-12 py-5 rounded-full text-sm font-semibold uppercase tracking-[0.15em] transition-all hover:translate-y-[-2px] active:scale-95 shadow-lg shadow-[#D4AF37]/20"
-            >
-              Laske hinta-arvio
-            </Link>
-            <Link
-              to="/yhteystiedot"
-              className="bg-[#D4AF37]/15 hover:bg-[#D4AF37]/30 backdrop-blur-md border border-[#D4AF37]/60 text-white px-12 py-5 rounded-full text-sm font-semibold uppercase tracking-[0.15em] transition-all hover:translate-y-[-2px] active:scale-95"
-            >
-              Ota yhteyttä
-            </Link>
+          <div className="flex flex-col items-center gap-4 mt-12 max-w-4xl mx-auto px-4">
+            {/* First row of buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center items-center">
+              <button
+                onClick={triggerBookingModal}
+                className="w-full sm:w-[300px] bg-[#D4AF37] hover:bg-[#AA8B2E] text-white py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] transition-all hover:translate-y-[-1px] active:scale-95 shadow-lg shadow-[#D4AF37]/20 hover:shadow-[#D4AF37]/40 cursor-pointer duration-200 text-center"
+              >
+                Varaa ilmainen arviokäynti
+              </button>
+              <Link
+                to="/laskuri"
+                className="w-full sm:w-[300px] bg-[#D4AF37] hover:bg-[#AA8B2E] text-white py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] transition-all hover:translate-y-[-1px] active:scale-95 shadow-lg shadow-[#D4AF37]/10 hover:shadow-[#D4AF37]/30 text-center duration-200"
+              >
+                Laske hinta-arvio
+              </Link>
+            </div>
+            {/* Second row featuring 'Ota yhteyttä' below, centered */}
+            <div className="w-full flex justify-center">
+              <Link
+                to="/yhteystiedot"
+                className="w-full sm:w-[300px] bg-[#D4AF37]/10 hover:bg-[#D4AF37]/25 backdrop-blur-md border border-[#D4AF37]/40 text-white py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] transition-all hover:translate-y-[-1px] active:scale-95 text-center duration-200"
+              >
+                Ota yhteyttä
+              </Link>
+            </div>
           </div>
         </div>
       </section>

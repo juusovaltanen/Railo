@@ -17,6 +17,7 @@ const PriceCalculator: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '' });
+  const [wantVisit, setWantVisit] = useState(true);
   const [data, setData] = useState<CalculatorData>({
     area: 25,
     service: 'kova_kulutus',
@@ -30,6 +31,8 @@ const PriceCalculator: React.FC = () => {
   const resetCalculator = () => {
     setStep('area');
     setIsSuccess(false);
+    setContactInfo({ name: '', email: '', phone: '' });
+    setWantVisit(true);
     // Scroll element into view if needed
     const el = document.getElementById('calculator');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -92,16 +95,16 @@ const PriceCalculator: React.FC = () => {
     setShowFallback(false);
 
     const formData = new FormData();
-    formData.append('form-name', 'tarjouspyynto');
-    formData.append('name', contactInfo.name);
+    formData.append('form-name', 'hinta-arvioliidi');
     formData.append('email', contactInfo.email);
     formData.append('phone', contactInfo.phone);
-    formData.append('palvelu', getServiceName());
+    formData.append('accepted_terms', wantVisit ? 'Kyllä' : 'Ei');
     formData.append('neliomaara', data.area.toString());
-    formData.append('hinta_arvio', calculateBreakdown().total.toFixed(2));
+    formData.append('hinta_arvio', calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €');
+    formData.append('palvelu', getServiceName());
     formData.append('hiutaleet', data.flakes ? 'Kyllä' : 'Ei');
     formData.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono');
-    formData.append('message', 'Tarjouspyyntö laskurin kautta');
+    formData.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono'}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
 
     try {
       const response = await fetch('/', {
@@ -286,7 +289,7 @@ const PriceCalculator: React.FC = () => {
                     key={item.id}
                     onClick={() => {
                       setData({ ...data, condition: item.id as any });
-                      nextStep('condition');
+                      setStep('result');
                     }}
                     className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.condition === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
@@ -299,106 +302,112 @@ const PriceCalculator: React.FC = () => {
           )}
 
           {step === 'result' && (
-            <div className="space-y-16 animate-in fade-in zoom-in-95 duration-500">
+            <div className="space-y-12 animate-in fade-in zoom-in-95 duration-500">
               <div className="text-center">
-                <div className="mb-12">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-4 block">Yhteenveto valinnoista</span>
+                <div className="mb-8">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/40 mb-3 block">Yhteenveto valinnoista</span>
                   <p className="text-xl font-semibold text-white">
                     {data.area} m², {getServiceName()}{data.flakes ? ', hiutaleilla' : ''}, {data.condition === 'good' ? 'hyvä kunto' : data.condition === 'medium' ? 'keskihuono kunto' : 'huono kunto'}
                   </p>
                 </div>
 
-                <p className="text-white/60 font-semibold uppercase tracking-widest text-xs mb-6">Arvioitu hinta asennettuna (sis. ALV 25,5%):</p>
-                <p className="text-7xl md:text-8xl font-semibold text-white tracking-tight mb-12 leading-none">
+                <p className="text-white/60 font-semibold uppercase tracking-widest text-xs mb-4">Arvioitu hinta asennettuna (sis. ALV 25,5%):</p>
+                <p className="text-7xl md:text-8xl font-semibold text-[#D4AF37] tracking-tight mb-8 leading-none">
                   ~{calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}€
                 </p>
-                
-                <div className="max-w-md mx-auto p-10 rounded-[2.5rem] bg-white/5 border border-white/5 mb-10">
-                  <p className="text-white/80 text-base font-medium leading-relaxed">
-                    {getServiceDescription()}
-                  </p>
-                </div>
-
-                <div className="max-w-md mx-auto p-10 rounded-[2.5rem] bg-[#D4AF37]/10 border border-[#D4AF37]/20">
-                  <p className="text-[#D4AF37] text-sm font-semibold leading-relaxed">
-                    Muista hyödyntää kotitalousvähennys! Yksityisasiakkaana saat verotuksessa tuntuvan edun asennustyön osuudesta.
-                  </p>
-                </div>
               </div>
 
-              <div className="pt-16 border-t border-white/10 text-center">
+              {/* Lead capture form positioned immediately after the price */}
+              <div className="text-center flex flex-col items-center">
                 {isSuccess ? (
-                  <div className="bg-[#D4AF37]/10 border border-[#D4AF37]/20 p-12 rounded-[3rem] animate-in fade-in duration-500">
-                    <h3 className="text-2xl font-semibold text-white mb-4">Kiitos!</h3>
-                    <p className="text-white/80 font-medium leading-relaxed">Tarjouspyyntösi on vastaanotettu. Olemme sinuun pian yhteydessä.</p>
+                  <div className="bg-[#D4AF37]/10 border border-[#D4AF37]/20 p-12 rounded-[3.5rem] animate-in fade-in duration-500 max-w-lg mx-auto w-full">
+                    <h3 className="text-2xl font-bold text-[#D4AF37] mb-4">Kiitos!</h3>
+                    <p className="text-white/80 font-medium leading-relaxed">Yhteystietosi on vastaanotettu! Otamme sinuun pian yhteyttä arviokäynnin sopimiseksi.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-8 text-left">
-                    <p className="text-white/60 text-lg mb-12 font-medium leading-relaxed text-center">
-                      Tämä on suuntaa-antava arvio. Lopullinen hinta ja ratkaisu varmistuvat aina paikan päällä. Jätä yhteystietosi, niin soitamme ja sovimme ilmaisen arviokäynnin!
-                    </p>
-                    
-                    <div className="space-y-2">
-                      <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-4">Nimi</label>
-                      <input 
-                        type="text" 
-                        required
-                        value={contactInfo.name}
-                        onChange={(e) => setContactInfo({...contactInfo, name: e.target.value})}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-white placeholder:text-white/10 focus:outline-none focus:border-[#D4AF37] transition-colors"
-                        placeholder="Matti Meikäläinen"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-4">Sähköposti</label>
-                      <input 
-                        type="email" 
-                        required
-                        value={contactInfo.email}
-                        onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-white placeholder:text-white/10 focus:outline-none focus:border-[#D4AF37] transition-colors"
-                        placeholder="matti@esimerkki.fi"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-4">Puhelinnumero</label>
-                      <input 
-                        type="tel" 
-                        required
-                        value={contactInfo.phone}
-                        onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-8 py-5 text-white placeholder:text-white/10 focus:outline-none focus:border-[#D4AF37] transition-colors"
-                        placeholder="040 123 4567"
-                      />
+                  <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto space-y-6 text-left p-8 md:p-12 rounded-[3.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
+                    <div className="text-center space-y-3 mb-6">
+                      <h4 className="text-xl md:text-2xl font-semibold text-white tracking-tight">
+                        Haluatko tarkan ja sitovan hinnan juuri sinun kohteellesi?
+                      </h4>
+                      <p className="text-white/50 text-xs leading-relaxed max-w-sm mx-auto">
+                        Jätä yhteystietosi alle, niin voimme tarvittaessa sopia maksuttoman arviokäynnin. Täyttäminen on täysin vapaaehtoista!
+                      </p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-10">
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-1">Sähköpostiosoite *</label>
+                        <input 
+                          type="email" 
+                          required
+                          value={contactInfo.email}
+                          onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                          placeholder="matti@esimerkki.fi"
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-1">Puhelinnumero (Ei pakollinen)</label>
+                        <input 
+                          type="tel" 
+                          value={contactInfo.phone}
+                          onChange={(e) => setContactInfo({...contactInfo, phone: e.target.value})}
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                          placeholder="040 123 4567"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-4 pt-6">
                       <button
                         type="button"
                         onClick={() => setStep('area')}
-                        className="py-6 px-10 rounded-full border border-white/10 text-white/60 font-semibold uppercase tracking-widest hover:text-white hover:bg-white/5 transition-all text-[10px]"
+                        className="w-full sm:w-1/3 py-4 rounded-full border border-white/10 text-white/60 font-bold uppercase tracking-wider hover:text-white hover:bg-white/5 transition-all text-xs"
                       >
-                        Muuta tietoja
+                        Laske uusi
                       </button>
                       <button
                         type="submit"
-                        disabled={isSubmitting}
-                        className="py-6 px-10 bg-[#D4AF37] hover:bg-[#AA8B2E] text-white rounded-full font-semibold uppercase tracking-widest transition-all shadow-xl shadow-[#D4AF37]/20 text-center disabled:opacity-50 disabled:cursor-not-allowed text-[10px]"
+                        disabled={isSubmitting || !contactInfo.email.trim()}
+                        className="w-full sm:w-2/3 py-4 bg-[#D4AF37] hover:bg-[#AA8B2E] disabled:bg-[#D4AF37]/20 disabled:text-white/30 disabled:border-transparent text-white rounded-full font-bold uppercase tracking-wider transition-all shadow-xl shadow-[#D4AF37]/10 hover:shadow-[#D4AF37]/20 text-center disabled:cursor-not-allowed text-xs"
                       >
-                        {isSubmitting ? 'Lähetetään...' : 'Pyydä tarjous'}
+                        {isSubmitting ? 'Lähetetään...' : 'Lähetä'}
                       </button>
                     </div>
+
+                    {!contactInfo.email.trim() && (
+                      <p className="text-[10px] text-white/40 text-center italic mt-2">
+                        Voit halutessasi vain sulkea sivun tai syöttää sähköpostiosoitteesi saadaksesi sitovan tarjouksen.
+                      </p>
+                    )}
                   </form>
                 )}
                 
                 {showFallback && !isSuccess && (
-                  <div className="mt-8 bg-white/5 p-6 rounded-2xl border border-white/10 animate-in fade-in duration-500">
+                  <div className="mt-8 bg-white/5 p-6 rounded-2xl border border-white/10 animate-in fade-in duration-500 max-w-lg mx-auto w-full">
                     <p className="text-white/60 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
-                    <p className="text-white/80 font-bold">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">railopinnoitus@gmail.com</a></p>
+                    <p className="text-white/80 font-bold text-xs">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">railopinnoitus@gmail.com</a></p>
                   </div>
                 )}
+              </div>
+
+              {/* Supplementary descriptive info widgets below the form */}
+              <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto pt-8 border-t border-white/10">
+                <div className="p-8 md:p-10 rounded-[2.5rem] bg-white/5 border border-white/5">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D4AF37] mb-2 block">Tietoa pinnoituksesta</span>
+                  <p className="text-white/70 text-xs leading-relaxed font-medium">
+                    {getServiceDescription()}
+                  </p>
+                </div>
+
+                <div className="p-8 md:p-10 rounded-[2.5rem] bg-[#D4AF37]/5 border border-[#D4AF37]/15">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#D4AF37] mb-2 block">Säästä verotuksessa</span>
+                  <p className="text-white/70 text-xs leading-relaxed font-medium">
+                    Muista hyödyntää kotitalousvähennys! Yksityisasiakkaana saat verotuksessa tuntuvan edun asennustyön osuudesta.
+                  </p>
+                </div>
               </div>
             </div>
           )}

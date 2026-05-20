@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { triggerBookingModal } from './BookingModal';
 
 const Footer: React.FC = () => {
   return (
@@ -76,6 +77,14 @@ const Footer: React.FC = () => {
             <ul className="space-y-4 text-sm font-medium">
               <li><Link to="/" className="hover:text-primary transition-colors">Etusivu</Link></li>
               <li><Link to="/laskuri" className="text-[#D4AF37] font-semibold hover:text-white transition-colors">Laske hinta-arvio</Link></li>
+              <li>
+                <button 
+                  onClick={triggerBookingModal} 
+                  className="text-[#D4AF37] font-semibold hover:text-white transition-colors bg-transparent border-0 p-0 cursor-pointer text-left text-sm w-full block"
+                >
+                  Varaa arviokäynti
+                </button>
+              </li>
               <li><Link to="/palvelut" className="hover:text-primary transition-colors">Palvelut</Link></li>
               <li><Link to="/referenssit" className="hover:text-primary transition-colors">Referenssit</Link></li>
               <li><Link to="/meista" className="hover:text-primary transition-colors">Meistä</Link></li>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { triggerBookingModal } from '../components/BookingModal';
 
 const Services: React.FC = () => {
   const services = [
@@ -126,7 +127,7 @@ const Services: React.FC = () => {
                 </div>
                 <Link
                   to="/yhteystiedot"
-                  className="inline-flex items-center justify-center px-14 py-6 bg-[#D4AF37] hover:bg-[#AA8B2E] text-white rounded-full font-semibold uppercase tracking-widest transition-all shadow-xl shadow-[#D4AF37]/20 w-full sm:w-max active:scale-95"
+                  className="inline-flex items-center justify-center px-8 py-3.5 bg-[#D4AF37] hover:bg-[#AA8B2E] text-white rounded-full text-xs font-bold uppercase tracking-[0.15em] transition-all shadow-lg shadow-[#D4AF37]/20 w-full sm:w-max active:scale-95 duration-200"
                 >
                   Pyydä ilmainen arvio
                 </Link>
@@ -134,6 +135,31 @@ const Services: React.FC = () => {
             </div>
           </div>
         ))}
+      </section>
+
+      {/* Services Bottom CTA Block */}
+      <section className="py-24 bg-[#00001C] text-white text-center border-t border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#00001C] via-[#000028] to-[#00001C] opacity-50"></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 space-y-8">
+          <span className="inline-block bg-[#D4AF37]/10 text-[#D4AF37] font-bold text-xs uppercase tracking-[0.2em] px-5 py-2.5 rounded-full border border-[#D4AF37]/20">
+            Maksuton mittaus & suunnittelu
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-semibold tracking-tight text-white leading-tight">
+            Suunnitellaanko yhdessä unelmiesi lattia?
+          </h2>
+          <p className="text-white/70 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed font-medium">
+            Tulemme ilmaiseksi paikan päälle mittaamaan tilasi, tarkistamaan pinnat ja antamaan tarkan asennustarjouksen. Ei mitään velvoitteita!
+          </p>
+          <div className="pt-4 flex justify-center">
+            <button
+              onClick={triggerBookingModal}
+              className="inline-flex items-center bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-8 py-3.5 sm:px-10 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.15em] transition-all hover:translate-y-[-1px] active:scale-95 shadow-xl shadow-[#D4AF37]/25 hover:shadow-[#D4AF37]/45 cursor-pointer duration-200"
+            >
+              Varaa ilmainen arviokäynti
+              <span className="material-icons-outlined text-base sm:text-lg ml-3">east</span>
+            </button>
+          </div>
+        </div>
       </section>
     </div>
   );

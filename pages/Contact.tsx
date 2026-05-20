@@ -137,7 +137,7 @@ const Contact: React.FC = () => {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Matti Meikäläinen"
-                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium"
+                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium text-base"
                       />
                     </div>
                     <div className="space-y-4">
@@ -149,7 +149,7 @@ const Contact: React.FC = () => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="matti@esimerkki.fi"
-                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium"
+                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium text-base"
                       />
                     </div>
                     <div className="space-y-4">
@@ -161,7 +161,7 @@ const Contact: React.FC = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="010 123 4567"
-                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium"
+                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium text-base"
                       />
                     </div>
                     <div className="space-y-4">
@@ -172,7 +172,7 @@ const Contact: React.FC = () => {
                         value={formData.area}
                         onChange={handleChange}
                         placeholder="25"
-                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium"
+                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium text-base"
                       />
                     </div>
                     <div className="space-y-4">

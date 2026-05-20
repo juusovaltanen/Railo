@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { triggerBookingModal } from './BookingModal';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,13 +50,13 @@ const Navbar: React.FC = () => {
           <div className="flex items-center gap-4 relative">
             <Link
               to="/laskuri"
-              className="hidden sm:inline-flex items-center bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-5 py-2 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all shadow-lg shadow-[#D4AF37]/20"
+              className="hidden sm:inline-flex items-center bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-5 py-2.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all shadow-lg shadow-[#D4AF37]/20"
             >
               Laske hinta-arvio
             </Link>
             <Link
               to="/yhteystiedot"
-              className="hidden lg:inline-flex items-center border border-[#D4AF37]/60 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/25 text-white px-5 py-2 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all"
+              className="hidden lg:inline-flex items-center border border-[#D4AF37]/60 bg-[#D4AF37]/10 hover:bg-[#D4AF37]/25 text-white px-5 py-2.5 rounded-full text-[10px] font-semibold uppercase tracking-widest transition-all"
             >
               Ota yhteyttä
             </Link>
@@ -73,7 +74,16 @@ const Navbar: React.FC = () => {
               {/* Small Dropdown Menu */}
               {isMobileMenuOpen && (
                 <div className="absolute top-full right-0 mt-6 w-64 bg-[#00001C] border border-white/10 rounded-[2rem] shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-4 duration-300">
-                  <div className="p-4 space-y-1">
+                  <div className="p-4 space-y-2">
+                    <button
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                        triggerBookingModal();
+                      }}
+                      className="block w-full text-left px-6 py-4 rounded-2xl text-sm font-medium text-[#D4AF37] hover:bg-white/5 transition-all text-left cursor-pointer"
+                    >
+                      Varaa arviokäynti
+                    </button>
                     {navLinks.map((link) => (
                       <Link
                         key={link.path}
