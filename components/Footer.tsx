@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                   onClick={triggerBookingModal} 
                   className="text-[#D4AF37] font-semibold hover:text-white transition-colors bg-transparent border-0 p-0 cursor-pointer text-left text-sm w-full block"
                 >
-                  Varaa arviokäynti
+                  Kysy ilmaista arviokäyntiä
                 </button>
               </li>
               <li><Link to="/palvelut" className="hover:text-primary transition-colors">Palvelut</Link></li>

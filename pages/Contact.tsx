@@ -11,6 +11,7 @@ const Contact: React.FC = () => {
     name: '',
     email: '',
     phone: '',
+    location: '',
     area: '',
     message: ''
   });
@@ -30,6 +31,7 @@ const Contact: React.FC = () => {
     data.append('name', formData.name);
     data.append('email', formData.email);
     data.append('phone', formData.phone);
+    data.append('paikkakunta', formData.location);
     data.append('neliomaara', formData.area);
     data.append('message', formData.message);
 
@@ -45,6 +47,7 @@ const Contact: React.FC = () => {
           name: '',
           email: '',
           phone: '',
+          location: '',
           area: '',
           message: ''
         });
@@ -161,6 +164,18 @@ const Contact: React.FC = () => {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="010 123 4567"
+                        className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium text-base"
+                      />
+                    </div>
+                    <div className="space-y-4">
+                      <label className="text-[10px] font-semibold uppercase tracking-widest text-white/40 ml-1">Paikkakunta *</label>
+                      <input
+                        required
+                        type="text"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        placeholder="Esim. Oulu"
                         className="w-full bg-white/5 border border-white/5 rounded-2xl py-6 px-8 text-white focus:border-[#D4AF37] focus:ring-0 transition-all placeholder:text-white/10 font-medium text-base"
                       />
                     </div>

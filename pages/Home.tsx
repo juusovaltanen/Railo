@@ -25,7 +25,7 @@ const Home: React.FC = () => {
     <div className="flex flex-col bg-white">
       <SEO 
         title="Epoksilattiat Oulu | Autotallit & Varastot | Railo Pinnoitus"
-        description="Kestävät ja tyylikkäät epoksilattiat ja lattiapinnoitukset autotalleihin Oulun seudulla. Pölytön ja helppohoitoinen pinta. Varaa ilmainen arviokäynti paikan päälle!"
+        description="Kestävät ja tyylikkäät epoksilattiat autotalleihin Oulun seudulla. Pölytön ja helppohoitoinen pinta. Laske hinta-arvio!"
       />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
                 onClick={triggerBookingModal}
                 className="w-full sm:w-[300px] bg-[#D4AF37] hover:bg-[#AA8B2E] text-white py-4 rounded-full text-xs font-bold uppercase tracking-[0.15em] transition-all hover:translate-y-[-1px] active:scale-95 shadow-lg shadow-[#D4AF37]/20 hover:shadow-[#D4AF37]/40 cursor-pointer duration-200 text-center"
               >
-                Varaa ilmainen arviokäynti
+                Kysy ilmaista arviokäyntiä
               </button>
               <Link
                 to="/laskuri"

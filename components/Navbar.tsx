@@ -82,7 +82,7 @@ const Navbar: React.FC = () => {
                       }}
                       className="block w-full text-left px-6 py-4 rounded-2xl text-sm font-medium text-[#D4AF37] hover:bg-white/5 transition-all text-left cursor-pointer"
                     >
-                      Varaa arviokäynti
+                      Kysy ilmaista arviokäyntiä
                     </button>
                     {navLinks.map((link) => (
                       <Link

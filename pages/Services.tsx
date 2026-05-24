@@ -155,7 +155,7 @@ const Services: React.FC = () => {
               onClick={triggerBookingModal}
               className="inline-flex items-center bg-[#D4AF37] hover:bg-[#AA8B2E] text-white px-8 py-3.5 sm:px-10 sm:py-4 rounded-full text-xs sm:text-sm font-bold uppercase tracking-[0.15em] transition-all hover:translate-y-[-1px] active:scale-95 shadow-xl shadow-[#D4AF37]/25 hover:shadow-[#D4AF37]/45 cursor-pointer duration-200"
             >
-              Varaa ilmainen arviokäynti
+              Kysy ilmaista arviokäyntiä
               <span className="material-icons-outlined text-base sm:text-lg ml-3">east</span>
             </button>
           </div>

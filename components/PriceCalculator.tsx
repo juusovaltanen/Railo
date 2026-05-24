@@ -16,7 +16,7 @@ const PriceCalculator: React.FC = () => {
   const [showFallback, setShowFallback] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '' });
+  const [contactInfo, setContactInfo] = useState({ name: '', email: '', phone: '', location: '' });
   const [wantVisit, setWantVisit] = useState(true);
   const [data, setData] = useState<CalculatorData>({
     area: 25,
@@ -26,12 +26,12 @@ const PriceCalculator: React.FC = () => {
     condition: 'good'
   });
 
-  const location = useLocation();
+  const locationRoute = useLocation();
 
   const resetCalculator = () => {
     setStep('area');
     setIsSuccess(false);
-    setContactInfo({ name: '', email: '', phone: '' });
+    setContactInfo({ name: '', email: '', phone: '', location: '' });
     setWantVisit(true);
     // Scroll element into view if needed
     const el = document.getElementById('calculator');
@@ -40,10 +40,10 @@ const PriceCalculator: React.FC = () => {
 
   // Reset calculator when navigating via navbar or other same-page links
   useEffect(() => {
-    if (location.pathname === '/laskuri') {
+    if (locationRoute.pathname === '/laskuri') {
       resetCalculator();
     }
-  }, [location.key]);
+  }, [locationRoute.key]);
 
   const getServicePrice = () => {
     switch (data.service) {
@@ -98,13 +98,14 @@ const PriceCalculator: React.FC = () => {
     formData.append('form-name', 'hinta-arvioliidi');
     formData.append('email', contactInfo.email);
     formData.append('phone', contactInfo.phone);
+    formData.append('location', contactInfo.location);
     formData.append('accepted_terms', wantVisit ? 'Kyllä' : 'Ei');
     formData.append('neliomaara', data.area.toString());
     formData.append('hinta_arvio', calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €');
     formData.append('palvelu', getServiceName());
     formData.append('hiutaleet', data.flakes ? 'Kyllä' : 'Ei');
     formData.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono');
-    formData.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono'}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
+    formData.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nPaikkakunta: ${contactInfo.location}\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono'}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
 
     try {
       const response = await fetch('/', {
@@ -358,6 +359,18 @@ const PriceCalculator: React.FC = () => {
                           placeholder="040 123 4567"
                         />
                       </div>
+
+                      <div className="space-y-2">
+                        <label className="block text-[10px] font-semibold text-white/40 uppercase tracking-widest ml-1">Paikkakunta *</label>
+                        <input 
+                          type="text" 
+                          required
+                          value={contactInfo.location}
+                          onChange={(e) => setContactInfo({...contactInfo, location: e.target.value})}
+                          className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-[#D4AF37] transition-colors"
+                          placeholder="Esim. Oulu"
+                        />
+                      </div>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
@@ -370,16 +383,16 @@ const PriceCalculator: React.FC = () => {
                       </button>
                       <button
                         type="submit"
-                        disabled={isSubmitting || !contactInfo.email.trim()}
+                        disabled={isSubmitting || !contactInfo.email.trim() || !contactInfo.location.trim()}
                         className="w-full sm:w-2/3 py-4 bg-[#D4AF37] hover:bg-[#AA8B2E] disabled:bg-[#D4AF37]/20 disabled:text-white/30 disabled:border-transparent text-white rounded-full font-bold uppercase tracking-wider transition-all shadow-xl shadow-[#D4AF37]/10 hover:shadow-[#D4AF37]/20 text-center disabled:cursor-not-allowed text-xs"
                       >
                         {isSubmitting ? 'Lähetetään...' : 'Lähetä'}
                       </button>
                     </div>
 
-                    {!contactInfo.email.trim() && (
+                    {(!contactInfo.email.trim() || !contactInfo.location.trim()) && (
                       <p className="text-[10px] text-white/40 text-center italic mt-2">
-                        Voit halutessasi vain sulkea sivun tai syöttää sähköpostiosoitteesi saadaksesi sitovan tarjouksen.
+                        Täytä sähköpostiosoite ja paikkakunta saadaksesi sitovan tarjouksen.
                       </p>
                     )}
                   </form>

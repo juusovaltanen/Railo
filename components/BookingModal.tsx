@@ -132,9 +132,9 @@ const BookingModal: React.FC = () => {
               <span className="inline-block bg-[#D4AF37]/10 text-[#D4AF37] font-bold text-[10px] uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-4 border border-[#D4AF37]/20 animate-pulse">
                 Maksuton palvelu
               </span>
-              <h2 className="text-2xl md:text-4xl font-semibold leading-tight tracking-tight text-white">Varaa ilmainen arviokäynti</h2>
-              <p className="text-white/60 text-sm mt-3 font-medium">
-                Tulemme paikan päälle mittaamaan, arvioimaan kohteesi kunnon ja suunnittelemaan juuri sinun tilaasi sopivan pinnoitteen. Saat tarkan ja sitomattoman tarjouksen!
+              <h2 className="text-2xl md:text-4xl font-semibold leading-tight tracking-tight text-white">Tarkista ilmaisen arviokäynnin saatavuus kohteeseesi</h2>
+              <p className="text-white/60 text-sm mt-3 font-medium text-left">
+                Maksuton, paikan päällä tehtävä arviokäynti on saatavilla pääasiassa <span className="text-[#D4AF37] font-semibold">Oulun seudulla ja sen lähialueilla</span>. Täytä alle kohteesi tiedot selvittääksesi saatavuuden kohteeseesi – mittaamme ja arvioimme tilasi ilman sitoumuksia!
               </p>
             </div>
 
@@ -272,7 +272,7 @@ const BookingModal: React.FC = () => {
                     <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
                   ) : (
                     <>
-                      Lähetä varauspyyntö
+                      Kysy ilmaista arviokäyntiä
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
