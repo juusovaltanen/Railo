@@ -5,10 +5,10 @@ type Step = 'area' | 'service' | 'thickness' | 'flakes' | 'condition' | 'result'
 
 interface CalculatorData {
   area: number;
-  service: 'polynsidonta' | '0.5mm' | 'kova_kulutus' | 'custom';
-  thickness: '1mm' | '2-3mm';
-  flakes: boolean;
-  condition: 'good' | 'medium' | 'poor';
+  service: 'polynsidonta' | '0.5mm' | 'kova_kulutus' | 'custom' | null;
+  thickness: '1mm' | '2-3mm' | null;
+  flakes: boolean | null;
+  condition: 'good' | 'medium' | 'poor' | null;
 }
 
 const PriceCalculator: React.FC = () => {
@@ -20,10 +20,10 @@ const PriceCalculator: React.FC = () => {
   const [wantVisit, setWantVisit] = useState(true);
   const [data, setData] = useState<CalculatorData>({
     area: 25,
-    service: 'kova_kulutus',
-    thickness: '1mm',
-    flakes: false,
-    condition: 'good'
+    service: null,
+    thickness: null,
+    flakes: null,
+    condition: null
   });
 
   const locationRoute = useLocation();
@@ -33,6 +33,13 @@ const PriceCalculator: React.FC = () => {
     setIsSuccess(false);
     setContactInfo({ name: '', email: '', phone: '', location: '' });
     setWantVisit(true);
+    setData({
+      area: 25,
+      service: null,
+      thickness: null,
+      flakes: null,
+      condition: null
+    });
     // Scroll element into view if needed
     const el = document.getElementById('calculator');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -51,6 +58,7 @@ const PriceCalculator: React.FC = () => {
       case '0.5mm': return 40.73;
       case 'kova_kulutus': return data.thickness === '1mm' ? 49.83 : 74.01;
       case 'custom': return 79.59;
+      default: return 0;
     }
   };
 
@@ -59,6 +67,7 @@ const PriceCalculator: React.FC = () => {
       case 'good': return 0;
       case 'medium': return 3.35;
       case 'poor': return 11.17;
+      default: return 0;
     }
   };
 
@@ -86,6 +95,7 @@ const PriceCalculator: React.FC = () => {
       case '0.5mm': return 'Railo - Keskikova Kulutus';
       case 'kova_kulutus': return 'Railo - Kova Kulutus';
       case 'custom': return 'Railo - Custom-Lattiat';
+      default: return '';
     }
   };
 
@@ -103,9 +113,9 @@ const PriceCalculator: React.FC = () => {
     formData.append('neliomaara', data.area.toString());
     formData.append('hinta_arvio', calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €');
     formData.append('palvelu', getServiceName());
-    formData.append('hiutaleet', data.flakes ? 'Kyllä' : 'Ei');
-    formData.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono');
-    formData.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nPaikkakunta: ${contactInfo.location}\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : 'Huono'}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
+    formData.append('hiutaleet', data.flakes === true ? 'Kyllä' : 'Ei');
+    formData.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : data.condition === 'poor' ? 'Huono' : '');
+    formData.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nPaikkakunta: ${contactInfo.location}\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes === true ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : data.condition === 'poor' ? 'Huono' : ''}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
 
     try {
       const response = await fetch('/', {
@@ -131,6 +141,7 @@ const PriceCalculator: React.FC = () => {
       case '0.5mm': return 'Kun haluat autotalliin tai varastoon siistin, värillisen ja kestävän pinnan, tämä on oikea valinta. Railo Keskikulutus sopii parhaiten normaalin arjen ja harrastamisen rasittamiin kohteisiin.';
       case 'kova_kulutus': return 'Kun lattiasta ei voi tehdä kompromisseja, tämä on meidän kestävin ratkaisu. Railo Kovakulutus -massapinnoite sopii parhaiten raskaan kaluston talleihin, pesuhalleihin ja teollisuustiloihin.';
       case 'custom': return 'Kun haluat lattiastasi todellisen katseenvangitsijan, me toteutamme sen toiveidesi mukaan. Custom-lattiat sopivat parhaiten edustustiloihin, myymälöihin, miesluoliin (man cave) ja premium-tason autotalleihin.';
+      default: return '';
     }
   };
 
