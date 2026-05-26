@@ -284,8 +284,8 @@ const BookingModal: React.FC = () => {
                   <p className="text-white/60 text-xs mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
                   <p className="text-white/80 font-semibold text-xs">
                     Voit tehdä varauksen myös sähköpostitse:{' '}
-                    <a href="mailto:railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">
-                      railopinnoitus@gmail.com
+                    <a href="mailto:juuso@railopinnoitus.com" className="text-[#D4AF37] hover:underline break-all">
+                      juuso@railopinnoitus.com
                     </a>
                   </p>
                 </div>

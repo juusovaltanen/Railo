@@ -78,13 +78,13 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="space-y-12">
-              <a href="mailto:railopinnoitus@gmail.com" className="flex flex-col sm:flex-row items-start sm:items-center gap-8 p-10 rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
+              <a href="mailto:juuso@railopinnoitus.com" className="flex flex-col sm:flex-row items-start sm:items-center gap-8 p-10 rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
                 <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-[#D4AF37] flex-shrink-0 group-hover:scale-110 transition-transform">
                   <span className="material-icons-outlined text-4xl">mail</span>
                 </div>
                 <div className="overflow-hidden">
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-white/40 mb-3">Sähköposti</p>
-                  <p className="text-xl md:text-2xl font-semibold text-white break-all tracking-tight">railopinnoitus@gmail.com</p>
+                  <p className="text-xl md:text-2xl font-semibold text-white break-all tracking-tight">juuso@railopinnoitus.com</p>
                 </div>
               </a>
               <a href="tel:+358458972344" className="flex flex-col sm:flex-row items-start sm:items-center gap-8 p-10 rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
@@ -222,7 +222,7 @@ const Contact: React.FC = () => {
                   {showFallback && (
                     <div className="mt-8 bg-white/5 p-8 rounded-[2rem] border border-white/5 animate-in fade-in duration-500">
                       <p className="text-white/60 text-sm mb-3">Lomakkeen lähetyksessä tapahtui virhe.</p>
-                      <p className="text-white/80 font-semibold">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">railopinnoitus@gmail.com</a></p>
+                      <p className="text-white/80 font-semibold">Voit myös laittaa viestiä suoraan: <a href="mailto:juuso@railopinnoitus.com" className="text-[#D4AF37] hover:underline break-all">juuso@railopinnoitus.com</a></p>
                     </div>
                   )}
                 </form>

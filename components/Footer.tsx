@@ -104,13 +104,13 @@ const Footer: React.FC = () => {
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">phone</span>
                 <div>
-                  <a href="tel:+358458972344" className="text-white hover:text-primary transition-colors block">045 897 2344</a>
-                  <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold">Sakari Lumme</p>
+                  <a href="tel:+358440348088" className="text-white hover:text-primary transition-colors block">044 034 8088</a>
+                  <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold">Juuso Valtanen</p>
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">email</span>
-                <a href="mailto:railopinnoitus@gmail.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">railopinnoitus@gmail.com</a>
+                <a href="mailto:juuso@railopinnoitus.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">juuso@railopinnoitus.com</a>
               </li>
             </ul>
           </div>

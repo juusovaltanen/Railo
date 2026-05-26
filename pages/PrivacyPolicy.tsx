@@ -23,7 +23,7 @@ const PrivacyPolicy: React.FC = () => {
           <div className="space-y-8">
             <div className="space-y-3">
               <h3 className="text-[#00001C] font-black uppercase tracking-wider text-xl">Rekisterinpitäjä</h3>
-              <p className="text-[#00001C]/60 font-medium">RAILO Epoksilattiat (Liminka). Yhteystiedot: railopinnoitus@gmail.com</p>
+              <p className="text-[#00001C]/60 font-medium">RAILO Epoksilattiat (Liminka). Yhteystiedot: juuso@railopinnoitus.com</p>
             </div>
 
             <div className="space-y-3">

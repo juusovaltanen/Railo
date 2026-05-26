@@ -412,7 +412,7 @@ const PriceCalculator: React.FC = () => {
                 {showFallback && !isSuccess && (
                   <div className="mt-8 bg-white/5 p-6 rounded-2xl border border-white/10 animate-in fade-in duration-500 max-w-lg mx-auto w-full">
                     <p className="text-white/60 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
-                    <p className="text-white/80 font-bold text-xs">Voit myös laittaa viestiä suoraan: <a href="mailto:railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">railopinnoitus@gmail.com</a></p>
+                    <p className="text-white/80 font-bold text-xs">Voit myös laittaa viestiä suoraan: <a href="mailto:juuso@railopinnoitus.com" className="text-[#D4AF37] hover:underline break-all">juuso@railopinnoitus.com</a></p>
                   </div>
                 )}
               </div>
