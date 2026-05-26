@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">email</span>
-                <a href="mailto:juuso@railopinnoitus.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">juuso@railopinnoitus.com</a>
+                <a href="mailto:juuso.railopinnoitus@gmail.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">juuso.railopinnoitus@gmail.com</a>
               </li>
             </ul>
           </div>

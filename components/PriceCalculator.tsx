@@ -165,7 +165,7 @@ const PriceCalculator: React.FC = () => {
 
   return (
     <div id="calculator" className="scroll-mt-32">
-      <div className="bg-[#00001C] border border-white/5 rounded-[4rem] p-10 md:p-20 shadow-2xl shadow-black/50 relative overflow-hidden group">
+      <div className="bg-[#00001C] border border-white/5 rounded-[2.5rem] sm:rounded-[3.5rem] md:rounded-[4rem] p-5 sm:p-10 md:p-16 lg:p-20 shadow-2xl shadow-black/50 relative overflow-hidden group">
         <button 
           onClick={resetCalculator}
           title="Aloita alusta"
@@ -230,7 +230,7 @@ const PriceCalculator: React.FC = () => {
                         setStep('flakes');
                       }
                     }}
-                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.service === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
+                    className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.service === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
                     <p className={`text-xl font-semibold mb-2 transition-colors ${data.service === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
                     <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
@@ -254,7 +254,7 @@ const PriceCalculator: React.FC = () => {
                       setData({ ...data, thickness: item.id as any });
                       nextStep('thickness');
                     }}
-                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.thickness === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
+                    className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.thickness === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
                     <p className={`text-xl font-semibold mb-2 transition-colors ${data.thickness === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
                     <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
@@ -278,7 +278,7 @@ const PriceCalculator: React.FC = () => {
                       setData({ ...data, flakes: item.id });
                       nextStep('flakes');
                     }}
-                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.flakes === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
+                    className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.flakes === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
                     <p className={`text-xl font-semibold mb-2 transition-colors ${data.flakes === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
                     <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
@@ -303,7 +303,7 @@ const PriceCalculator: React.FC = () => {
                       setData({ ...data, condition: item.id as any });
                       setStep('result');
                     }}
-                    className={`p-10 rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.condition === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
+                    className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.condition === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
                   >
                     <p className={`text-xl font-semibold mb-2 transition-colors ${data.condition === item.id ? 'text-[#D4AF37]' : 'text-white'}`}>{item.label}</p>
                     <p className="text-white/40 text-[10px] font-semibold uppercase tracking-widest">{item.desc}</p>
@@ -337,7 +337,7 @@ const PriceCalculator: React.FC = () => {
                     <p className="text-white/80 font-medium leading-relaxed">Yhteystietosi on vastaanotettu! Otamme sinuun pian yhteyttä arviokäynnin sopimiseksi.</p>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto space-y-6 text-left p-8 md:p-12 rounded-[3.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
+                  <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto space-y-6 text-left p-6 sm:p-10 md:p-12 rounded-[2.5rem] sm:rounded-[3rem] md:rounded-[3.5rem] bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
                     <div className="text-center space-y-3 mb-6">
                       <h4 className="text-xl md:text-2xl font-semibold text-white tracking-tight">
                         Haluatko tarkan ja sitovan hinnan juuri sinun kohteellesi?
@@ -357,6 +357,9 @@ const PriceCalculator: React.FC = () => {
                           onChange={(e) => setContactInfo({...contactInfo, email: e.target.value})}
                           className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-[#D4AF37] transition-colors"
                           placeholder="matti@esimerkki.fi"
+                          autoComplete="email"
+                          autoCapitalize="none"
+                          spellCheck="false"
                         />
                       </div>
                       
@@ -412,7 +415,7 @@ const PriceCalculator: React.FC = () => {
                 {showFallback && !isSuccess && (
                   <div className="mt-8 bg-white/5 p-6 rounded-2xl border border-white/10 animate-in fade-in duration-500 max-w-lg mx-auto w-full">
                     <p className="text-white/60 text-sm mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
-                    <p className="text-white/80 font-bold text-xs">Voit myös laittaa viestiä suoraan: <a href="mailto:juuso@railopinnoitus.com" className="text-[#D4AF37] hover:underline break-all">juuso@railopinnoitus.com</a></p>
+                    <p className="text-white/80 font-bold text-xs">Voit myös laittaa viestiä suoraan: <a href="mailto:juuso.railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">juuso.railopinnoitus@gmail.com</a></p>
                   </div>
                 )}
               </div>

@@ -96,7 +96,7 @@ const BookingModal: React.FC = () => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-300">
       {/* Modal Container */}
       <div 
-        className="relative w-full max-w-2xl bg-[#00001C] border border-white/10 rounded-[2.5rem] p-6 md:p-12 shadow-2xl shadow-black/60 text-white max-h-[90vh] overflow-y-auto"
+        className="relative w-full max-w-2xl bg-[#00001C] border border-white/10 rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-8 md:p-12 shadow-2xl shadow-black/60 text-white max-h-[95vh] sm:max-h-[90vh] overflow-y-auto"
         id="booking-modal-container"
       >
         {/* Close Button */}
@@ -181,6 +181,9 @@ const BookingModal: React.FC = () => {
                     onChange={handleChange}
                     placeholder="matti@esimerkki.fi"
                     className="w-full bg-white/5 border border-white/5 rounded-2xl py-4 px-6 text-base text-white focus:border-[#D4AF37] focus:ring-0 focus:outline-none transition-all placeholder:text-white/10 font-medium"
+                    autoComplete="email"
+                    autoCapitalize="none"
+                    spellCheck="false"
                   />
                 </div>
               </div>
@@ -284,8 +287,8 @@ const BookingModal: React.FC = () => {
                   <p className="text-white/60 text-xs mb-2">Lomakkeen lähetyksessä tapahtui virhe.</p>
                   <p className="text-white/80 font-semibold text-xs">
                     Voit tehdä varauksen myös sähköpostitse:{' '}
-                    <a href="mailto:juuso@railopinnoitus.com" className="text-[#D4AF37] hover:underline break-all">
-                      juuso@railopinnoitus.com
+                    <a href="mailto:juuso.railopinnoitus@gmail.com" className="text-[#D4AF37] hover:underline break-all">
+                      juuso.railopinnoitus@gmail.com
                     </a>
                   </p>
                 </div>

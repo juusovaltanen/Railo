@@ -63,7 +63,7 @@ const About: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                   {[
                     { name: 'Sakari Lumme', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
-                    { name: 'Juuso Valtanen', email: 'juuso@railopinnoitus.com', phone: '044 034 8088' },
+                    { name: 'Juuso Valtanen', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
                     { name: 'Luukas Leppäluoto', phone: '044 356 764' }
                   ].map((member, i) => (
                     <div key={i} className="space-y-6 group text-center">
