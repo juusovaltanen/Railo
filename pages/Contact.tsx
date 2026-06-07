@@ -26,7 +26,7 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     setShowFallback(false);
 
-    const data = new FormData();
+    const data = new URLSearchParams();
     data.append('form-name', 'tarjouspyynto');
     data.append('name', formData.name);
     data.append('email', formData.email);
@@ -38,7 +38,8 @@ const Contact: React.FC = () => {
     try {
       const response = await fetch('/', {
         method: 'POST',
-        body: data
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
       });
 
       if (response.ok) {
@@ -78,9 +79,9 @@ const Contact: React.FC = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {[
-              { name: 'Sakari Lumme', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
-              { name: 'Juuso Valtanen', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
-              { name: 'Luukas Leppäluoto', phone: '044 356 764' }
+              { name: 'Sakari Lumme', role: 'Projektit', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
+              { name: 'Juuso Valtanen', role: 'Myynti', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
+              { name: 'Luukas Leppäluoto', role: 'Myynti', email: 'luukas.railopinnoitus@gmail.com', phone: '044 356 764' }
             ].map((member, i) => (
               <div key={i} className="space-y-4 group text-center bg-[#00001C] p-6 rounded-[2rem] border border-white/5 shadow-xl shadow-black/20">
                 <div className="aspect-[4/3] bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden relative">
@@ -88,7 +89,10 @@ const Contact: React.FC = () => {
                 </div>
                 <div className="space-y-1">
                   <h3 className="text-white font-bold text-base uppercase tracking-wider">{member.name}</h3>
-                  <div className="flex flex-col text-xs text-white/50 space-y-1 items-center font-medium">
+                  {member.role && (
+                    <p className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.15em]">{member.role}</p>
+                  )}
+                  <div className="flex flex-col text-xs text-white/50 space-y-1 items-center font-medium pt-1">
                     <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{member.phone}</a>
                     {member.email && (
                       <a href={`mailto:${member.email}`} className="text-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors break-all">

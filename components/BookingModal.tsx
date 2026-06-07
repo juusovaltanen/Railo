@@ -53,7 +53,7 @@ const BookingModal: React.FC = () => {
     setIsSubmitting(true);
     setShowFallback(false);
 
-    const data = new FormData();
+    const data = new URLSearchParams();
     data.append('form-name', 'arviokaynti');
     data.append('name', formData.name);
     data.append('phone', formData.phone);
@@ -66,7 +66,8 @@ const BookingModal: React.FC = () => {
     try {
       const response = await fetch('/', {
         method: 'POST',
-        body: data
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data.toString()
       });
 
       if (response.ok) {

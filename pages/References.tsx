@@ -16,34 +16,21 @@ interface Reference {
 
 const references: Reference[] = [
   {
-    id: '1',
+    id: '4',
     title: 'Autotalli',
-    mainImage: 'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg',
+    mainImage: 'https://i.postimg.cc/6qhmQ8ZB/IMG-5506.avif',
     additionalImages: [
-      'https://i.postimg.cc/8cchL0B4/IMG-3746.avif',
-      'https://i.postimg.cc/7PnL6HR9/IMG-3845.avif',
-      'https://i.postimg.cc/Yq2Cmccs/IMG-3884.avif',
-      'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg'
+      'https://i.postimg.cc/9fMCHjvN/f0bedaa2-c059-4f36-b16d-5ebe16c5ee7c.jpg',
+      'https://i.postimg.cc/ZKSmKNGy/0705e31f-eb05-4251-a3ce-dc10af99181a.jpg',
+      'https://i.postimg.cc/XY268zp0/IMG-7311.jpg',
+      'https://i.postimg.cc/bYQXMJZw/IMG-6514.jpg',
+      'https://i.postimg.cc/6qhmQ8ZB/IMG-5506.avif'
     ],
-    size: '40 m²',
-    location: 'Liminka',
+    size: '25 m²',
+    location: 'Tyrnävä',
     service: 'Railo - Kova Kulutus (1 mm)',
     material: 'Epoksi',
-    description: 'Toteutimme Oulussa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Railo - Kova Kulutus -epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.'
-  },
-  {
-    id: '2',
-    title: 'Varastohalli',
-    mainImage: 'https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg',
-    additionalImages: [
-      'https://i.postimg.cc/tR50DWS1/Gemini-Generated-Image-av6b1zav6b1zav6b.png',
-      'https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg'
-    ],
-    size: '400 m²',
-    location: 'Liminka',
-    service: 'Railo - Kova Kulutus',
-    material: 'Epoksi',
-    description: 'Oulussa sijaitsevan varastohallin lattia sai uuden elämän järeällä Railo - Kova Kulutus -massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.'
+    description: 'Toteutimme Tyrnävällä 25m² autotallin lattiapinnoituksen erittäin kestävyyttä vaativalla Railo - Kova Kulutus (1mm) -epoksipinnoituksella. Lähtötilanteessa auton pyörien ja käytön kuluttama lattia oli todella huonossa kunnossa ja täynnä kuoppia, jotka paikkailimme ammattitaitoisesti ja tasoitimme ennen pinnoituksen levittämistä. Lisäksi asensimme kohteeseen tyylikkään kynnyslistan siistin ja kestävän rajauksen varmistamiseksi. Perusteellisen pohjatyön, hionnan ja paikkauksien ansiosta lopputuloksena saavutettiin upea, täysin saumaton ja erittäin kulutusta kestävä pinta.'
   },
   {
     id: '3',
@@ -64,6 +51,36 @@ const references: Reference[] = [
     service: 'Railo - Kova Kulutus (1 mm)',
     material: 'Epoksi',
     description: 'Toteutimme Tupoksessa 48m² autotalliin erittäin kestävän Railo - Kova Kulutus (1mm) -pinnoituksen. Lähtötilanteessa lattia oli todella huonossa kunnossa, mikä vaati perusteelliset pohjatyöt. Asiakkaan toiveesta lisäsimme pinnoitteeseen hiekkakarhennuksen koko lattian alueelle, mikä takaa maksimaalisen pidon ja turvallisuuden kaikissa olosuhteissa.'
+  },
+  {
+    id: '2',
+    title: 'Varastohalli',
+    mainImage: 'https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg',
+    additionalImages: [
+      'https://i.postimg.cc/tR50DWS1/Gemini-Generated-Image-av6b1zav6b1zav6b.png',
+      'https://i.postimg.cc/V6mMFxvL/IMG_5312.jpg'
+    ],
+    size: '400 m²',
+    location: 'Liminka',
+    service: 'Railo - Kova Kulutus',
+    material: 'Epoksi',
+    description: 'Oulussa sijaitsevan varastohallin lattia sai uuden elämän järeällä Railo - Kova Kulutus -massalattialla. Tämä pinnoite on suunniteltu kestämään äärimmäistä mekaanista rasitusta ja raskasta kalustoa. Lopputuloksena on saumaton, helposti puhdistettava ja teollisuuskäyttöön täydellisesti soveltuva kestävä pinta.'
+  },
+  {
+    id: '1',
+    title: 'Autotalli',
+    mainImage: 'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg',
+    additionalImages: [
+      'https://i.postimg.cc/8cchL0B4/IMG-3746.avif',
+      'https://i.postimg.cc/7PnL6HR9/IMG-3845.avif',
+      'https://i.postimg.cc/Yq2Cmccs/IMG-3884.avif',
+      'https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg'
+    ],
+    size: '40 m²',
+    location: 'Liminka',
+    service: 'Railo - Kova Kulutus (1 mm)',
+    material: 'Epoksi',
+    description: 'Toteutimme Oulussa 40m² autotallin täydellisen lattiapäivityksen. Projekti aloitettiin huolellisella lattian hionnalla, jolla varmistettiin optimaalinen tartunta. Pintaan asennettiin kestävä ja tyylikäs Railo - Kova Kulutus -epoksilattia, joka antaa tallille upean ulkonäön lisäksi erinomaisen suojan mekaanista kulutusta ja nastarenkaita vastaan.'
   }
 ];
 

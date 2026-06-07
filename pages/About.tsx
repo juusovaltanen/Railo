@@ -62,9 +62,9 @@ const About: React.FC = () => {
                 <div className="h-px bg-white/10 w-full"></div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                   {[
-                    { name: 'Sakari Lumme', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
-                    { name: 'Juuso Valtanen', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
-                    { name: 'Luukas Leppäluoto', phone: '044 356 764' }
+                    { name: 'Sakari Lumme', role: 'Projektit', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
+                    { name: 'Juuso Valtanen', role: 'Myynti', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
+                    { name: 'Luukas Leppäluoto', role: 'Myynti', email: 'luukas.railopinnoitus@gmail.com', phone: '044 356 764' }
                   ].map((member, i) => (
                     <div key={i} className="space-y-6 group text-center">
                       <div className="aspect-[3/4] bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden relative">
@@ -72,7 +72,10 @@ const About: React.FC = () => {
                       </div>
                       <div className="space-y-2">
                         <h3 className="text-white font-bold text-xl uppercase tracking-wider">{member.name}</h3>
-                        <div className="flex flex-col text-sm text-white/50 space-y-1 items-center">
+                        {member.role && (
+                          <p className="text-[#D4AF37] text-xs font-semibold uppercase tracking-[0.15em]">{member.role}</p>
+                        )}
+                        <div className="flex flex-col text-sm text-white/50 space-y-1 items-center pt-1">
                           <span>{member.phone}</span>
                           {member.email && <span className="text-[#D4AF37]/80">{member.email}</span>}
                         </div>

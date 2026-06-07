@@ -104,23 +104,24 @@ const PriceCalculator: React.FC = () => {
     setIsSubmitting(true);
     setShowFallback(false);
 
-    const formData = new FormData();
-    formData.append('form-name', 'hinta-arvioliidi');
-    formData.append('email', contactInfo.email);
-    formData.append('phone', contactInfo.phone);
-    formData.append('location', contactInfo.location);
-    formData.append('accepted_terms', wantVisit ? 'Kyllä' : 'Ei');
-    formData.append('neliomaara', data.area.toString());
-    formData.append('hinta_arvio', calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €');
-    formData.append('palvelu', getServiceName());
-    formData.append('hiutaleet', data.flakes === true ? 'Kyllä' : 'Ei');
-    formData.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : data.condition === 'poor' ? 'Huono' : '');
-    formData.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nPaikkakunta: ${contactInfo.location}\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes === true ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : data.condition === 'poor' ? 'Huono' : ''}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
+    const params = new URLSearchParams();
+    params.append('form-name', 'hinta-arvioliidi');
+    params.append('email', contactInfo.email);
+    params.append('phone', contactInfo.phone);
+    params.append('location', contactInfo.location);
+    params.append('accepted_terms', wantVisit ? 'Kyllä' : 'Ei');
+    params.append('neliomaara', data.area.toString());
+    params.append('hinta_arvio', calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' €');
+    params.append('palvelu', getServiceName());
+    params.append('hiutaleet', data.flakes === true ? 'Kyllä' : 'Ei');
+    params.append('kunto', data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : data.condition === 'poor' ? 'Huono' : '');
+    params.append('message', `Uusi hinta-arvioliidi nettisivuilta\n\nPaikkakunta: ${contactInfo.location}\nNeliömäärä: ${data.area} m²\nArvioitu hinta: ~${calculateBreakdown().total.toLocaleString('fi-FI', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} €\nPalvelu: ${getServiceName()}\nKäsittely: ${data.flakes === true ? 'Hiutaleilla' : 'Ei hiutaleita'}\nLattian kunto: ${data.condition === 'good' ? 'Hyvä' : data.condition === 'medium' ? 'Keskihuono' : data.condition === 'poor' ? 'Huono' : ''}\nHaluaa arviokäynnin: ${wantVisit ? 'Kyllä' : 'Ei'}`);
 
     try {
       const response = await fetch('/', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
       });
 
       if (response.ok) {
