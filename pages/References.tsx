@@ -30,7 +30,7 @@ const references: Reference[] = [
     location: 'Tyrnävä',
     service: 'Railo - Kova Kulutus (1 mm)',
     material: 'Epoksi',
-    description: 'Toteutimme Tyrnävällä 25m² autotallin lattiapinnoituksen erittäin kestävyyttä vaativalla Railo - Kova Kulutus (1mm) -epoksipinnoituksella. Lähtötilanteessa auton pyörien ja käytön kuluttama lattia oli todella huonossa kunnossa ja täynnä kuoppia, jotka paikkailimme ammattitaitoisesti ja tasoitimme ennen pinnoituksen levittämistä. Lisäksi asensimme kohteeseen tyylikkään kynnyslistan siistin ja kestävän rajauksen varmistamiseksi. Perusteellisen pohjatyön, hionnan ja paikkauksien ansiosta lopputuloksena saavutettiin upea, täysin saumaton ja erittäin kulutusta kestävä pinta.'
+    description: 'Toteutimme Tyrnävällä 25m² autotallin lattiapinnoituksen Railo - Kova Kulutus (1mm) -epoksipinnoituksella. Lähtötilanteessa autotallin lattia oli todella huonossa kunnossa ja täynnä kuoppia. Jotta lopputuloksesta saatiin täydellinen, hioimme pinnan, paikkasimme kuopat ja asensimme kohteeseen siistin kynnyslistan. Perusteellisen pohjatyön ansiosta tallissa on nyt upea, täysin saumaton ja erittäin kulutusta kestävä pinta!'
   },
   {
     id: '3',
