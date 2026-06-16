@@ -224,7 +224,13 @@ const PriceCalculator: React.FC = () => {
                   <button
                     key={item.id}
                     onClick={() => {
-                      setData({ ...data, service: item.id as any });
+                      setData({
+                        ...data,
+                        service: item.id as any,
+                        thickness: null,
+                        flakes: null,
+                        condition: null
+                      });
                       if (item.id === 'kova_kulutus') {
                         setStep('thickness');
                       } else {
@@ -252,7 +258,12 @@ const PriceCalculator: React.FC = () => {
                   <button
                     key={item.id}
                     onClick={() => {
-                      setData({ ...data, thickness: item.id as any });
+                      setData({
+                        ...data,
+                        thickness: item.id as any,
+                        flakes: null,
+                        condition: null
+                      });
                       nextStep('thickness');
                     }}
                     className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.thickness === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}
@@ -276,7 +287,11 @@ const PriceCalculator: React.FC = () => {
                   <button
                     key={item.label}
                     onClick={() => {
-                      setData({ ...data, flakes: item.id });
+                      setData({
+                        ...data,
+                        flakes: item.id,
+                        condition: null
+                      });
                       nextStep('flakes');
                     }}
                     className={`p-6 sm:p-10 rounded-[2rem] sm:rounded-[2.5rem] border-2 text-left transition-all group/btn ${data.flakes === item.id ? 'border-[#D4AF37] bg-white/5' : 'border-white/5 bg-white/5 hover:border-[#D4AF37]/30'}`}

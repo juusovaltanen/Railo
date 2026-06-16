@@ -1,13 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { triggerBookingModal } from '../components/BookingModal';
 import UnifiedProcessTimeline from '../components/UnifiedProcessTimeline';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
 import PriceCalculator from '../components/PriceCalculator';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollButtons = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setCanScrollLeft(scrollLeft > 10);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', updateScrollButtons);
+      const timer = setTimeout(updateScrollButtons, 500);
+      updateScrollButtons();
+      
+      window.addEventListener('resize', updateScrollButtons);
+      
+      return () => {
+        container.removeEventListener('scroll', updateScrollButtons);
+        window.removeEventListener('resize', updateScrollButtons);
+        clearTimeout(timer);
+      };
+    }
+  }, []);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { clientWidth } = scrollContainerRef.current;
+      const scrollAmount = clientWidth * 0.75;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   const slides = [
     "https://i.postimg.cc/W1CPSS8Q/IMG-6708.jpg",
     "https://i.postimg.cc/wvmnYbd1/IMG-6609.jpg",
@@ -164,50 +205,79 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex overflow-x-auto gap-10 pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0">
-            {/* Railo - Pölynsidonta */}
-            <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
-              <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo - Pölynsidonta" className="w-full h-full object-cover" />
-              <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
-                  <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Pölynsidonta</h3>
-                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Kustannustehokas suojaus</p>
-                </div>
-              </div>
-            </Link>
+          <div className="relative group/slider">
+            {/* Left arrow */}
+            {canScrollLeft && (
+              <button 
+                id="btn-scroll-services-left"
+                onClick={() => scroll('left')}
+                className="absolute left-2 md:-left-6 top-1/2 -translate-y-1/2 z-20 bg-[#00001C] hover:bg-[#D4AF37] text-white hover:text-white p-3.5 rounded-full shadow-2xl border border-white/10 transition-all hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
+                aria-label="Selaa vasemmalle"
+              >
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+            )}
 
-            {/* Railo - Keskikova Kulutus */}
-            <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
-              <img src="https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg" alt="Railo - Keskikova Kulutus" className="w-full h-full object-cover" />
-              <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
-                  <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Keskikova Kulutus</h3>
-                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Viimeistelty ja kestävä pinta</p>
-                </div>
-              </div>
-            </Link>
+            {/* Right arrow */}
+            {canScrollRight && (
+              <button 
+                id="btn-scroll-services-right"
+                onClick={() => scroll('right')}
+                className="absolute right-2 md:-right-6 top-1/2 -translate-y-1/2 z-20 bg-[#00001C] hover:bg-[#D4AF37] text-white hover:text-white p-3.5 rounded-full shadow-2xl border border-white/10 transition-all hover:scale-110 active:scale-95 flex items-center justify-center cursor-pointer"
+                aria-label="Selaa oikealle"
+              >
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+              </button>
+            )}
 
-            {/* Railo - Kova Kulutus */}
-            <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
-              <img src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" alt="Railo - Kova Kulutus" className="w-full h-full object-cover" />
-              <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
-                  <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Kova Kulutus</h3>
-                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Äärimmäistä kestävyyttä</p>
+            <div 
+              ref={scrollContainerRef}
+              className="flex overflow-x-auto gap-10 pb-12 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0"
+            >
+              {/* Railo - Pölynsidonta */}
+              <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
+                <img src="https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png" alt="Railo - Pölynsidonta" className="w-full h-full object-cover" />
+                <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Pölynsidonta</h3>
+                    <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Kustannustehokas suojaus</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
 
-            {/* Railo - Custom-Lattiat */}
-            <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
-              <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo - Custom-Lattiat" className="w-full h-full object-cover" />
-              <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
-                  <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Custom-Lattiat</h3>
-                  <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Yksilöllinen ja näyttävä design</p>
+              {/* Railo - Keskikova Kulutus */}
+              <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
+                <img src="https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg" alt="Railo - Keskikova Kulutus" className="w-full h-full object-cover" />
+                <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Keskikova Kulutus</h3>
+                    <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Viimeistelty ja kestävä pinta</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+
+              {/* Railo - Kova Kulutus */}
+              <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
+                <img src="https://i.postimg.cc/BbR1jgY2/IMG_6704.jpg" alt="Railo - Kova Kulutus" className="w-full h-full object-cover" />
+                <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Kova Kulutus</h3>
+                    <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Äärimmäistä kestävyyttä</p>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Railo - Custom-Lattiat */}
+              <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
+                <img src="https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png" alt="Railo - Custom-Lattiat" className="w-full h-full object-cover" />
+                <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+                  <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Custom-Lattiat</h3>
+                    <p className="text-[#D4AF37] text-[10px] font-semibold uppercase tracking-widest">Yksilöllinen ja näyttävä design</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

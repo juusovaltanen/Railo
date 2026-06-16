@@ -6,7 +6,7 @@ const steps = [
     id: 1,
     title: "Arviointi & valinta",
     subtitle: "Ilmainen",
-    description: "Otat yhteyttä, tulemme käymään. Valitaan yhdessä tilaan sopiva epoksi ja lyödään hinta lukkoon. Ei yllätyksiä.",
+    description: "Ota yhteyttä, ja tulemme käymään. Valitaan yhdessä tilaan sopiva ratkaisu ja lyödään hinta lukkoon. Ei yllätyksiä.",
     icon: ClipboardList
   },
   {
