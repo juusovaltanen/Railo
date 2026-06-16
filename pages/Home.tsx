@@ -178,7 +178,7 @@ const Home: React.FC = () => {
 
             {/* Railo - Keskikova Kulutus */}
             <Link to="/palvelut" className="flex-none w-[300px] md:w-[380px] group relative aspect-[4/5] rounded-[3rem] overflow-hidden border border-[#00001C]/5 bg-white transition-all hover:scale-[1.02]">
-              <img src="https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png" alt="Railo - Keskikova Kulutus" className="w-full h-full object-cover" />
+              <img src="https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg" alt="Railo - Keskikova Kulutus" className="w-full h-full object-cover" />
               <div className="absolute inset-x-6 bottom-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                 <div className="bg-[#00001C] p-8 rounded-[2rem] shadow-2xl shadow-black/40 border border-white/10">
                   <h3 className="text-xl font-semibold text-white tracking-tight leading-tight mb-2">Railo - Keskikova Kulutus</h3>

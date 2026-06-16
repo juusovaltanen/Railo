@@ -26,7 +26,7 @@ const Services: React.FC = () => {
       usage: "Varastot, Verstaat, Autotallit, Tuotantotilat, Kellarit, Pyörävarastot",
       icon: "layers",
       badge: "Suosittu valinta",
-      image: "https://i.postimg.cc/1XJG3DT1/Image-15-2-2026-at-11-05.png",
+      image: "https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg",
       features: [
         { icon: "palette", text: "Värillinen pinta" },
         { icon: "shield", text: "Kemikaalien kesto" },

@@ -16,6 +16,22 @@ interface Reference {
 
 const references: Reference[] = [
   {
+    id: '5',
+    title: 'Varastotila',
+    mainImage: 'https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg',
+    additionalImages: [
+      'https://i.postimg.cc/wMWRtBN2/1-kuva.jpg',
+      'https://i.postimg.cc/t4cf3tb5/IMG-6655.jpg',
+      'https://i.postimg.cc/59GxtvY3/IMG-6692.jpg',
+      'https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg'
+    ],
+    size: '36 m²',
+    location: 'Raahe',
+    service: 'Railo - Keskikova Kulutus',
+    material: 'Epoksi',
+    description: 'Toteutimme Raahessa sijaitsevaan 36m² varastotilaan lattiapinnoituksen tyylikkäällä ja kestävällä Railo - Keskikova Kulutus -pinnoituksella. Kohteessa oli entuudestaan vanha pinnoite, joka hiottiin huolellisesti kokonaan pois puhtaan ja tartuntakykyisen betonipinnan saavuttamiseksi. Perusteellisten pohjatöiden ja timanttihionnan jälkeen tilaan asennettiin uusi saumaton, helppohoitoinen ja kulutusta erinomaisesti kestävä lattiapinta.'
+  },
+  {
     id: '4',
     title: 'Autotalli',
     mainImage: 'https://i.postimg.cc/6qhmQ8ZB/IMG-5506.avif',
