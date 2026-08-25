@@ -12,7 +12,7 @@ const Services: React.FC = () => {
       usage: "Varastot, Kellarit",
       icon: "cleaning_services",
       badge: "Kustannustehokas",
-      image: "https://i.postimg.cc/xjhHtT2X/Image-15-2-2026-at-11-21.png",
+      image: "https://i.postimg.cc/gc325fPV/IMG-5504.jpg",
       features: [
         { icon: "auto_awesome", text: "Pölytön pinta" },
         { icon: "savings", text: "Edullinen hinta" },
@@ -54,7 +54,7 @@ const Services: React.FC = () => {
       usage: "Autotallit, Sisätilat, Varastot, Showroomit, Miesluolat.",
       icon: "auto_awesome",
       badge: "Uniikki ja näyttävä",
-      image: "https://i.postimg.cc/SNXRswJc/Image-15-2-2026-at-11-45.png",
+      image: "https://i.postimg.cc/VLgdVjWQ/IMG-7239.jpg",
       features: [
         { icon: "brush", text: "Vapaa värivalinta" },
         { icon: "auto_fix_high", text: "Erikoistehosteet" },

@@ -16,6 +16,39 @@ interface Reference {
 
 const references: Reference[] = [
   {
+    id: '7',
+    title: 'Ulkotila',
+    mainImage: 'https://i.postimg.cc/wjYsC6Sg/IMG-7247.jpg',
+    additionalImages: [
+      'https://i.postimg.cc/wjYsC6Sg/IMG-7247.jpg',
+      'https://i.postimg.cc/dt28tkR2/0e81e556-a17f-4c15-9d04-5b9fa6fcfe8e.jpg',
+      'https://i.postimg.cc/SR2j25zy/04ffc158-565f-484e-a692-24878ef613f3.jpg',
+      'https://i.postimg.cc/3rPBwQsh/IMG-5314.jpg',
+      'https://i.postimg.cc/VLgdVjWQ/IMG-7239.jpg'
+    ],
+    size: '20 m²',
+    location: 'Liminka',
+    service: 'Railo - Custom-Lattiat',
+    material: 'Polyuretaani',
+    description: 'Toteutimme Limingassa 20m² ulkotilan pinnoituksen näyttävällä punaisella Railo - Custom -ratkaisulla. Koska kyseessä on ulkotila, materiaaliksi valittiin erinomaisesti säänvaihteluita, kosteutta sekä auringon kovaa UV-säteilyä kestävä polyuretaani. Polyuretaani pitää kirkkaan punaisen sävynsä haalistumatta ja tarjoaa saumattoman, kulutusta kestävän ja huomiota herättävän upean lopputuloksen.'
+  },
+  {
+    id: '6',
+    title: 'Autotalli',
+    mainImage: 'https://i.postimg.cc/7PThwF1N/IMG-7276.jpg',
+    additionalImages: [
+      'https://i.postimg.cc/7PThwF1N/IMG-7276.jpg',
+      'https://i.postimg.cc/rpKcg4Q4/IMG-6053-Original.jpg',
+      'https://i.postimg.cc/htYND51S/IMG-6055-Original.jpg',
+      'https://i.postimg.cc/9FQJSBHy/IMG-7277.jpg'
+    ],
+    size: '30 m²',
+    location: 'Kempele',
+    service: 'Railo - Keskikova Kulutus',
+    material: 'Epoksi',
+    description: 'Toteutimme Kempeleessä 30m² autotallin lattiapinnoituksen tyylikkäällä harmaalla Railo - Keskikova Kulutus -pinnoituksella. Kohteen betonipinta hiottiin huolellisesti tartunnan varmistamiseksi, jonka jälkeen asennettiin saumaton, helposti puhtaana pidettävä ja öljyjä sekä mekaanista rasitusta erinomaisesti kestävä lattiapinta.'
+  },
+  {
     id: '5',
     title: 'Varastotila',
     mainImage: 'https://i.postimg.cc/2jnHqNVY/IMG-6693.jpg',

@@ -31,6 +31,7 @@ const PriceCalculator: React.FC = () => {
   const resetCalculator = () => {
     setStep('area');
     setIsSuccess(false);
+    setShowFallback(false);
     setContactInfo({ name: '', email: '', phone: '', location: '' });
     setWantVisit(true);
     setData({
@@ -54,10 +55,10 @@ const PriceCalculator: React.FC = () => {
 
   const getServicePrice = () => {
     switch (data.service) {
-      case 'polynsidonta': return 32.30;
-      case '0.5mm': return 40.73;
-      case 'kova_kulutus': return data.thickness === '1mm' ? 49.83 : 74.01;
-      case 'custom': return 79.59;
+      case 'polynsidonta': return 24.71;
+      case '0.5mm': return 36.66;
+      case 'kova_kulutus': return data.thickness === '1mm' ? 44.85 : 66.61;
+      case 'custom': return 71.63;
       default: return 0;
     }
   };
@@ -65,17 +66,17 @@ const PriceCalculator: React.FC = () => {
   const getConditionPrice = () => {
     switch (data.condition) {
       case 'good': return 0;
-      case 'medium': return 3.35;
-      case 'poor': return 11.17;
+      case 'medium': return 3.02;
+      case 'poor': return 10.05;
       default: return 0;
     }
   };
 
   const calculateBreakdown = () => {
     const servicePrice = getServicePrice();
-    const flakePrice = data.flakes ? 2.24 : 0;
+    const flakePrice = data.flakes ? 2.02 : 0;
     const conditionPrice = getConditionPrice();
-    const fixedFee = 500;
+    const fixedFee = 450;
 
     const workAndMaterials = (servicePrice + flakePrice) * data.area;
     const prepWork = conditionPrice * data.area;
@@ -147,21 +148,56 @@ const PriceCalculator: React.FC = () => {
   };
 
   const nextStep = (currentStep: Step) => {
-    if (currentStep === 'area') setStep('service');
-    if (currentStep === 'thickness') setStep('flakes');
-    if (currentStep === 'flakes') setStep('condition');
+    if (currentStep === 'area') {
+      setData((prev) => ({
+        ...prev,
+        service: null,
+        thickness: null,
+        flakes: null,
+        condition: null
+      }));
+      setStep('service');
+    }
+    if (currentStep === 'thickness') {
+      setData((prev) => ({
+        ...prev,
+        flakes: null,
+        condition: null
+      }));
+      setStep('flakes');
+    }
+    if (currentStep === 'flakes') {
+      setData((prev) => ({
+        ...prev,
+        condition: null
+      }));
+      setStep('condition');
+    }
     if (currentStep === 'condition') setStep('result');
   };
 
   const prevStep = () => {
-    if (step === 'service') setStep('area');
-    if (step === 'thickness') setStep('service');
+    if (step === 'service') {
+      setData((prev) => ({ ...prev, service: null, thickness: null, flakes: null, condition: null }));
+      setStep('area');
+    }
+    if (step === 'thickness') {
+      setData((prev) => ({ ...prev, service: null, thickness: null, flakes: null, condition: null }));
+      setStep('service');
+    }
     if (step === 'flakes') {
+      setData((prev) => ({ ...prev, thickness: null, flakes: null, condition: null }));
       if (data.service === 'kova_kulutus') setStep('thickness');
       else setStep('service');
     }
-    if (step === 'condition') setStep('flakes');
-    if (step === 'result') setStep('condition');
+    if (step === 'condition') {
+      setData((prev) => ({ ...prev, flakes: null, condition: null }));
+      setStep('flakes');
+    }
+    if (step === 'result') {
+      setData((prev) => ({ ...prev, condition: null }));
+      setStep('condition');
+    }
   };
 
   return (
@@ -406,7 +442,7 @@ const PriceCalculator: React.FC = () => {
                     <div className="flex flex-col sm:flex-row gap-4 pt-6">
                       <button
                         type="button"
-                        onClick={() => setStep('area')}
+                        onClick={resetCalculator}
                         className="w-full sm:w-1/3 py-4 rounded-full border border-white/10 text-white/60 font-bold uppercase tracking-wider hover:text-white hover:bg-white/5 transition-all text-xs"
                       >
                         Laske uusi
