@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
-  Shield, 
+  MessageCircle,
   X, 
   Send, 
   RotateCcw, 
@@ -30,6 +30,7 @@ interface LeadData {
   wearLevel: string;
   floorSize: string;
   recommendedPackage: string;
+  estimatedPrice?: string;
   name: string;
   email: string;
   phone: string;
@@ -40,9 +41,10 @@ interface LeadData {
 
 const SPACE_OPTIONS = [
   { id: 'autotalli', label: '🚗 Autotalli tai varasto', reaction: 'Loistavaa! Autotallit ja varastot saadaan kuntoon nopeasti ja siististi.' },
+  { id: 'kylpyhuone', label: '🚿 Kylpyhuone, sauna tai WC', reaction: 'Ymmärretty! Huomioithan, että meillä ei ole vielä kiinteitä kylpyhuonepaketteja, mutta toteutamme märkätiloja tapauskohtaisesti. Kartoitamme aina kohteen alustan, mahdolliset vanhat laatat ja vedeneristyksen erikseen.' },
   { id: 'teollisuus', label: '🏭 Teollisuustila tai halli', reaction: 'Tämä selvä. Raskaaseen rasitukseen löytyy kestävät massaratkaisut.' },
   { id: 'liiketila', label: '🏢 Liiketila tai toimisto', reaction: 'Ymmärretty! Liiketiloihin tehdään näyttävää ja helppohoitoista pintaa.' },
-  { id: 'elintarvike', label: '🍽️ Elintarvike- tai pesutila', reaction: 'Tärkeä kohde. Saumaton, vesitiivis ja hygieeninen pinta on näissä ykkösasia.' },
+  { id: 'elintarvike', label: '🍽️ Suurkeittiö tai pesutila', reaction: 'Tärkeä kohde. Saumaton, vesitiivis ja hygieeninen pinta on näissä ykkösasia.' },
   { id: 'muu', label: '✨ Muu tila', reaction: 'Selvä juttu! Räätälöimme ratkaisun alustan mukaan.' }
 ];
 
@@ -64,11 +66,41 @@ const WEAR_OPTIONS = [
   }
 ];
 
-const SIZE_OPTIONS = [
-  'Alle 30 m² (esim. perusautotalli)',
-  '30 – 80 m² (iso talli / pieni varasto)',
-  '80 – 200 m² (hallitila / liiketila)',
-  'Yli 200 m² (suurempi teollisuuskohde)'
+const BATHROOM_OPTIONS = [
+  {
+    id: 'vanhat_laatat',
+    title: '🛁 Vanhojen laattojen päälle (tapauskohtainen selvitys)',
+    subtext: 'Katsotaan mahdollisuus saumattomaan pinnoitukseen ilman vanhojen laattojen purkutyötä.'
+  },
+  {
+    id: 'betoni_uudis',
+    title: '🧱 Betoni- tai tasoitepohja',
+    subtext: 'Uudiskohde tai saneerauskohde, jossa pohja on valmiina ennen tai jälkeen vedeneristyksen.'
+  },
+  {
+    id: 'sauna_pesutila',
+    title: '🧖 Sauna- tai pesutila liukuestepinnalla',
+    subtext: 'Kosteuden ja lämmön kestävä, turvallinen ja helposti puhdistettava saumaton pinta.'
+  },
+  {
+    id: 'yleis_kartoitus',
+    title: '✨ Yleinen märkätilatiedustelu & kartoitus',
+    subtext: 'Katsotaan yhdessä asiantuntijan kanssa toiveet ja tilan soveltuvuus saumattomalle pinnoitteelle.'
+  }
+];
+
+const BATHROOM_SIZE_PRESETS = [
+  'Pieni WC / kylpyhuone (~3–6 m²)',
+  'Keskikokoinen kylpyhuone (~7–10 m²)',
+  'Kylpyhuone + sauna (~11–18 m²)',
+  'Laajempi märkätilakokonaisuus (~19–35 m²)'
+];
+
+const GENERAL_SIZE_PRESETS = [
+  'Yhden auton talli (~20–30 m²)',
+  'Kahden auton talli (~35–55 m²)',
+  'Iso talli / varasto (~60–100 m²)',
+  'Hallitila / teollisuus (>100 m²)'
 ];
 
 const FAQ_ITEMS = [
@@ -106,7 +138,8 @@ const FAQ_ITEMS = [
 
 const LeadChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [showPreview, setShowPreview] = useState(true);
+  // Initial state is false: showcase image bubble pops up after 2 seconds
+  const [showPreview, setShowPreview] = useState(false);
   const [currentView, setCurrentView] = useState<'menu' | 'calculator' | 'faq'>('menu');
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
@@ -114,10 +147,22 @@ const LeadChatWidget: React.FC = () => {
 
   // Selections
   const [selectedSpace, setSelectedSpace] = useState('');
+  const [selectedSpaceId, setSelectedSpaceId] = useState('');
   const [otherSpaceInput, setOtherSpaceInput] = useState('');
   const [selectedWear, setSelectedWear] = useState('');
+  const [selectedWearId, setSelectedWearId] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [exactAreaInput, setExactAreaInput] = useState('');
   const [recommendation, setRecommendation] = useState('');
+  const [estimatedPrice, setEstimatedPrice] = useState('');
+
+  // 2s popup trigger for showcase preview bubble
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPreview(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Form inputs
   const [formData, setFormData] = useState({
@@ -171,26 +216,115 @@ const LeadChatWidget: React.FC = () => {
     }
   }, [messages, isTyping, isOpen, currentView, step]);
 
-  // Calculate dynamic recommendation based on rules
-  const computeRecommendation = (wear: string, size: string): string => {
-    const isKevyt = wear.includes('Kevyt suojaus');
-    const isNormaali = wear.includes('Normaali rasitus');
-    const isRaskas = wear.includes('Raskas teollisuus');
+  // Robust pricing calculation mirroring PriceCalculator.tsx:
+  // Base fixed fee: 450 € (matches fixedFee = 450 in PriceCalculator.tsx)
+  // Per sqm rates:
+  // - Pölynsidonta: 24.71 €/m²
+  // - 0.5mm 2K-epoksi: 36.66 €/m²
+  // - Kova kulutus (hierremassa): 55.70 €/m²
+  // - Märkätila / custom: 65 - 85 €/m²
+  const computePricing = (
+    spaceId: string,
+    wearId: string,
+    sizeInput: string,
+    exactSqm?: number
+  ) => {
+    const fixedFee = 450; // Mirrored from PriceCalculator.tsx
+    let rate = 36.66;
+    let pkgName = 'Railo 2K-Epoksipinnoitus (Keskikova kulutus)';
 
-    const isAlle30 = size.includes('Alle 30 m²');
-    const is30to80 = size.includes('30 – 80 m²');
-    const isLarge = size.includes('80 – 200 m²') || size.includes('Yli 200 m²');
+    if (spaceId === 'kylpyhuone') {
+      rate = 58.0; // Indicative base rate
+      switch (wearId) {
+        case 'vanhat_laatat':
+          pkgName = 'Märkätilapinnoitus vanhalle laatalle (tapauskohtainen selvitys)';
+          rate = 65.0;
+          break;
+        case 'betoni_uudis':
+          pkgName = 'Märkätilapinnoitus betonialustalle (tapauskohtainen arvio)';
+          rate = 58.0;
+          break;
+        case 'sauna_pesutila':
+          pkgName = 'Sauna- ja pesutilapinnoitus turvapinnalla (tapauskohtainen arvio)';
+          rate = 62.0;
+          break;
+        default:
+          pkgName = 'Märkätilapinnoitus (tapauskohtainen arvio)';
+          rate = 58.0;
+      }
+    } else {
+      switch (wearId) {
+        case 'kevyt':
+          rate = 24.71; // Matches PriceCalculator polynsidonta (24.71 €/m²)
+          pkgName = 'Railo Pölynsidonta & Pintasuojaus';
+          break;
+        case 'normaali':
+          rate = 36.66; // Matches PriceCalculator 0.5mm (36.66 €/m²)
+          pkgName = 'Railo 2K-Epoksipinnoitus (Keskikova kulutus)';
+          break;
+        case 'raskas':
+          rate = 55.70; // Matches PriceCalculator kova kulutus (1mm - 3mm)
+          pkgName = 'Railo Teollisuusmassa / Hierremassa (Kova kulutus)';
+          break;
+        default:
+          rate = 42.0;
+          pkgName = 'Railo Saumaton Lattiapinnoitus';
+      }
+    }
 
-    if (isKevyt && isAlle30) {
-      return 'Railo Pölynsidonta & Pintasuojaus — Alk. 990 € (sis. alv)';
+    // If exact square meters were entered
+    if (exactSqm && exactSqm > 0) {
+      const rawTotal = Math.round(fixedFee + rate * exactSqm);
+      const discounted = Math.round(rawTotal * 0.9); // -10% syysetu
+      const isWet = spaceId === 'kylpyhuone';
+
+      return {
+        packageName: pkgName,
+        priceTag: isWet
+          ? `~${discounted.toLocaleString('fi-FI')} € (tapauskohtainen)`
+          : `~${discounted.toLocaleString('fi-FI')} €`,
+        displayPrice: isWet
+          ? `~${discounted.toLocaleString('fi-FI')} € (suuntaa-antava tapauskohtainen arvio)`
+          : `~${discounted.toLocaleString('fi-FI')} € (norm. ${rawTotal.toLocaleString('fi-FI')} €)`,
+        sqmPrice: Math.round(rate),
+        breakdownSummary: isWet
+          ? `Alustava arvio ${exactSqm} m² märkätilalle: neliöhinta n. ${Math.round(rate)} €/m² + aloitus/kalustomaksu 450 €. Huom: Kaikki märkätilat katsotaan ja vahvistetaan aina tapauskohtaisesti alustan ja vedeneristyksen perusteella!`
+          : `Laskettu pinta-alalla ${exactSqm} m²: neliöhinta n. ${Math.round(rate)} €/m² + aloitus/kalustomaksu 450 €. Sisältää pohjatyöt, laatumateriaalit, asennuksen ja alv 25,5 %!`
+      };
     }
-    if (isNormaali && (isAlle30 || is30to80)) {
-      return 'Railo 2K-Epoksipinnoitus — n. 1 300 – 2 500 €';
-    }
-    if (isRaskas || isLarge) {
-      return 'Kestävä Epoksi- tai Polyuretaanimassa — Räätälöity kohdearvio';
-    }
-    return 'Kohteelle optimoitu pinnoitusratkaisu — Nopea urakkatarjous';
+
+    // Preset range parsing
+    let minArea = 20;
+    let maxArea = 30;
+
+    if (sizeInput.includes('3–6') || sizeInput.includes('4–6')) { minArea = 3; maxArea = 6; }
+    else if (sizeInput.includes('7–10')) { minArea = 7; maxArea = 10; }
+    else if (sizeInput.includes('11–18')) { minArea = 11; maxArea = 18; }
+    else if (sizeInput.includes('19–35')) { minArea = 19; maxArea = 35; }
+    else if (sizeInput.includes('20–30') || sizeInput.includes('Alle 30')) { minArea = 20; maxArea = 30; }
+    else if (sizeInput.includes('35–55') || sizeInput.includes('30 – 80')) { minArea = 35; maxArea = 55; }
+    else if (sizeInput.includes('60–100') || sizeInput.includes('80 – 200')) { minArea = 60; maxArea = 100; }
+    else if (sizeInput.includes('>100') || sizeInput.includes('Yli 200')) { minArea = 110; maxArea = 180; }
+
+    const minRaw = Math.round(fixedFee + rate * minArea);
+    const maxRaw = Math.round(fixedFee + rate * maxArea);
+    const minDisc = Math.round(minRaw * 0.9);
+    const maxDisc = Math.round(maxRaw * 0.9);
+    const isWet = spaceId === 'kylpyhuone';
+
+    return {
+      packageName: pkgName,
+      priceTag: isWet
+        ? `n. ${minDisc.toLocaleString('fi-FI')} – ${maxDisc.toLocaleString('fi-FI')} € (tapauskohtainen)`
+        : `n. ${minDisc.toLocaleString('fi-FI')} – ${maxDisc.toLocaleString('fi-FI')} €`,
+      displayPrice: isWet
+        ? `n. ${minDisc.toLocaleString('fi-FI')} – ${maxDisc.toLocaleString('fi-FI')} € (alustava hintahaarukka)`
+        : `n. ${minDisc.toLocaleString('fi-FI')} – ${maxDisc.toLocaleString('fi-FI')} € (kampanja-arvio)`,
+      sqmPrice: Math.round(rate),
+      breakdownSummary: isWet
+        ? `Suuntaa-antava hintahaarukka ${minArea}–${maxArea} m² märkätilalle (neliöhinta n. ${Math.round(rate)} €/m² + aloitus/kalusto 450 €). Vahvistetaan aina tapauskohtaisesti alustan kunnon ja vedeneristyksen perusteella.`
+        : `Laskettu arvio ${minArea}–${maxArea} m² kohteelle (neliöhinta n. ${Math.round(rate)} €/m² + aloitus/kalusto 450 €). Sisältää työt, alv 25,5 % ja materiaalit.`
+    };
   };
 
   // Reset entire conversation
@@ -198,10 +332,14 @@ const LeadChatWidget: React.FC = () => {
     setStep(1);
     setIsTyping(false);
     setSelectedSpace('');
+    setSelectedSpaceId('');
     setOtherSpaceInput('');
     setSelectedWear('');
+    setSelectedWearId('');
     setSelectedSize('');
+    setExactAreaInput('');
     setRecommendation('');
+    setEstimatedPrice('');
     setFormData({ name: '', email: '', phone: '', location: '' });
     setFormErrors({});
     setMessages([
@@ -221,6 +359,7 @@ const LeadChatWidget: React.FC = () => {
   // Step 1: Select space type
   const handleSelectSpace = (option: typeof SPACE_OPTIONS[number]) => {
     if (option.id === 'muu') {
+      setSelectedSpaceId('muu');
       setMessages(prev => [
         ...prev.filter(m => m.component !== 'space-options'),
         { id: `user-${Date.now()}`, sender: 'user', text: option.label },
@@ -230,6 +369,7 @@ const LeadChatWidget: React.FC = () => {
     }
 
     setSelectedSpace(option.label);
+    setSelectedSpaceId(option.id);
 
     setMessages(prev => [
       ...prev.filter(m => m.component !== 'space-options'),
@@ -241,10 +381,17 @@ const LeadChatWidget: React.FC = () => {
     setTimeout(() => {
       setIsTyping(false);
       setStep(2);
+      const isWet = option.id === 'kylpyhuone';
       setMessages(prev => [
         ...prev,
         { id: `reaction-${Date.now()}`, sender: 'bot', text: option.reaction },
-        { id: `q2-${Date.now()}`, sender: 'bot', text: 'Millaista rasitusta tai suojaa lattialta vaaditaan?' },
+        { 
+          id: `q2-${Date.now()}`, 
+          sender: 'bot', 
+          text: isWet 
+            ? 'Millainen märkätilan lähtötilanne tai toive on? (Kartoitamme märkätilat tapauskohtaisesti):' 
+            : 'Millaista rasitusta tai suojaa lattialta vaaditaan?' 
+        },
         { id: `wear-options-${Date.now()}`, sender: 'bot', component: 'wear-options' }
       ]);
     }, 500);
@@ -257,6 +404,7 @@ const LeadChatWidget: React.FC = () => {
 
     const trimmed = otherSpaceInput.trim();
     setSelectedSpace(trimmed);
+    setSelectedSpaceId('muu');
 
     setMessages(prev => [
       ...prev.filter(m => m.component !== 'other-input'),
@@ -277,9 +425,10 @@ const LeadChatWidget: React.FC = () => {
     }, 500);
   };
 
-  // Step 2: Select wear level
-  const handleSelectWear = (option: typeof WEAR_OPTIONS[number]) => {
+  // Step 2: Select wear level / bathroom treatment
+  const handleSelectWear = (option: { id: string; title: string; subtext: string }) => {
     setSelectedWear(option.title);
+    setSelectedWearId(option.id);
 
     setMessages(prev => [
       ...prev.filter(m => m.component !== 'wear-options'),
@@ -291,40 +440,69 @@ const LeadChatWidget: React.FC = () => {
     setTimeout(() => {
       setIsTyping(false);
       setStep(3);
+      const isWet = selectedSpaceId === 'kylpyhuone';
       setMessages(prev => [
         ...prev,
-        { id: `q3-${Date.now()}`, sender: 'bot', text: 'Mikä on lattian arvioitu pinta-ala?' },
+        { 
+          id: `q3-${Date.now()}`, 
+          sender: 'bot', 
+          text: isWet
+            ? 'Mikä on märkätilan arvioitu pinta-ala? Valitse pika-arvio alta tai syötä tarkka neliömäärä (m²):'
+            : 'Mikä on lattian arvioitu pinta-ala? Valitse pika-arvio alta tai syötä tarkka neliömäärä (m²):'
+        },
         { id: `size-options-${Date.now()}`, sender: 'bot', component: 'size-options' }
       ]);
     }, 500);
   };
 
-  // Step 3: Select floor size
-  const handleSelectSize = (size: string) => {
-    setSelectedSize(size);
-    const rec = computeRecommendation(selectedWear, size);
-    setRecommendation(rec);
-
-    setMessages(prev => [
-      ...prev.filter(m => m.component !== 'size-options'),
-      { id: `user-${Date.now()}`, sender: 'user', text: size }
-    ]);
+  // Step 3 helper: Proceed to quote calculation
+  const proceedToQuote = (sizeDisplay: string, exactNum?: number) => {
+    setSelectedSize(sizeDisplay);
+    const pricing = computePricing(selectedSpaceId, selectedWearId, sizeDisplay, exactNum);
+    setRecommendation(`${pricing.packageName} — ${pricing.priceTag}`);
+    setEstimatedPrice(pricing.priceTag);
 
     setIsTyping(true);
 
     setTimeout(() => {
       setIsTyping(false);
       setStep(4);
+      const isWet = selectedSpaceId === 'kylpyhuone';
       setMessages(prev => [
         ...prev,
         {
           id: `rec-msg-${Date.now()}`,
           sender: 'bot',
-          text: `Vastauksiesi pohjalta suosittelemme kohteeseesi:\n👉 **${rec}**\n\nSyyskampanja: Saat **-10 % alennuksen** koodilla **Syksy10**!\n\nMinne lähetämme tarkan hinta-arvion ja ehdotuksen?`
+          text: isWet
+            ? `Vastauksiesi pohjalta suuntaa-antava arvio kohteeseesi:\n👉 **${pricing.packageName} — ${pricing.displayPrice}**\n\n📊 **Huomio märkätiloista:**\n• ${pricing.breakdownSummary}\n• Koska meillä ei ole vielä kiinteää kylpyhuonepalvelua, katsomme ja arvioimme kaikki märkätilat aina tapauskohtaisesti alustan ja toiveiden perusteella.\n• Kotitalousvähennys: työn osuudesta hyvitystä jopa -40 % verotuksessa!\n\nSyyskampanja: Saat **-10 % alennuksen** koodilla **Syksy10**!\n\nMinne voimme toimittaa alustavan arvion ja olla yhteydessä tapauskohtaisen katselmuksen sopimiseksi?`
+            : `Vastauksiesi pohjalta suosittelemme kohteeseesi:\n👉 **${pricing.packageName} — ${pricing.displayPrice}**\n\n📊 **Hinta-arvio (peilattu suoraan hintalaskuriin):**\n• ${pricing.breakdownSummary}\n• Kotitalousvähennys: työn osuudesta hyvitystä jopa -40 % verotuksessa!\n\nSyyskampanja: Saat **-10 % alennuksen** koodilla **Syksy10**!\n\nMinne lähetämme tarkan kirjallisen hinta-arvion ja ehdotuksen?`
         },
         { id: `lead-form-${Date.now()}`, sender: 'bot', component: 'lead-form' }
       ]);
     }, 600);
+  };
+
+  // Step 3a: Select preset floor size
+  const handleSelectSize = (preset: string) => {
+    setMessages(prev => [
+      ...prev.filter(m => m.component !== 'size-options'),
+      { id: `user-${Date.now()}`, sender: 'user', text: `📐 ${preset}` }
+    ]);
+    proceedToQuote(preset);
+  };
+
+  // Step 3b: Submit exact square meters
+  const handleExactAreaSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const num = parseFloat(exactAreaInput.replace(',', '.'));
+    if (isNaN(num) || num <= 0) return;
+
+    const label = `Tarkka ala: ${num} m²`;
+    setMessages(prev => [
+      ...prev.filter(m => m.component !== 'size-options'),
+      { id: `user-${Date.now()}`, sender: 'user', text: `📐 ${label}` }
+    ]);
+    proceedToQuote(label, num);
   };
 
   // Clicked an FAQ question to inject into chat
@@ -376,6 +554,7 @@ const LeadChatWidget: React.FC = () => {
       wearLevel: selectedWear || 'Ei määritelty',
       floorSize: selectedSize || 'Ei määritelty',
       recommendedPackage: recommendation || 'Yleisarvio',
+      estimatedPrice: estimatedPrice || '',
       name: formData.name.trim(),
       email: formData.email.trim(),
       phone: formData.phone.trim(),
@@ -405,6 +584,7 @@ const LeadChatWidget: React.FC = () => {
       params.append('wear_level', payload.wearLevel);
       params.append('floor_size', payload.floorSize);
       params.append('recommended_package', payload.recommendedPackage);
+      params.append('estimated_price', payload.estimatedPrice || '');
       params.append('discount_code', payload.discountCode);
       params.append('timestamp', payload.timestamp);
 
@@ -500,7 +680,7 @@ const LeadChatWidget: React.FC = () => {
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
       {/* Compact, Enticing Speech Preview Bubble with Showcase Image (Shown when collapsed) */}
       {!isOpen && showPreview && (
-        <div className="pointer-events-auto relative mb-3 w-[240px] sm:w-[260px] max-w-[calc(100vw-2rem)] transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
+        <div className="pointer-events-auto relative mb-3 w-[250px] sm:w-[275px] max-w-[calc(100vw-2rem)] transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
           <div
             onClick={() => {
               setIsOpen(true);
@@ -509,23 +689,15 @@ const LeadChatWidget: React.FC = () => {
             }}
             className="cursor-pointer group relative bg-gradient-to-b from-[#111735] via-[#0D122B] to-[#00001C] text-white rounded-2xl shadow-2xl shadow-black/95 border-2 border-[#C5A059] hover:border-[#F3E5AB] transition-all duration-300 overflow-hidden hover:scale-[1.015]"
           >
-            {/* Real Finished Floor Showcase Photo (Hook Image) */}
-            <div className="relative h-20 sm:h-24 w-full overflow-hidden bg-black/50">
+            {/* Real Finished Floor Showcase Photo with Floor Worker clearly framed */}
+            <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-black/50">
               <img
-                src="https://i.postimg.cc/05GsSRC5/Image-24-4-2026-at-14-28.png"
-                alt="Autotallin pinnoitettu lattia"
+                src="https://i.postimg.cc/BvwBpYFT/IMG-7381.jpg"
+                alt="Lattian pinnoitustyö työn alla"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 brightness-95 contrast-105"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                style={{ objectPosition: 'center 25%' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0D122B] via-transparent to-black/30" />
-
-              {/* Campaign badge on top-left of image */}
-              <div className="absolute top-2 left-2 flex items-center gap-1.5">
-                <span className="inline-flex items-center gap-1 bg-gradient-to-r from-red-600 to-amber-600 text-white text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full shadow-lg border border-white/20">
-                  <Sparkles className="w-2.5 h-2.5 fill-current" />
-                  <span>Syysetu -10 %</span>
-                </span>
-              </div>
 
               {/* Close button on top-right of image */}
               <button
@@ -535,9 +707,9 @@ const LeadChatWidget: React.FC = () => {
                   setShowPreview(false);
                 }}
                 aria-label="Sulje vihje"
-                className="absolute top-2 right-2 bg-black/60 hover:bg-black/90 text-white/70 hover:text-white p-1 rounded-full transition-colors border border-white/20 shadow-md cursor-pointer"
+                className="absolute top-2 right-2 bg-black/60 hover:bg-black/90 text-white/80 hover:text-white p-1 rounded-full transition-colors border border-white/20 shadow-md cursor-pointer"
               >
-                <X className="w-3 h-3" />
+                <X className="w-3.5 h-3.5" />
               </button>
             </div>
 
@@ -546,7 +718,7 @@ const LeadChatWidget: React.FC = () => {
               {/* Bot Identity Header */}
               <div className="flex items-center gap-2 mb-1.5">
                 <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-[#9B772E] via-[#C5A059] to-[#F1D487] flex items-center justify-center text-[#00001C] font-black shrink-0 shadow-sm">
-                  <Shield className="w-3.5 h-3.5 fill-[#00001C]/25 stroke-[2.2]" />
+                  <MessageCircle className="w-3.5 h-3.5 fill-[#00001C]/25 stroke-[2.2]" />
                 </div>
                 <div className="min-w-0 flex-1 flex items-center justify-between">
                   <h4 className="text-xs font-bold text-white group-hover:text-[#F1D487] transition-colors">
@@ -560,42 +732,9 @@ const LeadChatWidget: React.FC = () => {
               </div>
 
               {/* High-Converting Persuasive Copy */}
-              <p className="text-[11.5px] sm:text-xs font-bold text-white leading-snug">
-                Haluatko talliisi näyttävän ja kestävän lattian?
+              <p className="text-xs font-bold text-white leading-snug">
+                Mietitkö mikä ratkaisu sopii tilaasi? Testaa 30 sekunnissa ja selvitä hinta-arvio 👇
               </p>
-              <p className="text-[10px] text-white/75 mt-0.5 leading-snug">
-                Laske hinta-arvio 30 sekunnissa ja lukitse syysetu – tai kysy neuvoa usein kysytyistä kysymyksistä!
-              </p>
-
-              {/* Two Direct Action Buttons */}
-              <div className="mt-2 pt-2 border-t border-white/10 flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsOpen(true);
-                    setCurrentView('calculator');
-                    setShowPreview(false);
-                  }}
-                  className="flex-1 bg-gradient-to-r from-[#D4AF37] to-[#C5A059] hover:brightness-110 text-[#00001C] font-black text-[11px] py-1.5 px-1.5 rounded-lg flex items-center justify-center gap-1 transition-all shadow-md shadow-[#C5A059]/25 cursor-pointer"
-                >
-                  <Calculator className="w-3 h-3" />
-                  <span>Hinta-arvio (-10%)</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsOpen(true);
-                    setCurrentView('faq');
-                    setShowPreview(false);
-                  }}
-                  className="bg-white/10 hover:bg-white/20 text-white font-semibold text-[11px] py-1.5 px-2.5 rounded-lg flex items-center justify-center gap-1 transition-all border border-white/15 cursor-pointer"
-                >
-                  <HelpCircle className="w-3 h-3 text-[#C5A059]" />
-                  <span>UKK</span>
-                </button>
-              </div>
             </div>
 
             {/* Downward pointer notch */}
@@ -604,7 +743,7 @@ const LeadChatWidget: React.FC = () => {
         </div>
       )}
 
-      {/* Floating Trigger Button (Magnetic, glowing & animated) */}
+      {/* Floating Trigger Button (Simple, eye-catching chat button) */}
       {!isOpen && (
         <div className="pointer-events-auto relative group">
           {/* Animated Pulsing Golden Halo / Glow behind the button */}
@@ -614,8 +753,8 @@ const LeadChatWidget: React.FC = () => {
           <div className="absolute -inset-1 rounded-full border-2 border-[#C5A059] opacity-40 animate-ping pointer-events-none" />
 
           {/* Floating Pill Tag above button */}
-          <div className="absolute -top-3 -left-3 z-10 bg-gradient-to-r from-red-600 to-amber-600 text-white font-extrabold text-[10px] tracking-wide px-2 py-0.5 rounded-full shadow-lg border border-white/20 flex items-center gap-1 animate-bounce">
-            <BadgePercent className="w-3 h-3" />
+          <div className="absolute -top-3.5 -left-3 z-10 bg-gradient-to-r from-red-600 via-red-500 to-amber-500 text-white font-black text-xs tracking-tight px-2.5 py-0.5 rounded-full shadow-xl shadow-red-950/70 border-2 border-white/30 flex items-center gap-1 animate-bounce">
+            <BadgePercent className="w-3.5 h-3.5 shrink-0" />
             <span>-10%</span>
           </div>
 
@@ -631,10 +770,7 @@ const LeadChatWidget: React.FC = () => {
           >
             {/* Inner Dark Glass Disc */}
             <div className="w-full h-full rounded-full bg-[#00001C] flex items-center justify-center text-[#C5A059] group-hover:bg-[#00001C]/90 transition-colors">
-              <div className="relative flex items-center justify-center">
-                <Shield className="w-7 h-7 sm:w-8 sm:h-8 text-[#C5A059] fill-[#C5A059]/20 stroke-[2.2] group-hover:rotate-6 transition-transform" />
-                <Sparkles className="w-3.5 h-3.5 absolute -top-1 -right-1 text-amber-300 animate-spin" style={{ animationDuration: '4s' }} />
-              </div>
+              <MessageCircle className="w-7 h-7 sm:w-8 sm:h-8 text-[#C5A059] fill-[#C5A059]/20 stroke-[2.2] group-hover:scale-105 transition-transform" />
             </div>
 
             {/* Online Green Pulsing Indicator */}
@@ -656,7 +792,7 @@ const LeadChatWidget: React.FC = () => {
               <div className="flex items-center justify-between gap-2">
                 <div className="flex items-center gap-2.5 min-w-0">
                   <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#9B772E] via-[#C5A059] to-[#F1D487] flex items-center justify-center text-[#00001C] font-black shrink-0 shadow-md">
-                    <Shield className="w-5 h-5 fill-[#00001C]/25 stroke-[2.2]" />
+                    <MessageCircle className="w-5 h-5 fill-[#00001C]/25 stroke-[2.2]" />
                   </div>
                   <div className="min-w-0">
                     <div className="flex items-center gap-1.5">
@@ -808,7 +944,7 @@ const LeadChatWidget: React.FC = () => {
                 {/* Bot Greeting Bubble */}
                 <div className="flex items-start gap-2.5">
                   <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#9B772E] to-[#C5A059] flex items-center justify-center text-[#00001C] shrink-0 mt-0.5 shadow-md">
-                    <Shield className="w-4 h-4 fill-[#00001C]/25" />
+                    <MessageCircle className="w-4 h-4 fill-[#00001C]/25" />
                   </div>
                   <div className="bg-[#10152B] border border-[#C5A059]/30 text-white text-xs sm:text-[13px] p-3.5 rounded-2xl rounded-tl-xs shadow-lg leading-relaxed">
                     <p className="font-semibold text-white">Moro! Olen Pinnoittaja Pertti. 👋</p>
@@ -847,7 +983,7 @@ const LeadChatWidget: React.FC = () => {
                     </div>
 
                     <p className="text-xs text-white/75 leading-relaxed mt-1.5">
-                      Laske nopea hinta-arvio autotallin tai toimitilan lattialle 30 sekunnissa ja lukitse syysetu.
+                      Laske nopea hinta-arvio autotallin, toimitilan tai muun kohteen pinnoitukselle 30 sekunnissa ja lukitse syysetu.
                     </p>
 
                     <div className="mt-3 pt-2 border-t border-white/10 flex items-center gap-2 text-[11px] text-[#F1D487] font-medium">
@@ -925,7 +1061,7 @@ const LeadChatWidget: React.FC = () => {
                   >
                     {/* Bot Avatar */}
                     <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#9B772E] to-[#C5A059] flex items-center justify-center text-[#00001C] shrink-0 mt-0.5 shadow-sm">
-                      <Shield className="w-4 h-4 fill-[#00001C]/25" />
+                      <MessageCircle className="w-4 h-4 fill-[#00001C]/25" />
                     </div>
 
                     <div className="flex-1 space-y-2 max-w-[88%]">
@@ -1006,7 +1142,7 @@ const LeadChatWidget: React.FC = () => {
                       {/* Step 2: Wear level options */}
                       {msg.component === 'wear-options' && (
                         <div className="space-y-1.5 pt-1">
-                          {WEAR_OPTIONS.map((opt) => (
+                          {(selectedSpaceId === 'kylpyhuone' ? BATHROOM_OPTIONS : WEAR_OPTIONS).map((opt) => (
                             <button
                               key={opt.id}
                               type="button"
@@ -1024,19 +1160,53 @@ const LeadChatWidget: React.FC = () => {
                         </div>
                       )}
 
-                      {/* Step 3: Floor Size Options */}
+                      {/* Step 3: Floor Size Options & Exact m² input */}
                       {msg.component === 'size-options' && (
-                        <div className="flex flex-col gap-1.5 pt-1">
-                          {SIZE_OPTIONS.map((size) => (
-                            <button
-                              key={size}
-                              type="button"
-                              onClick={() => handleSelectSize(size)}
-                              className="bg-[#141A35] hover:bg-[#C5A059] hover:text-[#00001C] text-white text-xs font-medium px-3.5 py-2.5 rounded-xl border border-white/10 hover:border-[#C5A059] transition-all text-left shadow-sm active:scale-95 cursor-pointer"
-                            >
-                              📐 {size}
-                            </button>
-                          ))}
+                        <div className="flex flex-col gap-2.5 pt-1">
+                          <div className="flex flex-col gap-1.5">
+                            <span className="text-[11px] text-white/60 font-medium">Pika-arvio yleisimmistä koista:</span>
+                            {(selectedSpaceId === 'kylpyhuone' ? BATHROOM_SIZE_PRESETS : GENERAL_SIZE_PRESETS).map((size) => (
+                              <button
+                                key={size}
+                                type="button"
+                                onClick={() => handleSelectSize(size)}
+                                className="bg-[#141A35] hover:bg-[#C5A059] hover:text-[#00001C] text-white text-xs font-medium px-3.5 py-2.5 rounded-xl border border-white/10 hover:border-[#C5A059] transition-all text-left shadow-sm active:scale-95 cursor-pointer"
+                              >
+                                📐 {size}
+                              </button>
+                            ))}
+                          </div>
+
+                          {/* Exact Square Footage Input Form */}
+                          <div className="bg-[#10152B] p-2.5 rounded-xl border border-white/15 mt-0.5 shadow-sm">
+                            <span className="block text-[11px] font-bold text-[#F1D487] mb-1.5">
+                              Tai syötä tarkka neliömäärä (m²):
+                            </span>
+                            <form onSubmit={handleExactAreaSubmit} className="flex items-center gap-1.5">
+                              <div className="relative flex-1">
+                                <input
+                                  type="number"
+                                  step="any"
+                                  min="1"
+                                  max="2000"
+                                  value={exactAreaInput}
+                                  onChange={(e) => setExactAreaInput(e.target.value)}
+                                  placeholder="esim. 24"
+                                  className="w-full bg-[#00001C] text-white placeholder-white/40 text-xs px-3 py-2 rounded-xl border border-white/20 focus:outline-none focus:border-[#C5A059] pr-8"
+                                />
+                                <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs text-white/50 font-bold pointer-events-none">
+                                  m²
+                                </span>
+                              </div>
+                              <button
+                                type="submit"
+                                disabled={!exactAreaInput || parseFloat(exactAreaInput.replace(',', '.')) <= 0}
+                                className="bg-[#C5A059] hover:bg-[#B38E44] disabled:opacity-40 text-[#00001C] px-3.5 py-2 rounded-xl font-extrabold text-xs transition-all cursor-pointer shrink-0"
+                              >
+                                Laske hinta
+                              </button>
+                            </form>
+                          </div>
                         </div>
                       )}
 
@@ -1145,8 +1315,14 @@ const LeadChatWidget: React.FC = () => {
                             </div>
                             <div className="flex justify-between">
                               <span className="text-white/50">Pinta-ala:</span>
-                              <span className="font-medium text-white">{selectedSize.split(' ')[0]} {selectedSize.split(' ')[1] || ''}</span>
+                              <span className="font-medium text-white">{selectedSize}</span>
                             </div>
+                            {estimatedPrice && (
+                              <div className="flex justify-between">
+                                <span className="text-white/50">Hinta-arvio:</span>
+                                <span className="font-bold text-emerald-400">{estimatedPrice}</span>
+                              </div>
+                            )}
                             <div className="flex justify-between">
                               <span className="text-white/50">Alennuskoodi:</span>
                               <span className="font-bold text-[#F1D487]">Syksy10 (-10 %)</span>
@@ -1172,7 +1348,7 @@ const LeadChatWidget: React.FC = () => {
               {isTyping && (
                 <div className="flex items-start gap-2.5">
                   <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#9B772E] to-[#C5A059] flex items-center justify-center text-[#00001C] shrink-0 mt-0.5">
-                    <Shield className="w-4 h-4 fill-[#00001C]/25" />
+                    <MessageCircle className="w-4 h-4 fill-[#00001C]/25" />
                   </div>
                   <div className="bg-[#10152B] border border-[#C5A059]/30 rounded-2xl rounded-tl-xs px-4 py-2.5 flex items-center gap-1.5 shadow-md">
                     <span className="w-1.5 h-1.5 bg-[#C5A059] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
