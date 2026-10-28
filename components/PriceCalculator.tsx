@@ -42,8 +42,10 @@ const PriceCalculator: React.FC = () => {
       condition: null
     });
     // Scroll element into view if needed
-    const el = document.getElementById('calculator');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (typeof document !== 'undefined') {
+      const el = document.getElementById('calculator');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // Reset calculator when navigating via navbar or other same-page links

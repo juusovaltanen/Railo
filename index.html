@@ -4,8 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Epoksilattiat Oulu | Autotallit & Varastot | Railo Pinnoitus</title>
-    <meta name="description" content="Kestävät ja tyylikkäät epoksilattiat autotalleihin Oulun seudulla. Pölytön ja helppohoitoinen pinta. Laske hinta-arvio!">
+    <script>
+      (function() {
+        var hash = window.location.hash;
+        if (hash && hash.indexOf('#/') === 0) {
+          var target = hash.slice(1);
+          var idMatch = target.match(/^\/blogi\?id=(\d+)/);
+          if (idMatch) {
+            var slugMap = {
+              '1': 'lattiapinnoitteen-valinta',
+              '2': 'miksi-betonilattian-pinnoitus-kannattaa',
+              '3': 'epoksi-vai-polyuretaani',
+              '4': 'autotallin-kynnyksen-suojaus'
+            };
+            var slug = slugMap[idMatch[1]];
+            if (slug) {
+              target = '/blogi/' + slug;
+            }
+          }
+          window.history.replaceState(null, '', target);
+        }
+      })();
+    </script>
+    <title>Epoksilattiat Oulu – autotallit, varastot | Railo Pinnoitus</title>
+    <meta name="description" content="Kestävät ja saumattomat epoksilattiat autotalleihin ja varastoihin Oulussa ja lähialueilla. Pölytön ja helppohoitoinen pinta. Kysy ilmainen arviokäynti!">
     <meta name="google-site-verification" content="ojdljjrVkNvjc9p9dhOWdgktzw61YpeuvqYiyAEcD0Y" />
     <link rel="icon" href="https://i.postimg.cc/CLwqfnDP/Gemini-Generated-Image-pe50yxpe50yxpe50.jpg" type="image/jpeg" sizes="144x144">
     <link rel="shortcut icon" href="https://i.postimg.cc/CLwqfnDP/Gemini-Generated-Image-pe50yxpe50yxpe50.jpg">

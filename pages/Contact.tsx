@@ -64,75 +64,35 @@ const Contact: React.FC = () => {
 
   return (
     <div className="pt-20 bg-white">
-      <SEO 
-        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
-        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
-      />
-      <section className="py-48 max-w-7xl mx-auto px-4">
-        {/* Team Section */}
-        <div className="mb-24 pb-16 border-b border-[#00001C]/10">
-          <div className="text-center mb-12 space-y-4">
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#D4AF37] block">Tiimimme</span>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-[#00001C] leading-tight tracking-tight">Ota meihin suoraan yhteyttä</h2>
-            <p className="text-sm md:text-base text-[#00001C]/60 font-medium pt-2">Asiantuntijamme palveluksessasi</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[
-              { name: 'Sakari Lumme', role: 'Projektit', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
-              { name: 'Juuso Valtanen', role: 'Myynti', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
-              { name: 'Luukas Leppäluoto', role: 'Myynti', email: 'luukas.railopinnoitus@gmail.com', phone: '044 356 764' }
-            ].map((member, i) => (
-              <div key={i} className="space-y-4 group text-center bg-[#00001C] p-6 rounded-[2rem] border border-white/5 shadow-xl shadow-black/20">
-                <div className="aspect-[4/3] bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden relative">
-                  <p className="text-[#D4AF37] font-semibold uppercase tracking-[0.2em] text-[8px] opacity-40 group-hover:opacity-60 transition-opacity px-4">Kuva tulossa!</p>
-                </div>
-                <div className="space-y-1">
-                  <h3 className="text-white font-bold text-base uppercase tracking-wider">{member.name}</h3>
-                  {member.role && (
-                    <p className="text-[#D4AF37] text-[10px] font-bold uppercase tracking-[0.15em]">{member.role}</p>
-                  )}
-                  <div className="flex flex-col text-xs text-white/50 space-y-1 items-center font-medium pt-1">
-                    <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{member.phone}</a>
-                    {member.email && (
-                      <a href={`mailto:${member.email}`} className="text-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors break-all">
-                        {member.email}
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+      <SEO />
+      <section className="py-32 lg:py-40 max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-32">
           <div className="space-y-24">
             <div>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-semibold text-[#00001C] mb-12 leading-tight tracking-tight">Ota yhteyttä</h1>
               <p className="text-xl text-[#00001C]/60 leading-relaxed max-w-lg font-medium">
-                Pyydä tarjous tai kysy lisää. Olemme paikallinen kumppanisi Pohjois-Suomessa.
+                Pyydä tarjous tai kysy lisää. Palvelemme alueella Oulun seutu ja Pohjois-Pohjanmaa.
               </p>
             </div>
 
             <div className="space-y-12">
-              <a href="mailto:juuso.railopinnoitus@gmail.com" className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
+              <a href="mailto:railopinnoitus@gmail.com" className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
                 <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-[#D4AF37] flex-shrink-0 group-hover:scale-110 transition-transform">
                   <span className="material-icons-outlined text-4xl">mail</span>
                 </div>
                 <div className="overflow-hidden">
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-white/40 mb-3">Sähköposti</p>
-                  <p className="text-xl md:text-2xl font-semibold text-white break-all tracking-tight">juuso.railopinnoitus@gmail.com</p>
+                  <p className="text-xl md:text-2xl font-semibold text-white break-all tracking-tight">railopinnoitus@gmail.com</p>
                 </div>
               </a>
-              <a href="tel:+358440348088" className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
+              <a href="tel:+358458972344" className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-[#00001C] border border-white/5 hover:border-[#D4AF37]/30 transition-all group shadow-2xl shadow-black/20">
                 <div className="w-20 h-20 rounded-2xl bg-white/5 flex items-center justify-center text-[#D4AF37] flex-shrink-0 group-hover:scale-110 transition-transform">
                   <span className="material-icons-outlined text-4xl">phone</span>
                 </div>
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-widest text-white/40 mb-3">Puhelin</p>
-                  <p className="text-4xl font-semibold text-white tracking-tight">044 034 8088</p>
-                  <p className="text-sm font-semibold text-[#D4AF37] uppercase tracking-widest mt-2">Juuso Valtanen</p>
+                  <p className="text-4xl font-semibold text-white tracking-tight">045 897 2344</p>
+                  <p className="text-sm font-semibold text-[#D4AF37] uppercase tracking-widest mt-2">Sakari Lumme</p>
                 </div>
               </a>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] bg-[#00001C] border border-white/5 shadow-2xl shadow-black/20">

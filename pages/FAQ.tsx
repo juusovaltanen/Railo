@@ -1,81 +1,90 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { FAQ_DATA } from '../data/faqData';
+import { triggerBookingModal } from '../components/BookingModal';
 
 const FAQ: React.FC = () => {
-  const faqs = [
-    {
-      question: "Kauanko epoksilattian asennus kestää?",
-      answer: "Railon pojat hoitavat toteutuksen yleensä 1–4 päivässä. Aikatauluun vaikuttavat erityisesti lattian lähtökunto, tarvittavat pohjatyöt sekä se, tarvitseeko tila tyhjentää puolestasi. Lattialla voi yleensä kävellä jo vuorokauden kuluttua asennuksesta, mutta raskaampaa kuormitusta suosittelemme vasta viikon päästä."
-    },
-    {
-      question: "Onko epoksilattia liukas märkänä?",
-      answer: "Ei hätää, teemme lattiasta turvallisen. Suosittelemamme hiutalelattia on kestävä ja siinä on luonnostaan hyvä pito. Jos kyseessä on esimerkiksi autotallin pinnoitus, voimme lisätä pintaan karheutta, jotta se ei ole liukas edes lumisilla renkailla."
-    },
-    {
-      question: "Paljonko epoksilattia maksaa neliöltä?",
-      answer: (
-        <>
-          Hinta riippuu pohjatöistä ja valitusta pinnoitteesta, mutta yleensä liikutaan 30–80 €/m² välillä. Paras tapa selvittää tarkka hinta on käyttää meidän{' '}
-          <Link to="/laskuri" className="text-primary hover:underline font-bold">
-            hintalaskuriamme
-          </Link>
-          . Muista, että työn osuudesta saa tuntuvan kotitalousvähennyksen, mikä tekee investoinnista entistä järkevämmän.
-        </>
-      )
-    },
-    {
-      question: "Miten epoksilattiaa huolletaan ja puhdistetaan?",
-      answer: "Epoksilattia on erittäin kestävä ja helppohoitoinen. Saumaton pinta ei imeytä likaa, joten pelkkä moppaus miedolla pesuaineella riittää. Oulun ankarat talvet ja tiesuola eivät tätä pintaa hätkäytä, kunhan irtolika pyyhkäistään välillä pois."
-    },
-    {
-      question: "Miksi pohjatyöt ovat tärkeitä epoksilattian asennuksessa?",
-      answer: (
-        <>
-          Lattia on vain niin hyvä kuin sen pohja. Railon pojat käyttävät timanttihiontaa ja tarvittaessa jyrsintää, jotta pinnoite tarttuu betoniin täydellisesti. Huolelliset pohjatyöt takaavat, että lopputulos on kestävä ja näyttävä vuosikymmeniä. Katso arvio kokonaiskustannuksista{' '}
-          <Link to="/laskuri" className="text-primary hover:underline font-bold">
-            laskurillamme
-          </Link>
-          .
-        </>
-      )
-    },
-    {
-      question: "Saako epoksilattian asennuksesta kotitalousvähennystä?",
-      answer: "Kyllä vain! Epoksilattian asennus kotiin tai vapaa-ajan asunnolle oikeuttaa kotitalousvähennykseen työn osuudesta. Tämä säästää sinulta pitkän pennin. Meiltä saat aina selkeän erittelyn työn ja materiaalien osuudesta verotusta varten."
-    },
-    {
-      question: "Mitä eroa on epoksilla ja polyuretaanilla?",
-      answer: (
-        <>
-          <p className="mb-4">
-            Epoksi on äärimmäisen kova ja mekaanista kulutusta kestävä pinnoite. Se on paras valinta autotalleihin ja halleihin, joissa lattiaan kohdistuu kovaa hankausta, painoa tai kemikaaleja. Epoksi antaa lasimaisen kovan ja helposti puhdistettavan pinnan.
-          </p>
-          <p className="mb-8">
-            Polyuretaani on materiaali, joka on epoksia joustavampi ja elastisempi. Se kestää paremmin iskuja ja suuria lämpötilan vaihteluita halkeilematta. Polyuretaani on myös UV-suojattu, eli se ei kellastu auringonvalossa, ja se tuntuu jalalle hieman pehmeämmältä sekä hiljaisemmalta.
-          </p>
-          <div className="flex justify-start">
-            <Link 
-              to="/blogi?id=3" 
-              className="inline-flex items-center gap-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-white px-8 py-4 rounded-full text-xs font-semibold uppercase tracking-widest transition-all border border-[#D4AF37]/20"
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const renderFormattedAnswer = (text: string, idx: number) => {
+    if (idx === 0) {
+      const parts = text.split(/(Kysy ilmainen arviokäynti|laske hinta-arvio laskurilla)/g);
+      return parts.map((part, i) => {
+        if (part === 'Kysy ilmainen arviokäynti') {
+          return (
+            <button
+              key={i}
+              type="button"
+              onClick={triggerBookingModal}
+              className="text-[#D4AF37] font-semibold hover:underline bg-transparent p-0 inline cursor-pointer text-left"
             >
-              Lue lisää
+              {part}
+            </button>
+          );
+        }
+        if (part === 'laske hinta-arvio laskurilla') {
+          return (
+            <Link key={i} to="/laskuri" className="text-[#D4AF37] font-semibold hover:underline">
+              {part}
+            </Link>
+          );
+        }
+        return part;
+      });
+    }
+
+    if (idx === 3) {
+      const parts = text.split(/(hintalaskurilla)/g);
+      return parts.map((part, i) => {
+        if (part === 'hintalaskurilla') {
+          return (
+            <Link key={i} to="/laskuri" className="text-[#D4AF37] font-semibold hover:underline">
+              {part}
+            </Link>
+          );
+        }
+        return part;
+      });
+    }
+
+    if (idx === 4) {
+      const parts = text.split(/(laskurillamme)/g);
+      return parts.map((part, i) => {
+        if (part === 'laskurillamme') {
+          return (
+            <Link key={i} to="/laskuri" className="text-[#D4AF37] font-semibold hover:underline">
+              {part}
+            </Link>
+          );
+        }
+        return part;
+      });
+    }
+
+    if (idx === 7) {
+      return (
+        <>
+          <p>{text}</p>
+          <div className="mt-6 flex justify-start">
+            <Link
+              to="/blogi/epoksi-vai-polyuretaani"
+              className="inline-flex items-center gap-3 bg-[#D4AF37]/10 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-white px-8 py-3.5 rounded-full text-xs font-semibold uppercase tracking-widest transition-all border border-[#D4AF37]/20"
+            >
+              Lue opas epoksin ja polyuretaanin eroista
               <span className="material-icons-outlined text-sm">east</span>
             </Link>
           </div>
         </>
-      )
+      );
     }
-  ];
 
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+    return text;
+  };
 
   return (
     <div className="pt-20 bg-white">
-      <SEO 
-        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
-        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
-      />
+      <SEO />
       <section className="py-32 max-w-3xl mx-auto px-4">
         <div className="text-center mb-24">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-semibold text-[#00001C] mb-8 tracking-tight">Usein kysytyt kysymykset</h1>
@@ -85,30 +94,54 @@ const FAQ: React.FC = () => {
         </div>
 
         <div className="space-y-6">
-          {faqs.map((faq, idx) => (
-            <div key={idx} className="bg-[#00001C] rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl shadow-black/20 transition-all hover:border-[#D4AF37]/30">
-              <button
-                onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-10 text-left"
-              >
-                <h3 className={`text-xl font-semibold tracking-tight transition-colors ${openIndex === idx ? 'text-[#D4AF37]' : 'text-white'}`}>
-                  {faq.question}
-                </h3>
-                <span className={`material-icons-outlined transition-transform duration-300 ${openIndex === idx ? 'rotate-180 text-[#D4AF37]' : 'text-white/40'}`}>
-                  expand_more
-                </span>
-              </button>
+          {FAQ_DATA.map((faq, idx) => {
+            const isOpen = openIndex === idx;
+            const answerId = `faq-answer-${idx}`;
+            const questionId = `faq-question-${idx}`;
+
+            return (
               <div
-                className={`transition-all duration-300 ease-in-out overflow-hidden ${openIndex === idx ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}
+                key={idx}
+                className="bg-[#00001C] rounded-[2.5rem] border border-white/5 overflow-hidden shadow-2xl shadow-black/20 transition-all hover:border-[#D4AF37]/30"
               >
-                <div className="p-10 pt-0 border-t border-white/5">
-                  <div className="text-white/70 leading-relaxed pt-10 text-base">
-                    {faq.answer}
+                <button
+                  type="button"
+                  id={questionId}
+                  aria-expanded={isOpen}
+                  aria-controls={answerId}
+                  onClick={() => setOpenIndex(isOpen ? null : idx)}
+                  className="w-full flex items-center justify-between p-10 text-left cursor-pointer"
+                >
+                  <h3 className={`text-xl font-semibold tracking-tight transition-colors ${isOpen ? 'text-[#D4AF37]' : 'text-white'}`}>
+                    {faq.question}
+                  </h3>
+                  <span
+                    className={`material-icons-outlined transition-transform duration-300 ${
+                      isOpen ? 'rotate-180 text-[#D4AF37]' : 'text-white/40'
+                    }`}
+                  >
+                    expand_more
+                  </span>
+                </button>
+                <div
+                  id={answerId}
+                  role="region"
+                  aria-labelledby={questionId}
+                  className={`transition-all duration-300 ease-in-out ${
+                    isOpen ? 'grid grid-rows-[1fr] opacity-100' : 'grid grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="p-10 pt-0 border-t border-white/5">
+                      <div className="text-white/70 leading-relaxed pt-10 text-base">
+                        {renderFormattedAnswer(faq.answer, idx)}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-32 p-16 rounded-[4rem] bg-[#00001C] border border-white/5 text-center shadow-2xl shadow-black/30">

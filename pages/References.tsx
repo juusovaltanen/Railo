@@ -168,10 +168,7 @@ const References: React.FC = () => {
 
   return (
     <div className="pt-20 min-h-screen bg-white">
-      <SEO 
-        title="Referenssit | Railo Pinnoitus - Kestävät lattiapinnoitukset."
-        description="Tutustu Railo Pinnoituksen toteuttamiin kohteisiin. Teemme lattiapinnoitukset tinkimättömällä ammattitaidolla autotalleista teollisuushalleihin."
-      />
+      <SEO />
       
       <section className="py-32 max-w-7xl mx-auto px-4 pb-60">
         <div className="text-center mb-24">

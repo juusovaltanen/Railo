@@ -5,10 +5,7 @@ import SEO from '../components/SEO';
 const About: React.FC = () => {
   return (
     <div className="pt-20 bg-white min-h-screen">
-      <SEO 
-        title="Meistä | Railo Pinnoitus - Pohjoista osaamista."
-        description="Lue Railon tarina. Teollisuustason epoksilattiat autotalleihin ja koteihin ammattitaidolla."
-      />
+      <SEO />
       
       <section className="py-24 lg:py-40">
         <div className="max-w-7xl mx-auto px-4">
@@ -60,11 +57,9 @@ const About: React.FC = () => {
               {/* Team Members Grid: Full Width Below */}
               <div className="space-y-12">
                 <div className="h-px bg-white/10 w-full"></div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div className="max-w-xs mx-auto">
                   {[
-                    { name: 'Sakari Lumme', role: 'Projektit', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' },
-                    { name: 'Juuso Valtanen', role: 'Myynti', email: 'juuso.railopinnoitus@gmail.com', phone: '044 034 8088' },
-                    { name: 'Luukas Leppäluoto', role: 'Myynti', email: 'luukas.railopinnoitus@gmail.com', phone: '044 356 764' }
+                    { name: 'Sakari Lumme', role: 'Projektit & Myynti', email: 'railopinnoitus@gmail.com', phone: '045 897 2344' }
                   ].map((member, i) => (
                     <div key={i} className="space-y-6 group text-center">
                       <div className="aspect-[3/4] bg-white/5 rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden relative">
@@ -76,8 +71,12 @@ const About: React.FC = () => {
                           <p className="text-[#D4AF37] text-xs font-semibold uppercase tracking-[0.15em]">{member.role}</p>
                         )}
                         <div className="flex flex-col text-sm text-white/50 space-y-1 items-center pt-1">
-                          <span>{member.phone}</span>
-                          {member.email && <span className="text-[#D4AF37]/80">{member.email}</span>}
+                          <a href={`tel:${member.phone.replace(/\s+/g, '')}`} className="hover:text-white transition-colors">{member.phone}</a>
+                          {member.email && (
+                            <a href={`mailto:${member.email}`} className="text-[#D4AF37]/80 hover:text-[#D4AF37] transition-colors break-all">
+                              {member.email}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

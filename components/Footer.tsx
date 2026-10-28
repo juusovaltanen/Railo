@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
               />
             </Link>
             <p className="text-sm leading-relaxed max-w-xs font-medium tracking-normal">
-              Pohjoisen olosuhteisiin suunnitellut epoksilattiat ammattitaidolla. Luotettava kumppanisi Pohjois-Suomessa.
+              Pohjoisen olosuhteisiin suunnitellut epoksilattiat ammattitaidolla. Luotettava kumppanisi alueella Oulun seutu ja Pohjois-Pohjanmaa.
             </p>
             <div className="flex flex-wrap gap-4">
               {/* Facebook */}
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
               </a>
               {/* TikTok */}
               <a 
-                href="https://www.tiktok.com/@railopinnoitus?lang=en" 
+                href="https://www.tiktok.com/@railopinnoitus" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all group" 
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
               </a>
               {/* LinkedIn */}
               <a 
-                href="https://www.linkedin.com/company/railo-oy/about/?viewAsMember=true" 
+                href="https://www.linkedin.com/company/railo-oy/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/20 hover:text-primary transition-all group" 
@@ -104,13 +104,13 @@ const Footer: React.FC = () => {
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">phone</span>
                 <div>
-                  <a href="tel:+358440348088" className="text-white hover:text-primary transition-colors block">044 034 8088</a>
-                  <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold">Juuso Valtanen</p>
+                  <a href="tel:+358458972344" className="text-white hover:text-primary transition-colors block">045 897 2344</a>
+                  <p className="text-[10px] text-[#D4AF37] uppercase tracking-wider font-semibold">Sakari Lumme</p>
                 </div>
               </li>
               <li className="flex items-center gap-3">
                 <span className="material-icons-outlined text-primary text-xl">email</span>
-                <a href="mailto:juuso.railopinnoitus@gmail.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">juuso.railopinnoitus@gmail.com</a>
+                <a href="mailto:railopinnoitus@gmail.com" className="text-white hover:text-primary transition-colors text-base break-all tracking-tight">railopinnoitus@gmail.com</a>
               </li>
             </ul>
           </div>
@@ -118,8 +118,8 @@ const Footer: React.FC = () => {
 
         <div className="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center text-[10px] font-medium uppercase tracking-[0.1em] text-white/40 gap-6">
           <div className="text-center md:text-left">
-            <p>© {new Date().getFullYear()} RAILO Epoksilattiat. Y-tunnus: 3600636-7.</p>
-            <p>Kaikki oikeudet pidätetään.</p>
+            <p>© {new Date().getFullYear()} RAILO PINNOITUS OY. Y-TUNNUS: 3600636-7.</p>
+            <p>KAIKKI OIKEUDET PIDÄTETÄÄN.</p>
           </div>
           <div className="flex gap-8">
             <Link to="/tietosuoja" className="hover:text-white transition-colors">Tietosuojaseloste</Link>

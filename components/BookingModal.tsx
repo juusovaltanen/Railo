@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { X, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const triggerBookingModal = () => {
-  window.dispatchEvent(new CustomEvent('open-booking-modal'));
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('open-booking-modal'));
+  }
 };
 
 const BookingModal: React.FC = () => {
