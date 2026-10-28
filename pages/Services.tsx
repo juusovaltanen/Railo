@@ -65,10 +65,7 @@ const Services: React.FC = () => {
 
   return (
     <div className="pt-20 bg-white">
-      <SEO 
-        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
-        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
-      />
+      <SEO />
       {/* Header Section */}
       <section className="relative py-48 overflow-hidden bg-[#00001C]">
         <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">

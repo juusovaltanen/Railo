@@ -64,10 +64,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col bg-white">
-      <SEO 
-        title="Epoksilattiat Oulu | Autotallit & Varastot | Railo Pinnoitus"
-        description="Kestävät ja tyylikkäät epoksilattiat autotalleihin Oulun seudulla. Pölytön ja helppohoitoinen pinta. Laske hinta-arvio!"
-      />
+      <SEO />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">

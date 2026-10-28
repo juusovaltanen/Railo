@@ -678,64 +678,50 @@ const LeadChatWidget: React.FC = () => {
 
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none">
-      {/* Compact, Enticing Speech Preview Bubble with Showcase Image (Shown when collapsed) */}
+      {/* Compact Speech Preview Bubble (Pelkkä tekstilaatikko ilman kuvaa) */}
       {!isOpen && showPreview && (
-        <div className="pointer-events-auto relative mb-3 w-[250px] sm:w-[275px] max-w-[calc(100vw-2rem)] transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
+        <div className="pointer-events-auto relative mb-3 w-[260px] sm:w-[290px] max-w-[calc(100vw-2rem)] transition-all duration-300 animate-in fade-in slide-in-from-bottom-4">
           <div
             onClick={() => {
               setIsOpen(true);
               setCurrentView('menu');
               setShowPreview(false);
             }}
-            className="cursor-pointer group relative bg-gradient-to-b from-[#111735] via-[#0D122B] to-[#00001C] text-white rounded-2xl shadow-2xl shadow-black/95 border-2 border-[#C5A059] hover:border-[#F3E5AB] transition-all duration-300 overflow-hidden hover:scale-[1.015]"
+            className="cursor-pointer group relative bg-gradient-to-b from-[#111735] via-[#0D122B] to-[#00001C] text-white rounded-2xl shadow-2xl shadow-black/95 border-2 border-[#C5A059] hover:border-[#F3E5AB] transition-all duration-300 p-3.5 sm:p-4 hover:scale-[1.015]"
           >
-            {/* Real Finished Floor Showcase Photo with Floor Worker clearly framed */}
-            <div className="relative h-36 sm:h-40 w-full overflow-hidden bg-black/50">
-              <img
-                src="https://i.postimg.cc/BvwBpYFT/IMG-7381.jpg"
-                alt="Lattian pinnoitustyö työn alla"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                style={{ objectPosition: 'center 25%' }}
-              />
+            {/* Close button on top-right */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowPreview(false);
+              }}
+              aria-label="Sulje vihje"
+              className="absolute top-2.5 right-2.5 text-white/50 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors cursor-pointer"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
 
-              {/* Close button on top-right of image */}
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setShowPreview(false);
-                }}
-                aria-label="Sulje vihje"
-                className="absolute top-2 right-2 bg-black/60 hover:bg-black/90 text-white/80 hover:text-white p-1 rounded-full transition-colors border border-white/20 shadow-md cursor-pointer"
-              >
-                <X className="w-3.5 h-3.5" />
-              </button>
-            </div>
-
-            {/* Speech Bubble Content */}
-            <div className="p-2.5 sm:p-3">
-              {/* Bot Identity Header */}
-              <div className="flex items-center gap-2 mb-1.5">
-                <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-[#9B772E] via-[#C5A059] to-[#F1D487] flex items-center justify-center text-[#00001C] font-black shrink-0 shadow-sm">
-                  <MessageCircle className="w-3.5 h-3.5 fill-[#00001C]/25 stroke-[2.2]" />
-                </div>
-                <div className="min-w-0 flex-1 flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-white group-hover:text-[#F1D487] transition-colors">
-                    Pinnoittaja Pertti
-                  </h4>
-                  <span className="flex items-center gap-1 text-[9px] text-emerald-400 font-semibold">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>Paikalla</span>
-                  </span>
-                </div>
+            {/* Bot Identity Header */}
+            <div className="flex items-center gap-2 mb-2 pr-6">
+              <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-[#9B772E] via-[#C5A059] to-[#F1D487] flex items-center justify-center text-[#00001C] font-black shrink-0 shadow-sm">
+                <MessageCircle className="w-3.5 h-3.5 fill-[#00001C]/25 stroke-[2.2]" />
               </div>
-
-              {/* High-Converting Persuasive Copy */}
-              <p className="text-xs font-bold text-white leading-snug">
-                Mietitkö mikä ratkaisu sopii tilaasi? Testaa 30 sekunnissa ja selvitä hinta-arvio 👇
-              </p>
+              <div className="min-w-0 flex-1 flex items-center justify-between">
+                <h4 className="text-xs font-bold text-white group-hover:text-[#F1D487] transition-colors">
+                  Pinnoittaja Pertti
+                </h4>
+                <span className="flex items-center gap-1 text-[9px] text-emerald-400 font-semibold">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span>Paikalla</span>
+                </span>
+              </div>
             </div>
+
+            {/* High-Converting Persuasive Copy */}
+            <p className="text-xs font-bold text-white leading-snug">
+              Mietitkö mikä ratkaisu sopii tilaasi? Testaa 30 sekunnissa ja selvitä hinta-arvio 👇
+            </p>
 
             {/* Downward pointer notch */}
             <div className="absolute -bottom-1.5 right-7 w-3.5 h-3.5 bg-[#00001C] border-r-2 border-b-2 border-[#C5A059] transform rotate-45" />

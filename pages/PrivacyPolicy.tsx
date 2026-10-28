@@ -5,10 +5,7 @@ import SEO from '../components/SEO';
 const PrivacyPolicy: React.FC = () => {
   return (
     <div className="pt-20 min-h-screen bg-white">
-      <SEO 
-        title="Epoksilattiat Oulu & Koko Suomi | Railo Pinnoitus - Kestävät lattiapinnoitukset."
-        description="Railo Pinnoitus toteuttaa kestävät epoksilattiat, pölynsidonnat ja timanttihionnat autotalleihin ja teollisuuteen koko Suomen alueella. Pyydä tarjous!"
-      />
+      <SEO />
       <section className="py-32 max-w-4xl mx-auto px-4">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-7xl font-black text-[#00001C] uppercase tracking-tighter mb-6">Tietosuojaseloste</h1>
@@ -23,7 +20,7 @@ const PrivacyPolicy: React.FC = () => {
           <div className="space-y-8">
             <div className="space-y-3">
               <h3 className="text-[#00001C] font-black uppercase tracking-wider text-xl">Rekisterinpitäjä</h3>
-              <p className="text-[#00001C]/60 font-medium">RAILO Epoksilattiat (Liminka). Yhteystiedot: juuso.railopinnoitus@gmail.com</p>
+              <p className="text-[#00001C]/60 font-medium">Railo Pinnoitus (Liminka). Yhteystiedot: railopinnoitus@gmail.com, puh. 045 897 2344</p>
             </div>
 
             <div className="space-y-3">

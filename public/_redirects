@@ -1,0 +1,3 @@
+# Netlify redirects file
+# Palauttaa 404.html-tiedoston ja oikean HTTP 404 -tilakoodin kaikille olemattomille sivuille
+/*  /404.html  404
